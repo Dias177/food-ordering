@@ -1,8 +1,8 @@
 package kz.epam.tcfp.foodordering.entity;
 
-import java.io.Serializable;
+import java.util.Objects;
 
-public class User implements Cloneable, Serializable, Comparable {
+public class User {
 
     private int id;
     private int roleId;
@@ -16,17 +16,22 @@ public class User implements Cloneable, Serializable, Comparable {
 
     public User() {}
 
-    public User(int id, int roleId, String email, String password, String firstName, String lastName,
-                String phoneNumber, String city, String address) {
-        this.id = id;
+    public User(int roleId, String email, String password) {
         this.roleId = roleId;
         this.email = email;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.city = city;
-        this.address = address;
+    }
+
+    public User(User user) {
+        this.id = user.id;
+        this.roleId = user.roleId;
+        this.email = user.email;
+        this.password = user.password;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.phoneNumber = user.phoneNumber;
+        this.city = user.city;
+        this.address = user.address;
     }
 
     public int getId() {
@@ -101,9 +106,21 @@ public class User implements Cloneable, Serializable, Comparable {
         this.address = address;
     }
 
+    public User copy() {
+        return new User(this);
+    }
+
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && email.equals(user.email) && Objects.equals(phoneNumber, user.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, phoneNumber);
     }
 
     @Override
