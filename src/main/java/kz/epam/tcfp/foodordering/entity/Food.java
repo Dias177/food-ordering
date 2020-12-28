@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Food implements Comparable<Food> {
 
     private int id;
-    private int foodCategory;
+    private int foodCategoryId;
     private String name;
     private String description;
     private double price;
@@ -14,20 +14,20 @@ public class Food implements Comparable<Food> {
 
     public Food(Food food) {
         this.id = food.id;
-        this.foodCategory = food.foodCategory;
+        this.foodCategoryId = food.foodCategoryId;
         this.name = food.name;
         this.description = food.description;
         this.price = food.price;
     }
 
-    public Food(int foodCategory, String name, double price) {
-        this.foodCategory = foodCategory;
+    public Food(int foodCategoryId, String name, double price) {
+        this.foodCategoryId = foodCategoryId;
         this.name = name;
         this.price = price;
     }
 
-    public Food(int foodCategory, String name, String description, double price) {
-        this.foodCategory = foodCategory;
+    public Food(int foodCategoryId, String name, String description, double price) {
+        this.foodCategoryId = foodCategoryId;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -41,12 +41,12 @@ public class Food implements Comparable<Food> {
         this.id = id;
     }
 
-    public int getFoodCategory() {
-        return foodCategory;
+    public int getFoodCategoryId() {
+        return foodCategoryId;
     }
 
-    public void setFoodCategory(int foodCategory) {
-        this.foodCategory = foodCategory;
+    public void setFoodCategoryId(int foodCategoryId) {
+        this.foodCategoryId = foodCategoryId;
     }
 
     public String getName() {
@@ -91,20 +91,20 @@ public class Food implements Comparable<Food> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Food food = (Food) o;
-        return foodCategory == food.foodCategory && Double.compare(food.price, price) == 0 && name.equals(food.name) &&
+        return foodCategoryId == food.foodCategoryId && Double.compare(food.price, price) == 0 && name.equals(food.name) &&
                 Objects.equals(description, food.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(foodCategory, name, description, price);
+        return Objects.hash(foodCategoryId, name, description, price);
     }
 
     @Override
     public String toString() {
         return "Food{" +
                 "id=" + id +
-                ", foodCategory=" + foodCategory +
+                ", foodCategory=" + foodCategoryId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
