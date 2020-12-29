@@ -11,8 +11,6 @@ public class User {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String city;
-    private String address;
 
     public User() {}
 
@@ -20,6 +18,17 @@ public class User {
         this.roleId = roleId;
         this.email = email;
         this.password = password;
+    }
+
+    public User(int id, int roleId, String email, String password, String firstName, String lastName,
+                String phoneNumber) {
+        this.id = id;
+        this.roleId = roleId;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
     }
 
     public User(User user) {
@@ -30,8 +39,6 @@ public class User {
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.phoneNumber = user.phoneNumber;
-        this.city = user.city;
-        this.address = user.address;
     }
 
     public int getId() {
@@ -90,22 +97,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public User copy() {
         return new User(this);
     }
@@ -115,12 +106,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && email.equals(user.email) && Objects.equals(phoneNumber, user.phoneNumber);
+        return roleId == user.roleId && email.equals(user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(phoneNumber, user.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, phoneNumber);
+        return Objects.hash(roleId, email, firstName, lastName, phoneNumber);
     }
 
     @Override
@@ -133,8 +124,6 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", city='" + city + '\'' +
-                ", address='" + address + '\'' +
                 '}';
     }
 }
