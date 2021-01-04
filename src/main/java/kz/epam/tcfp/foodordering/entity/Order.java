@@ -11,21 +11,21 @@ public class Order implements Comparable<Order> {
     private double amount;
     private String city;
     private String address;
-    private String phoneNumber;
     private Date date;
+    private String comment;
 
     public Order() {}
 
-    public Order(int id, int userId, int orderStatusId, double amount, String city, String address, String phoneNumber,
-                 Date date) {
+    public Order(int id, int userId, int orderStatusId, double amount, String city, String address,
+                 Date date, String comment) {
         this.id = id;
         this.userId = userId;
         this.orderStatusId = orderStatusId;
         this.amount = amount;
         this.city = city;
         this.address = address;
-        this.phoneNumber = phoneNumber;
         this.date = date;
+        this.comment = comment;
     }
 
     public Order(Order order) {
@@ -35,8 +35,8 @@ public class Order implements Comparable<Order> {
         this.amount = order.amount;
         this.city = order.city;
         this.address = order.address;
-        this.phoneNumber = order.phoneNumber;
         this.date = order.date;
+        this.comment = order.comment;
     }
 
     public int getId() {
@@ -87,20 +87,20 @@ public class Order implements Comparable<Order> {
         this.address = address;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Order copy() {
@@ -121,12 +121,14 @@ public class Order implements Comparable<Order> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id && userId == order.userId && orderStatusId == order.orderStatusId && Double.compare(order.amount, amount) == 0 && Objects.equals(city, order.city) && Objects.equals(address, order.address) && Objects.equals(phoneNumber, order.phoneNumber) && Objects.equals(date, order.date);
+        return userId == order.userId && orderStatusId == order.orderStatusId &&
+                Double.compare(order.amount, amount) == 0 && city.equals(order.city) && address.equals(order.address)
+                && date.equals(order.date) && Objects.equals(comment, order.comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, orderStatusId, amount, city, address, phoneNumber, date);
+        return Objects.hash(userId, orderStatusId, amount, city, address, date, comment);
     }
 
     @Override
@@ -138,8 +140,8 @@ public class Order implements Comparable<Order> {
                 ", amount=" + amount +
                 ", city='" + city + '\'' +
                 ", address='" + address + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
                 ", date=" + date +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }

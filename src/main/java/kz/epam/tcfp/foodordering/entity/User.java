@@ -1,5 +1,6 @@
 package kz.epam.tcfp.foodordering.entity;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class User {
@@ -11,6 +12,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private Date birthday;
 
     public User() {}
 
@@ -21,7 +23,7 @@ public class User {
     }
 
     public User(int id, int roleId, String email, String password, String firstName, String lastName,
-                String phoneNumber) {
+                String phoneNumber, Date birthday) {
         this.id = id;
         this.roleId = roleId;
         this.email = email;
@@ -29,6 +31,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
     }
 
     public User(User user) {
@@ -39,6 +42,7 @@ public class User {
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.phoneNumber = user.phoneNumber;
+        this.birthday = user.birthday;
     }
 
     public int getId() {
@@ -97,6 +101,14 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public User copy() {
         return new User(this);
     }
@@ -106,24 +118,13 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return roleId == user.roleId && email.equals(user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(phoneNumber, user.phoneNumber);
+        return roleId == user.roleId && email.equals(user.email) && firstName.equals(user.firstName) &&
+                lastName.equals(user.lastName) && phoneNumber.equals(user.phoneNumber) &&
+                Objects.equals(birthday, user.birthday);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleId, email, firstName, lastName, phoneNumber);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", roleId=" + roleId +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
+        return Objects.hash(roleId, email, firstName, lastName, phoneNumber, birthday);
     }
 }
