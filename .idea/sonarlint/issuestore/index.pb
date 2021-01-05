@@ -15,3 +15,8 @@ o
 ?src/main/java/kz/epam/tcfp/foodordering/entity/OrderStatus.java,9/1/91ff6d6363ad8509faaa87917ef45b13ede75213
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+I
+src/main/webapp/index.jsp,8/e/8e6d3b70c9f5b02570779b0441540d45eceb0ded
