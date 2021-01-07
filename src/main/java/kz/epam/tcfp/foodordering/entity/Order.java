@@ -1,50 +1,29 @@
 package kz.epam.tcfp.foodordering.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
-public class Order implements Comparable<Order> {
+public class Order extends Entity implements Comparable<Order> {
 
-    private int id;
     private int userId;
     private int orderStatusId;
     private double amount;
     private String city;
     private String address;
-    private Date date;
+    private Timestamp timestamp;
     private String comment;
 
     public Order() {}
 
-    public Order(int id, int userId, int orderStatusId, double amount, String city, String address,
-                 Date date, String comment) {
-        this.id = id;
+    public Order(int userId, int orderStatusId, double amount, String city, String address,
+                 Timestamp timestamp, String comment) {
         this.userId = userId;
         this.orderStatusId = orderStatusId;
         this.amount = amount;
         this.city = city;
         this.address = address;
-        this.date = date;
+        this.timestamp = timestamp;
         this.comment = comment;
-    }
-
-    public Order(Order order) {
-        this.id = order.id;
-        this.userId = order.userId;
-        this.orderStatusId = order.orderStatusId;
-        this.amount = order.amount;
-        this.city = order.city;
-        this.address = order.address;
-        this.date = order.date;
-        this.comment = order.comment;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getUserId() {
@@ -87,12 +66,12 @@ public class Order implements Comparable<Order> {
         this.address = address;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getComment() {
@@ -103,15 +82,11 @@ public class Order implements Comparable<Order> {
         this.comment = comment;
     }
 
-    public Order copy() {
-        return new Order(this);
-    }
-
     @Override
     public int compareTo(Order o) {
         int result = (int) (this.amount - o.amount);
         if (result == 0) {
-            result = this.date.compareTo(o.date);
+            result = this.timestamp.compareTo(o.timestamp);
         }
         return result;
     }
@@ -123,24 +98,23 @@ public class Order implements Comparable<Order> {
         Order order = (Order) o;
         return userId == order.userId && orderStatusId == order.orderStatusId &&
                 Double.compare(order.amount, amount) == 0 && city.equals(order.city) && address.equals(order.address)
-                && date.equals(order.date) && Objects.equals(comment, order.comment);
+                && timestamp.equals(order.timestamp) && Objects.equals(comment, order.comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, orderStatusId, amount, city, address, date, comment);
+        return Objects.hash(userId, orderStatusId, amount, city, address, timestamp, comment);
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
-                ", userId=" + userId +
+                "userId=" + userId +
                 ", orderStatusId=" + orderStatusId +
                 ", amount=" + amount +
                 ", city='" + city + '\'' +
                 ", address='" + address + '\'' +
-                ", date=" + date +
+                ", timestamp=" + timestamp +
                 ", comment='" + comment + '\'' +
                 '}';
     }

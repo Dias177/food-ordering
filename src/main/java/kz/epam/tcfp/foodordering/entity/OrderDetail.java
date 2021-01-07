@@ -2,9 +2,8 @@ package kz.epam.tcfp.foodordering.entity;
 
 import java.util.Objects;
 
-public class OrderDetail implements Comparable<OrderDetail> {
+public class OrderDetail extends Entity implements Comparable<OrderDetail> {
 
-    private int id;
     private int orderId;
     private int foodId;
     private double price;
@@ -12,28 +11,11 @@ public class OrderDetail implements Comparable<OrderDetail> {
 
     public OrderDetail() {}
 
-    public OrderDetail(int id, int orderId, int foodId, double price, int quantity) {
-        this.id = id;
+    public OrderDetail(int orderId, int foodId, double price, int quantity) {
         this.orderId = orderId;
         this.foodId = foodId;
         this.price = price;
         this.quantity = quantity;
-    }
-
-    public OrderDetail(OrderDetail orderDetail) {
-        this.id = orderDetail.id;
-        this.orderId = orderDetail.orderId;
-        this.foodId = orderDetail.foodId;
-        this.price = orderDetail.price;
-        this.quantity = orderDetail.quantity;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getOrderId() {
@@ -68,10 +50,6 @@ public class OrderDetail implements Comparable<OrderDetail> {
         this.quantity = quantity;
     }
 
-    public OrderDetail copy() {
-        return new OrderDetail(this);
-    }
-
     @Override
     public int compareTo(OrderDetail o) {
         int result = (int) (this.price - o.price);
@@ -86,7 +64,8 @@ public class OrderDetail implements Comparable<OrderDetail> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetail that = (OrderDetail) o;
-        return orderId == that.orderId && foodId == that.foodId && Double.compare(that.price, price) == 0 && quantity == that.quantity;
+        return orderId == that.orderId && foodId == that.foodId && Double.compare(that.price, price) == 0 &&
+                quantity == that.quantity;
     }
 
     @Override
@@ -97,8 +76,7 @@ public class OrderDetail implements Comparable<OrderDetail> {
     @Override
     public String toString() {
         return "OrderDetail{" +
-                "id=" + id +
-                ", orderId=" + orderId +
+                "orderId=" + orderId +
                 ", foodId=" + foodId +
                 ", price=" + price +
                 ", quantity=" + quantity +

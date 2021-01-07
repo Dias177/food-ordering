@@ -3,9 +3,8 @@ package kz.epam.tcfp.foodordering.entity;
 import java.util.Date;
 import java.util.Objects;
 
-public class User {
+public class User extends Entity {
 
-    private int id;
     private int roleId;
     private String email;
     private String password;
@@ -22,9 +21,8 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, int roleId, String email, String password, String firstName, String lastName,
+    public User(int roleId, String email, String password, String firstName, String lastName,
                 String phoneNumber, Date birthday) {
-        this.id = id;
         this.roleId = roleId;
         this.email = email;
         this.password = password;
@@ -32,25 +30,6 @@ public class User {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
-    }
-
-    public User(User user) {
-        this.id = user.id;
-        this.roleId = user.roleId;
-        this.email = user.email;
-        this.password = user.password;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.phoneNumber = user.phoneNumber;
-        this.birthday = user.birthday;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getRoleId() {
@@ -109,10 +88,6 @@ public class User {
         this.birthday = birthday;
     }
 
-    public User copy() {
-        return new User(this);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,5 +101,18 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(roleId, email, firstName, lastName, phoneNumber, birthday);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "roleId=" + roleId +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", birthday=" + birthday +
+                '}';
     }
 }

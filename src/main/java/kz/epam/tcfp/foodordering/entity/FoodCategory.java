@@ -2,29 +2,14 @@ package kz.epam.tcfp.foodordering.entity;
 
 import java.util.Objects;
 
-public class FoodCategory implements Comparable<FoodCategory> {
+public class FoodCategory extends Entity implements Comparable<FoodCategory> {
 
-    private int id;
     private String name;
 
     public FoodCategory() {}
 
-    public FoodCategory(int id, String name) {
-        this.id = id;
+    public FoodCategory(String name) {
         this.name = name;
-    }
-
-    public FoodCategory(FoodCategory foodCategory) {
-        this.id = foodCategory.id;
-        this.name = foodCategory.name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -33,10 +18,6 @@ public class FoodCategory implements Comparable<FoodCategory> {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public FoodCategory copy() {
-        return new FoodCategory(this);
     }
 
     @Override
@@ -60,8 +41,7 @@ public class FoodCategory implements Comparable<FoodCategory> {
     @Override
     public String toString() {
         return "FoodCategory{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 }
