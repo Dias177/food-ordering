@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class User extends Entity {
 
-    private int roleId;
+    private long roleId;
     private String email;
     private String password;
     private String firstName;
@@ -15,13 +15,13 @@ public class User extends Entity {
 
     public User() {}
 
-    public User(int roleId, String email, String password) {
+    public User(long roleId, String email, String password) {
         this.roleId = roleId;
         this.email = email;
         this.password = password;
     }
 
-    public User(int roleId, String email, String password, String firstName, String lastName,
+    public User(long roleId, String email, String password, String firstName, String lastName,
                 String phoneNumber, Date birthday) {
         this.roleId = roleId;
         this.email = email;
@@ -32,11 +32,11 @@ public class User extends Entity {
         this.birthday = birthday;
     }
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 

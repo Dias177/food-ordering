@@ -4,33 +4,33 @@ import java.util.Objects;
 
 public class OrderDetail extends Entity implements Comparable<OrderDetail> {
 
-    private int orderId;
-    private int foodId;
+    private long orderId;
+    private long foodId;
     private double price;
     private int quantity;
 
     public OrderDetail() {}
 
-    public OrderDetail(int orderId, int foodId, double price, int quantity) {
+    public OrderDetail(long orderId, long foodId, double price, int quantity) {
         this.orderId = orderId;
         this.foodId = foodId;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public int getOrderId() {
+    public long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
 
-    public int getFoodId() {
+    public long getFoodId() {
         return foodId;
     }
 
-    public void setFoodId(int foodId) {
+    public void setFoodId(long foodId) {
         this.foodId = foodId;
     }
 

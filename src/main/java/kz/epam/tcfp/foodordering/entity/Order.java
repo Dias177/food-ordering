@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class Order extends Entity implements Comparable<Order> {
 
-    private int userId;
-    private int orderStatusId;
+    private long userId;
+    private long orderStatusId;
     private double amount;
     private String city;
     private String address;
@@ -15,7 +15,7 @@ public class Order extends Entity implements Comparable<Order> {
 
     public Order() {}
 
-    public Order(int userId, int orderStatusId, double amount, String city, String address,
+    public Order(long userId, long orderStatusId, double amount, String city, String address,
                  Timestamp timestamp, String comment) {
         this.userId = userId;
         this.orderStatusId = orderStatusId;
@@ -26,19 +26,19 @@ public class Order extends Entity implements Comparable<Order> {
         this.comment = comment;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public int getOrderStatusId() {
+    public long getOrderStatusId() {
         return orderStatusId;
     }
 
-    public void setOrderStatusId(int orderStatusId) {
+    public void setOrderStatusId(long orderStatusId) {
         this.orderStatusId = orderStatusId;
     }
 

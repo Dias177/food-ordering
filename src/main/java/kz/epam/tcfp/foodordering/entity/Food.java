@@ -4,31 +4,31 @@ import java.util.Objects;
 
 public class Food extends Entity implements Comparable<Food> {
 
-    private int foodCategoryId;
+    private long foodCategoryId;
     private String name;
     private String description;
     private double price;
 
     public Food() {}
 
-    public Food(int foodCategoryId, String name, double price) {
+    public Food(long foodCategoryId, String name, double price) {
         this.foodCategoryId = foodCategoryId;
         this.name = name;
         this.price = price;
     }
 
-    public Food(int foodCategoryId, String name, String description, double price) {
+    public Food(long foodCategoryId, String name, String description, double price) {
         this.foodCategoryId = foodCategoryId;
         this.name = name;
         this.description = description;
         this.price = price;
     }
 
-    public int getFoodCategoryId() {
+    public long getFoodCategoryId() {
         return foodCategoryId;
     }
 
-    public void setFoodCategoryId(int foodCategoryId) {
+    public void setFoodCategoryId(long foodCategoryId) {
         this.foodCategoryId = foodCategoryId;
     }
 
