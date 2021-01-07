@@ -2,7 +2,18 @@ package kz.epam.tcfp.foodordering.connectionpool;
 
 public class ConnectionPoolException extends Exception {
 
-    public ConnectionPoolException(String msg, Exception e) {
-        super(msg, e);
+    public ConnectionPoolException() {
+    }
+
+    public ConnectionPoolException(String message) {
+        super(message);
+    }
+
+    public ConnectionPoolException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ConnectionPoolException(Throwable cause) {
+        super(cause);
     }
 }
