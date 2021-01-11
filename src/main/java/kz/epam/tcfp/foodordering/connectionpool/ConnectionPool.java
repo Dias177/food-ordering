@@ -9,10 +9,9 @@ import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
-public enum ConnectionPool {
+public class ConnectionPool {
 
-    INSTANCE;
-
+    private static ConnectionPool instance;
     private static final Logger logger = LogManager.getLogger();
     private final String driverName;
     private final String url;
@@ -21,7 +20,7 @@ public enum ConnectionPool {
     private int poolSize;
     private final BlockingQueue<ProxyConnection> freeConnections;
 
-    ConnectionPool() {
+    private ConnectionPool() {
         DBResourceManager dbResourceManager = DBResourceManager.getInstance();
         driverName = dbResourceManager.getValue(DBParameter.DB_DRIVER);
         url = dbResourceManager.getValue(DBParameter.DB_URL);
@@ -33,9 +32,14 @@ public enum ConnectionPool {
             poolSize = 32;
         }
         freeConnections = new LinkedBlockingDeque<>(poolSize);
+        try {
+            initPoolData();
+        } catch (ConnectionPoolException e) {
+            logger.error("Error in initializing connection pool with data", e);
+        }
     }
 
-    public void initPoolData() throws ConnectionPoolException {
+    private void initPoolData() throws ConnectionPoolException {
         try {
             Class.forName(driverName);
             for (int i = 0; i < poolSize; i++) {
@@ -50,8 +54,21 @@ public enum ConnectionPool {
         }
     }
 
-    public Connection getConnection() {
-        Connection connection = null;
+    public static ConnectionPool getInstance() {
+        ConnectionPool localInstance = instance;
+        if (localInstance == null) {
+            synchronized (ConnectionPool.class) {
+                localInstance = instance;
+                if (localInstance == null) {
+                    instance = localInstance = new ConnectionPool();
+                }
+            }
+        }
+        return localInstance;
+    }
+
+    public ProxyConnection getConnection() {
+        ProxyConnection connection = null;
         try {
             connection = freeConnections.take();
         } catch (InterruptedException e) {
@@ -82,7 +99,7 @@ public enum ConnectionPool {
         deregisterDrivers();
     }
 
-    public void deregisterDrivers() {
+    private void deregisterDrivers() {
         while (DriverManager.getDrivers().hasMoreElements()) {
             try {
                 DriverManager.deregisterDriver(DriverManager.getDrivers().nextElement());
