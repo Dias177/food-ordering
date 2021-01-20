@@ -7,23 +7,16 @@ public class Order extends Entity implements Comparable<Order> {
 
     private long userId;
     private long orderStatusId;
-    private double amount;
-    private String city;
-    private String address;
-    private Timestamp timestamp;
-    private String comment;
+    private double price;
+    private Timestamp date;
 
     public Order() {}
 
-    public Order(long userId, long orderStatusId, double amount, String city, String address,
-                 Timestamp timestamp, String comment) {
+    public Order(long userId, long orderStatusId, double price, Timestamp date) {
         this.userId = userId;
         this.orderStatusId = orderStatusId;
-        this.amount = amount;
-        this.city = city;
-        this.address = address;
-        this.timestamp = timestamp;
-        this.comment = comment;
+        this.price = price;
+        this.date = date;
     }
 
     public long getUserId() {
@@ -42,51 +35,27 @@ public class Order extends Entity implements Comparable<Order> {
         this.orderStatusId = orderStatusId;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getPrice() {
+        return price;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public String getCity() {
-        return city;
+    public Timestamp getDate() {
+        return date;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
     @Override
     public int compareTo(Order o) {
-        int result = (int) (this.amount - o.amount);
+        int result = (int) (this.price - o.price);
         if (result == 0) {
-            result = this.timestamp.compareTo(o.timestamp);
+            result = this.date.compareTo(o.date);
         }
         return result;
     }
@@ -97,25 +66,11 @@ public class Order extends Entity implements Comparable<Order> {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return userId == order.userId && orderStatusId == order.orderStatusId &&
-                Double.compare(order.amount, amount) == 0 && city.equals(order.city) && address.equals(order.address)
-                && timestamp.equals(order.timestamp) && Objects.equals(comment, order.comment);
+                Double.compare(order.price, price) == 0 && date.equals(order.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, orderStatusId, amount, city, address, timestamp, comment);
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "userId=" + userId +
-                ", orderStatusId=" + orderStatusId +
-                ", amount=" + amount +
-                ", city='" + city + '\'' +
-                ", address='" + address + '\'' +
-                ", timestamp=" + timestamp +
-                ", comment='" + comment + '\'' +
-                '}';
+        return Objects.hash(userId, orderStatusId, price, date);
     }
 }

@@ -57,7 +57,7 @@ public class EntityTransaction {
 
     public void init(AbstractDao dao) {
         if (connection == null) {
-            ConnectionPool.getInstance().getConnection();
+            connection = ConnectionPool.getInstance().getConnection();
         }
         dao.setConnection(connection);
     }

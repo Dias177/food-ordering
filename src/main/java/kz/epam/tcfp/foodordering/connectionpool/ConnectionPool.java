@@ -11,13 +11,15 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 public class ConnectionPool {
 
-    private static ConnectionPool instance;
     private static final Logger logger = LogManager.getLogger();
+    private static final int DEFAULT_POOL_SIZE = 32;
+    private static ConnectionPool instance;
     private final String driverName;
     private final String url;
     private final String user;
     private final String password;
     private int poolSize;
+    private final String characterEncoding;
     private final BlockingQueue<ProxyConnection> freeConnections;
 
     private ConnectionPool() {
@@ -26,10 +28,11 @@ public class ConnectionPool {
         url = dbResourceManager.getValue(DBParameter.DB_URL);
         user = dbResourceManager.getValue(DBParameter.USER);
         password = dbResourceManager.getValue(DBParameter.PASSWORD);
+        characterEncoding = dbResourceManager.getValue(DBParameter.CHARACTER_ENCODING);
         try {
             poolSize = Integer.parseInt(dbResourceManager.getValue(DBParameter.POOL_SIZE));
         } catch (NumberFormatException e) {
-            poolSize = 32;
+            poolSize = DEFAULT_POOL_SIZE;
         }
         freeConnections = new LinkedBlockingDeque<>(poolSize);
         try {
