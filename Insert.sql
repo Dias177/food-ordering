@@ -32,9 +32,9 @@ INSERT INTO order_status (name) VALUES ('Delivering');
 INSERT INTO order_status (name) VALUES ('Finished');
 INSERT INTO order_status (name) VALUES ('Cancelled');
 
-INSERT INTO order (user_id, order_status_id, price, date)
+INSERT INTO `order` (user_id, order_status_id, price, date)
 VALUES (2, 1, 3000, NOW());
-INSERT INTO order (user_id, order_status_id, price, date)
+INSERT INTO `order` (user_id, order_status_id, price, date)
 VALUES (3, 1, 7000, NOW());
 
 INSERT INTO order_detail (order_id, food_id, price, quantity)
