@@ -17,6 +17,7 @@
     </head>
     <body>
         <div class="container">
+            <h3><fmt:message key="label.menu" /></h3>
             <div class="row row-cols-1 row-cols-md-3">
                 <c:forEach var="foodItem" items="${foodItems}">
                     <div class="col mb-4">

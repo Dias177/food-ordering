@@ -17,6 +17,7 @@
     </head>
     <body>
     <div class="container">
+        <h3><fmt:message key="label.add.food" /></h3>
         <form class="text-center" name="addFoodForm" method="POST" action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="add_food"/>
             <c:if test="${not empty successAddFood}">
@@ -35,10 +36,11 @@
             </c:if>
             <div class="form-group input-mini">
             <label for="foodCategory"><fmt:message key="label.category" />:</label>
-            <select class="form-control" id="foodCategory" name="foodCategory" required>
-                <option value="8">Японская</option>
-                <option value="1">Japanese</option>
-            </select>
+                <select class="custom-select custom-select-sm" id="foodCategory" name="foodCategory" required>
+                    <c:forEach var="foodCategory" items="${foodCategories}">
+                        <option value="${foodCategory.id}">${foodCategory.name}</option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="form-group input-mini">
             <label for="foodDescription"><fmt:message key="label.description" />:</label>

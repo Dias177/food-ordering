@@ -17,6 +17,7 @@
     </head>
     <body>
         <div class="container">
+            <h3><fmt:message key="label.orders" /></h3>
             <c:if test="${not empty successEditingOrderStatus}">
                 <div class="alert alert-success" role="alert">
                     ${successEditingOrderStatus}
@@ -40,10 +41,8 @@
                                 </select>
                                 <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.price}" /></h6>
                                 <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.date}" /></h6>
-<%--                                TODO: Change order detail to appropriate format--%>
                                 <c:forEach var="orderDetail" items="${order.value}" varStatus="statusOrderDetail">
                                     <p class="card-text">${statusOrderDetail.count}. ${foods[orderDetail.foodId - 1].name}: ${orderDetail.quantity}x${foods[orderDetail.foodId - 1].price}=${orderDetail.price}</p>
-<%--                                    <p class="card-text">${statusOrderDetail.count}. Quantity of ${foods[orderDetail.foodId - 1].name} - ${orderDetail.quantity}. Price - ${orderDetail.price}</p>--%>
                                 </c:forEach>
                                 <button type="submit" class="btn btn-primary"><fmt:message key="label.edit" /></button>
                             </div>

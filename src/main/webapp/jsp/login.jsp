@@ -12,7 +12,7 @@
 <fmt:setBundle basename="pagecontent" />
 <html>
     <head>
-        <title><fmt:message key="label.title" /></title>
+        <title><fmt:message key="label.login" /></title>
         <c:import url="/jsp/partials/header.jsp" charEncoding="UTF-8" />
     </head>
     <body>
@@ -20,6 +20,7 @@
             <c:redirect url="/controller?command=show_main"/>
         </c:if>
         <div class="container">
+            <h3><fmt:message key="label.login" /></h3>
                 <form class="text-center" name="loginForm" method="POST" action="${pageContext.request.contextPath}/controller">
                     <input type="hidden" name="command" value="login" />
                     <div class="form-group input-mini">

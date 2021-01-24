@@ -17,6 +17,7 @@
     </head>
     <body onload="calculateAndSetTotalPrice()">
         <div class="container">
+            <h3><fmt:message key="label.cart" /></h3>
             <c:if test="${not empty cart}">
                 <c:if test="${not empty errorInvalidOrderFoodQuantity}">
                     <div class="alert alert-danger" role="alert">
@@ -45,7 +46,7 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <p id="totalPrice" class="text-left"><strong><fmt:message key="label.total.price" />: </strong></p>
+                <p class="text-left"><fmt:message key="label.total.price" />: <strong id="totalPrice"></strong></p>
                 <button type="submit" class="btn btn-primary"><fmt:message key="label.order.action" /></button>
             </form>
             </c:if>
@@ -77,8 +78,7 @@
                     console.log(cell.innerHTML);
                     totalPrice += Number(cell.innerHTML);
                 }
-                //TODO: Deal with Total Price in RU
-                document.getElementById('totalPrice').innerHTML = '<strong>TOTAL PRICE: ' + totalPrice.toString() + '</strong>';
+                document.getElementById('totalPrice').innerHTML = totalPrice.toString();
             }
         </script>
     </body>

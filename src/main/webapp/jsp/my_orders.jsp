@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${locale}" scope="session" />
 <fmt:setBundle basename="pagecontent" />
-<%--TODO: Change order detail to appropriate format--%>
+
 <html>
     <head>
         <title><fmt:message key="label.my.orders" /></title>
@@ -18,6 +18,7 @@
     </head>
     <body>
         <div class="container">
+            <h3><fmt:message key="label.my.orders" /></h3>
             <div class="row row-cols-1 row-cols-md-3">
                 <c:forEach var="order" items="${orders}" varStatus="statusOrder">
                     <div class="col mb-4">
@@ -28,7 +29,7 @@
                                 <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.price}" /></h6>
                                 <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.date}" /></h6>
                                 <c:forEach var="orderDetail" items="${order.value}" varStatus="statusOrderDetail">
-                                    <p class="card-text">${statusOrderDetail.count}. Quantity of ${foods[orderDetail.foodId - 1].name} - ${orderDetail.quantity}. Price - ${orderDetail.price}</p>
+                                    <p class="card-text">${statusOrderDetail.count}. ${foods[orderDetail.foodId - 1].name}: ${orderDetail.quantity}x${foods[orderDetail.foodId - 1].price}=${orderDetail.price}</p>
                                 </c:forEach>
                             </div>
                         </div>

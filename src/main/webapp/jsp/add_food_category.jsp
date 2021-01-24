@@ -17,6 +17,7 @@
     </head>
     <body>
     <div class="container">
+        <h3><fmt:message key="label.add.food.category" /></h3>
         <form class="text-center" name="addFoodCategoryForm" method="POST" action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="add_food_category"/>
             <c:if test="${not empty successAddFoodCategoryName}">

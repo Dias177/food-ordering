@@ -5,7 +5,12 @@ import kz.epam.tcfp.foodordering.dao.EntityTransaction;
 import kz.epam.tcfp.foodordering.dao.FoodCategoryDao;
 import kz.epam.tcfp.foodordering.entity.FoodCategory;
 
+import java.util.List;
+
 public class FoodCategoryLogic {
+
+    private static final FoodCategoryDao foodCategoryDao = new FoodCategoryDao();
+    private static final EntityTransaction transaction = new EntityTransaction();
 
     private FoodCategoryLogic() {
         throw new IllegalStateException("Logic utility class");
@@ -13,8 +18,6 @@ public class FoodCategoryLogic {
 
     public static void add(String categoryName) throws DaoException {
         FoodCategory foodCategory = new FoodCategory(categoryName);
-        FoodCategoryDao foodCategoryDao = new FoodCategoryDao();
-        EntityTransaction transaction = new EntityTransaction();
         transaction.initTransaction(foodCategoryDao);
         try {
             foodCategoryDao.create(foodCategory);
@@ -29,8 +32,6 @@ public class FoodCategoryLogic {
 
     public static boolean categoryExists(String categoryName) throws DaoException {
         FoodCategory foodCategory;
-        FoodCategoryDao foodCategoryDao = new FoodCategoryDao();
-        EntityTransaction transaction = new EntityTransaction();
         transaction.init(foodCategoryDao);
         try {
             foodCategory = foodCategoryDao.findFoodCategoryByName(categoryName);
@@ -40,5 +41,18 @@ public class FoodCategoryLogic {
             transaction.end();
         }
         return foodCategory.getName() != null;
+    }
+
+    public static List<FoodCategory> getAll() throws DaoException {
+        List<FoodCategory> foodCategories;
+        transaction.init(foodCategoryDao);
+        try {
+            foodCategories = foodCategoryDao.findAll();
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return foodCategories;
     }
 }

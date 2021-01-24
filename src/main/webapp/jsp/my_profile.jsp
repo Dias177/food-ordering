@@ -17,6 +17,7 @@
 </head>
 <body>
 <div class="container">
+    <h3><fmt:message key="label.my.profile" /></h3>
     <div class="card text-center mx-auto" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">${user.firstName} ${user.lastName}</h5>

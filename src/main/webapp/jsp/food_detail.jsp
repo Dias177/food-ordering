@@ -16,13 +16,17 @@
         <c:import url="/jsp/partials/header.jsp" charEncoding="UTF-8"/>
     </head>
     <body>
-<%--    TODO: Change to card?--%>
-        <div class="container text-center">
-            <h1>${food.name}</h1>
-            <p>${food.foodCategoryId}</p>
-            <p>${food.description}</p>
-            <p>${food.price}</p>
-            <a href="${pageContext.request.contextPath}/controller?command=add_food_to_cart&food_id=${food.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.add.to.cart" /></a>
+        <div class="container">
+            <h3>${food.name} <fmt:message key="label.info" /></h3>
+            <div class="card text-center mx-auto" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${food.name}</h5>
+                    <p class="card-text">${foodCategories[food.foodCategoryId - 1].name}</p>
+                    <p class="card-text">${food.description}</p>
+                    <p class="card-text">${food.price}</p>
+                    <a href="${pageContext.request.contextPath}/controller?command=add_food_to_cart&food_id=${food.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.add.to.cart" /></a>
+                </div>
+            </div>
         </div>
         <c:import url="/jsp/partials/footer.jsp" charEncoding="UTF-8"/>
     </body>

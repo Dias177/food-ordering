@@ -17,6 +17,7 @@
     </head>
     <body>
         <div class="container">
+            <h3><fmt:message key="label.registration" /></h3>
         <form class="text-center" name="registrationForm" method="POST" action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="register"/>
             <div class="form-group input-mini">

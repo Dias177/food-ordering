@@ -5,6 +5,8 @@ import kz.epam.tcfp.foodordering.entity.FoodCategory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
@@ -13,6 +15,7 @@ public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
     private static final String COLUMN_LABEL_NAME = "name";
     private static final String SQL_SELECT_FOOD_CATEGORY_BY_NAME = "SELECT * FROM food_category WHERE name = ?";
     private static final String SQL_CREATE_FOOD_CATEGORY = "INSERT INTO food_category (name) VALUES (?)";
+    private static final String SQL_SELECT_ALL = "SELECT * FROM food_category ORDER BY id";
 
     public FoodCategory findFoodCategoryByName(String categoryName) throws DaoException {
         FoodCategory foodCategory = new FoodCategory();
@@ -34,7 +37,22 @@ public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
     }
     @Override
     public List<FoodCategory> findAll() throws DaoException {
-        return null;
+        List<FoodCategory> foodCategories = new ArrayList<>();
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
+            while (resultSet.next()) {
+                FoodCategory foodCategory = new FoodCategory(resultSet.getString(COLUMN_LABEL_NAME));
+                foodCategory.setId(resultSet.getLong(COLUMN_LABEL_ID));
+                foodCategories.add(foodCategory);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error in finding all food categories", e);
+        } finally {
+            close(statement);
+        }
+        return foodCategories;
     }
 
     @Override
