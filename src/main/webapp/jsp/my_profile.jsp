@@ -7,9 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="pagecontent" />
 <html>
 <head>
-    <title>My Profile</title>
+    <title><fmt:message key="label.my.profile" /></title>
     <c:import url="/jsp/partials/header.jsp" charEncoding="UTF-8"/>
 </head>
 <body>

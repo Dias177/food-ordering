@@ -7,9 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="pagecontent" />
 <html>
     <head>
-        <title>All Orders</title>
+        <title><fmt:message key="label.orders" /></title>
         <c:import url="/jsp/partials/header.jsp" charEncoding="UTF-8"/>
     </head>
     <body>
@@ -26,7 +29,7 @@
                         <div class="col mb-4">
                         <div class="card h-100 text-center" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title">Order #${order.key.id}</h5>
+                                <h5 class="card-title"><fmt:message key="label.order" /> #${order.key.id}</h5>
                                 <select class="custom-select custom-select-sm" name="orderStatusId${order.key.id}">
                                     <option value="${orderStatuses[order.key.orderStatusId - 1].id}" selected>${orderStatuses[order.key.orderStatusId - 1].name}</option>
                                     <c:forEach var="orderStatus" items="${orderStatuses}" varStatus="statusOrderStatus">
@@ -35,13 +38,14 @@
                                         </c:if>
                                     </c:forEach>
                                 </select>
-<%--                                <h6 class="card-subtitle mb-2 text-muted">${orderStatuses[order.key.orderStatusId - 1].name}</h6>--%>
                                 <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.price}" /></h6>
                                 <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.date}" /></h6>
+<%--                                TODO: Change order detail to appropriate format--%>
                                 <c:forEach var="orderDetail" items="${order.value}" varStatus="statusOrderDetail">
-                                    <p class="card-text">${statusOrderDetail.count}. Quantity of ${foods[orderDetail.foodId - 1].name} - ${orderDetail.quantity}. Price - ${orderDetail.price}</p>
+                                    <p class="card-text">${statusOrderDetail.count}. ${foods[orderDetail.foodId - 1].name}: ${orderDetail.quantity}x${foods[orderDetail.foodId - 1].price}=${orderDetail.price}</p>
+<%--                                    <p class="card-text">${statusOrderDetail.count}. Quantity of ${foods[orderDetail.foodId - 1].name} - ${orderDetail.quantity}. Price - ${orderDetail.price}</p>--%>
                                 </c:forEach>
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" class="btn btn-primary"><fmt:message key="label.edit" /></button>
                             </div>
                         </div>
                     </div>

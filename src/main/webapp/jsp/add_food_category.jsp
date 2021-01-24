@@ -7,9 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="pagecontent" />
 <html>
     <head>
-        <title>Add Food Category</title>
+        <title><fmt:message key="label.add.food.category" /></title>
         <c:import url="/jsp/partials/header.jsp" charEncoding="UTF-8"/>
     </head>
     <body>
@@ -22,7 +25,7 @@
             </div>
             </c:if>
             <div class="form-group input-mini">
-            <label for="foodCategoryName">Name For Food Category:</label>
+            <label for="foodCategoryName"><fmt:message key="label.name.for.food.category" />:</label>
             <input type="text" class="form-control" id="foodCategoryName" name="foodCategoryName" value="" autofocus required>
             </div>
             <c:if test="${not empty errorInvalidFoodCategoryName}">
@@ -30,7 +33,7 @@
                         ${errorInvalidFoodCategoryName}
                 </div>
             </c:if>
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary"><fmt:message key="label.add" /></button>
         </form>
     </div>
     <c:import url="/jsp/partials/footer.jsp" charEncoding="UTF-8"/>

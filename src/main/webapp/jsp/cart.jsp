@@ -7,9 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="pagecontent" />
 <html>
     <head>
-        <title>Cart</title>
+        <title><fmt:message key="label.cart" /></title>
         <c:import url="/jsp/partials/header.jsp" charEncoding="UTF-8"/>
     </head>
     <body onload="calculateAndSetTotalPrice()">
@@ -26,9 +29,9 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Price</th>
+                            <th scope="col"><fmt:message key="label.name" /></th>
+                            <th scope="col"><fmt:message key="label.quantity" /></th>
+                            <th scope="col"><fmt:message key="label.price" /></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,8 +45,8 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <p id="totalPrice" class="text-left"><strong>TOTAL PRICE: </strong></p>
-                <button type="submit" class="btn btn-primary">Order</button>
+                <p id="totalPrice" class="text-left"><strong><fmt:message key="label.total.price" />: </strong></p>
+                <button type="submit" class="btn btn-primary"><fmt:message key="label.order.action" /></button>
             </form>
             </c:if>
                 <c:if test="${empty cart}">
@@ -74,6 +77,7 @@
                     console.log(cell.innerHTML);
                     totalPrice += Number(cell.innerHTML);
                 }
+                //TODO: Deal with Total Price in RU
                 document.getElementById('totalPrice').innerHTML = '<strong>TOTAL PRICE: ' + totalPrice.toString() + '</strong>';
             }
         </script>
