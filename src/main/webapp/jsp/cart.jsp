@@ -33,6 +33,7 @@
                             <th scope="col"><fmt:message key="label.name" /></th>
                             <th scope="col"><fmt:message key="label.quantity" /></th>
                             <th scope="col"><fmt:message key="label.price" />, KZT</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,7 @@
                                 <td><c:out value="${cartItem.name}" /></td>
                                 <td><input type="number" class="form-control" id="foodQuantity${status.count}" onchange="changePrice(this.value, ${cartItem.price}, ${status.count})" name="foodQuantity${status.count}" min="1" value="1" required/></td>
                                 <td id="foodPrice${status.count}"><c:out value="${cartItem.price}" /></td>
+                                <td><a class="btn btn-secondary btn-danger" href="${pageContext.request.contextPath}/controller?command=remove_food_from_cart&food_id=${cartItem.id}" role="button">Remove</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -50,7 +52,7 @@
                 <button type="submit" class="btn btn-primary"><fmt:message key="label.order.action" /></button>
             </form>
             </c:if>
-                <c:if test="${empty cart}">
+                <c:if test="${not empty cartEmpty}">
                     <div class="alert alert-info text-center" role="alert">
                         ${cartEmpty}
                     </div>
