@@ -21,8 +21,7 @@ public class AddFoodToCartCommand implements ActionCommand {
         String id = req.getParameter(PARAM_NAME_FOOD_ID);
         long idLong = Long.parseLong(id);
         Food food = FoodLogic.getFood(idLong);
-        Object cartObject = req.getSession().getAttribute(CART);
-        Set<Food> cart = (Set<Food>) cartObject;
+        Set<Food> cart = (Set<Food>) req.getSession().getAttribute(CART);
         cart.add(food);
         req.getSession().setAttribute(CART, cart);
         return page;
