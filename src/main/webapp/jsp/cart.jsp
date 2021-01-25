@@ -32,7 +32,7 @@
                             <th scope="col">#</th>
                             <th scope="col"><fmt:message key="label.name" /></th>
                             <th scope="col"><fmt:message key="label.quantity" /></th>
-                            <th scope="col"><fmt:message key="label.price" /></th>
+                            <th scope="col"><fmt:message key="label.price" />, KZT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +46,7 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <p class="text-left"><fmt:message key="label.total.price" />: <strong id="totalPrice"></strong></p>
+                <p class="text-left"><fmt:message key="label.total.price" />, KZT: <strong id="totalPrice"></strong></p>
                 <button type="submit" class="btn btn-primary"><fmt:message key="label.order.action" /></button>
             </form>
             </c:if>
@@ -69,13 +69,11 @@
             function calculateAndSetTotalPrice()
             {
                 const rows = document.getElementById('orderTable').rows;
-                console.log(rows);
                 const len = rows.length;
                 const cellNum = 3;
                 let totalPrice = 0.0;
                 for (let i = 1; i < len; i++) {
                     const cell = rows[i].cells[cellNum];
-                    console.log(cell.innerHTML);
                     totalPrice += Number(cell.innerHTML);
                 }
                 document.getElementById('totalPrice').innerHTML = totalPrice.toString();

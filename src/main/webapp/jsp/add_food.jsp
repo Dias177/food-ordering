@@ -47,7 +47,7 @@
             <input type="text" class="form-control" id="foodDescription" name="foodDescription" value="">
             </div>
             <div class="form-group input-mini">
-            <label for="foodPrice"><fmt:message key="label.price" />:</label>
+            <label for="foodPrice"><fmt:message key="label.price" />, KZT:</label>
             <input type="number" class="form-control" id="foodPrice" name="foodPrice" min="0" step="0.01" value="" required>
             </div>
             <c:if test="${not empty errorInvalidFoodPrice}">

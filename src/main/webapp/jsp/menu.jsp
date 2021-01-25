@@ -24,7 +24,7 @@
                         <div class="card h-100 text-center" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title"><c:out value="${foodItem.name}" /></h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><c:out value="${foodItem.price}" /></h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><fmt:formatNumber value="${foodItem.price}" type="currency" currencySymbol="KZT" /></h6>
                                 <p class="card-text"><c:out value="${foodItem.description}" /></p>
                                 <a href="${pageContext.request.contextPath}/controller?command=show_food_detail&food_id=${foodItem.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.get.info" /></a>
                                 <a href="${pageContext.request.contextPath}/controller?command=add_food_to_cart&food_id=${foodItem.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.add.to.cart" /></a>

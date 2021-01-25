@@ -26,10 +26,14 @@
                             <div class="card-body">
                                 <h5 class="card-title"><fmt:message key="label.order" /> #${statusOrder.count}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">${orderStatuses[order.key.orderStatusId - 1].name}</h6>
-                                <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.price}" /></h6>
-                                <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.date}" /></h6>
+                                <c:set var="orderPrice" value="${order.key.price}" />
+                                <c:set var="orderDate" value="${order.key.date}" />
+                                <h6 class="card-subtitle mb-2 text-muted"><fmt:formatNumber value="${orderPrice}" type="currency" currencySymbol="KZT" /></h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><fmt:formatDate value="${orderDate}" type="both" /></h6>
                                 <c:forEach var="orderDetail" items="${order.value}" varStatus="statusOrderDetail">
-                                    <p class="card-text">${statusOrderDetail.count}. ${foods[orderDetail.foodId - 1].name}: ${orderDetail.quantity}x${foods[orderDetail.foodId - 1].price}=${orderDetail.price}</p>
+                                    <c:set var="orderDetailPrice" value="${orderDetail.price}" />
+                                    <c:set var="foodItemPrice" value="${foods[orderDetail.foodId - 1].price}" />
+                                    <p class="card-text">${statusOrderDetail.count}. ${foods[orderDetail.foodId - 1].name}: ${orderDetail.quantity}x<fmt:formatNumber value="${foodItemPrice}" type="number" />=<fmt:formatNumber value="${orderDetailPrice}" type="currency" currencySymbol="KZT"/></p>
                                 </c:forEach>
                             </div>
                         </div>

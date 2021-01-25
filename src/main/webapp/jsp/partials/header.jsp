@@ -16,12 +16,6 @@
     <div class="container">
         <a class="navbar-brand" href="#"><fmt:message key="label.title" /></a>
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=change_to_english_locale">EN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=change_to_russian_locale">РУС</a>
-                </li>
                 <c:if test="${not empty userRole}">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_main"><fmt:message key="label.main" /></a>
@@ -45,6 +39,12 @@
                 </c:if>
             </ul>
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=change_to_english_locale">EN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=change_to_russian_locale">РУС</a>
+                </li>
                 <c:if test="${userRole == 'CUSTOMER'}">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_cart"><fmt:message key="label.go.to.cart" /></a>
@@ -66,6 +66,12 @@
         </c:if>
         <c:if test="${empty userRole}">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=change_to_english_locale">EN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=change_to_russian_locale">РУС</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_registration"><fmt:message key="label.signup" /></a>
                 </li>

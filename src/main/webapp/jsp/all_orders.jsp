@@ -10,6 +10,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${locale}" scope="session" />
 <fmt:setBundle basename="pagecontent" />
+<%--TODO: Change message to russian--%>
+<%--TODO: Apply locale for numbers, dates, etc.--%>
 <html>
     <head>
         <title><fmt:message key="label.orders" /></title>
@@ -39,10 +41,10 @@
                                         </c:if>
                                     </c:forEach>
                                 </select>
-                                <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.price}" /></h6>
-                                <h6 class="card-subtitle mb-2 text-muted"><c:out value="${order.key.date}" /></h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><fmt:formatNumber value="${order.key.price}" type="currency" currencySymbol="KZT" /></h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><fmt:formatDate value="${order.key.date}" type="both" /></h6>
                                 <c:forEach var="orderDetail" items="${order.value}" varStatus="statusOrderDetail">
-                                    <p class="card-text">${statusOrderDetail.count}. ${foods[orderDetail.foodId - 1].name}: ${orderDetail.quantity}x${foods[orderDetail.foodId - 1].price}=${orderDetail.price}</p>
+                                    <p class="card-text">${statusOrderDetail.count}. ${foods[orderDetail.foodId - 1].name}: ${orderDetail.quantity}x<fmt:formatNumber value="${foods[orderDetail.foodId - 1].price}" type="number" />=<fmt:formatNumber value="${orderDetail.price}" type="currency" currencySymbol="KZT"/></p>
                                 </c:forEach>
                                 <button type="submit" class="btn btn-primary"><fmt:message key="label.edit" /></button>
                             </div>
