@@ -173,3 +173,11 @@ Insert.sql,8/5/85e512a3a4fb263eff151054b2999079ab8e475b
 Qsrc/main/java/kz/epam/tcfp/foodordering/command/ChangeToEnglishLocaleCommand.java,a/9/a9a53f64282d5f6e4112265803babc353f9aa8b2
 Å
 Qsrc/main/java/kz/epam/tcfp/foodordering/command/ChangeToRussianLocaleCommand.java,7/8/7863014234ea36019a04d9b61c741640f6d8d4d3
+~
+Nsrc/main/java/kz/epam/tcfp/foodordering/command/RemoveFoodFromCartCommand.java,a/1/a1b51d22d5d6ba2a51717b7e88e2f09a42471f92
+Q
+!src/main/webapp/jsp/edit_food.jsp,b/4/b4b62f1ca90e00b6201c1f0f1cbd71c848ebb91f
+{
+Ksrc/main/java/kz/epam/tcfp/foodordering/command/ShowEditingFoodCommand.java,3/f/3fc68213d377b5ebd86a8d15547b9e807b189aed
+t
+Dsrc/main/java/kz/epam/tcfp/foodordering/command/EditFoodCommand.java,5/f/5f27ca1b819a445168fedb59bd895d41c2b668f7

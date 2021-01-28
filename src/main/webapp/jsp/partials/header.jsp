@@ -23,7 +23,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_menu"><fmt:message key="label.menu" /></a>
                 </li>
-                <c:if test="${userRole == 'ADMIN'}">
+                <c:if test="${userRole eq 'ADMIN'}">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
                             <fmt:message key="label.add" />
@@ -45,7 +45,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=change_to_russian_locale">РУС</a>
                 </li>
-                <c:if test="${userRole == 'CUSTOMER'}">
+                <c:if test="${userRole eq 'CUSTOMER'}">
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_cart"><fmt:message key="label.go.to.cart" /></a>
                 </li>
@@ -56,7 +56,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_my_profile"><fmt:message key="label.my.profile" /></a>
-                        <c:if test="${userRole == 'CUSTOMER'}">
+                        <c:if test="${userRole eq 'CUSTOMER'}">
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_my_orders"><fmt:message key="label.my.orders" /></a>
                         </c:if>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="label.logout" /></a>

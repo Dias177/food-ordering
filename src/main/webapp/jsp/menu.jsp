@@ -27,7 +27,12 @@
                                 <h6 class="card-subtitle mb-2 text-muted"><fmt:formatNumber value="${foodItem.price}" type="currency" currencySymbol="KZT" /></h6>
                                 <p class="card-text"><c:out value="${foodItem.description}" /></p>
                                 <a href="${pageContext.request.contextPath}/controller?command=show_food_detail&food_id=${foodItem.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.get.info" /></a>
-                                <a href="${pageContext.request.contextPath}/controller?command=add_food_to_cart&food_id=${foodItem.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.add.to.cart" /></a>
+                                <c:if test="${userRole eq 'CUSTOMER'}">
+                                    <a href="${pageContext.request.contextPath}/controller?command=add_food_to_cart&food_id=${foodItem.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.add.to.cart" /></a>
+                                </c:if>
+                                <c:if test="${userRole eq 'ADMIN'}">
+                                    <a href="${pageContext.request.contextPath}/controller?command=show_editing_food&food_id=${foodItem.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.edit" /></a>
+                                </c:if>
                             </div>
                         </div>
                     </div>

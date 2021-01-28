@@ -21,6 +21,8 @@ public class FoodDao extends AbstractDao<Long, Food> {
             "VALUES (?, ?, ?, ?)";
     private static final String SQL_SELECT_ALL_FOOD = "SELECT * FROM food";
     private static final String SQL_SELECT_FOOD_BY_ID = "SELECT * FROM food WHERE id = ?";
+    private static final String SQL_UPDATE_FOOD = "UPDATE food SET food_category_id = ?, name = ?, description = ?, " +
+            "price = ? WHERE id = ?";
 
     public Food findFoodByName(String name) throws DaoException {
         Food food = new Food();
@@ -122,6 +124,21 @@ public class FoodDao extends AbstractDao<Long, Food> {
 
     @Override
     public int update(Food food) throws DaoException {
-        return 0;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_UPDATE_FOOD);
+            statement.setLong(1, food.getFoodCategoryId());
+            statement.setString(2, food.getName());
+            statement.setString(3, food.getDescription());
+            statement.setDouble(4, food.getPrice());
+            statement.setLong(5, food.getId());
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in updating food", e);
+        } finally {
+            close(statement);
+        }
+        return rows;
     }
 }

@@ -68,4 +68,35 @@ public class FoodLogic {
         }
         return food;
     }
+
+    public static Food getFood(String name) throws DaoException {
+        Food food;
+        transaction.init(foodDao);
+        try {
+            food = foodDao.findFoodByName(name);
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return food;
+    }
+
+    public static boolean edit(long id, String name, long categoryId, String description, double price)
+            throws DaoException {
+        Food food = new Food(categoryId, name, description, price);
+        food.setId(id);
+        transaction.initTransaction(foodDao);
+        int rows;
+        try {
+            rows = foodDao.update(food);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return rows != 0;
+    }
 }
