@@ -43,7 +43,7 @@
                                 <td><c:out value="${cartItem.name}" /></td>
                                 <td><input type="number" class="form-control" id="foodQuantity${status.count}" onchange="changePrice(this.value, ${cartItem.price}, ${status.count})" name="foodQuantity${status.count}" min="1" value="1" required/></td>
                                 <td id="foodPrice${status.count}"><c:out value="${cartItem.price}" /></td>
-                                <td><a class="btn btn-secondary btn-danger" href="${pageContext.request.contextPath}/controller?command=remove_food_from_cart&food_id=${cartItem.id}" role="button">Remove</a></td>
+                                <td><a class="btn btn-secondary btn-danger" href="${pageContext.request.contextPath}/controller?command=remove_food_from_cart&food_id=${cartItem.id}" role="button"><fmt:message key="label.remove" /></a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
