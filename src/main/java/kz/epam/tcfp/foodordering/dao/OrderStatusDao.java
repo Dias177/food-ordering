@@ -2,6 +2,7 @@ package kz.epam.tcfp.foodordering.dao;
 
 import kz.epam.tcfp.foodordering.entity.OrderStatus;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,8 +12,29 @@ import java.util.List;
 public class OrderStatusDao extends AbstractDao<Long, OrderStatus> {
 
     private static final String SQL_SELECT_ALL = "SELECT * FROM order_status ORDER BY id";
+    private static final String SQL_SELECT_STATUS_BY_NAME = "SELECT * FROM order_status WHERE name = ?";
+    private static final String SQL_CREATE_ORDER_STATUS = "INSERT INTO order_status (name) VALUES (?)";
     private static final String COLUMN_LABEL_ID = "id";
     private static final String COLUMN_LABEL_NAME = "name";
+
+    public OrderStatus findByName(String name) throws DaoException {
+        OrderStatus orderStatus = new OrderStatus();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_SELECT_STATUS_BY_NAME);
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                orderStatus = new OrderStatus(resultSet.getString(COLUMN_LABEL_NAME));
+                orderStatus.setId(resultSet.getLong(COLUMN_LABEL_ID));
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error in finding order status by name", e);
+        } finally {
+            close(statement);
+        }
+        return orderStatus;
+    }
 
     @Override
     public List<OrderStatus> findAll() throws DaoException {
@@ -51,7 +73,21 @@ public class OrderStatusDao extends AbstractDao<Long, OrderStatus> {
 
     @Override
     public boolean create(OrderStatus orderStatus) throws DaoException {
-        return false;
+        OrderStatus os = findByName(orderStatus.getName());
+        if (os.getName() != null && os.getId() != 0) {
+            return false;
+        }
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_CREATE_ORDER_STATUS);
+            statement.setString(1, orderStatus.getName());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in creating order status", e);
+        } finally {
+            close(statement);
+        }
+        return true;
     }
 
     @Override

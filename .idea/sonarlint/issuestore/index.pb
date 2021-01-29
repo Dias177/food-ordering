@@ -181,3 +181,12 @@ Q
 Ksrc/main/java/kz/epam/tcfp/foodordering/command/ShowEditingFoodCommand.java,3/f/3fc68213d377b5ebd86a8d15547b9e807b189aed
 t
 Dsrc/main/java/kz/epam/tcfp/foodordering/command/EditFoodCommand.java,5/f/5f27ca1b819a445168fedb59bd895d41c2b668f7
+:
+
+Create.sql,4/a/4ad1f12c42e92580a8dabc6b6cfcc25b0dde76d4
+Å
+Qsrc/main/java/kz/epam/tcfp/foodordering/command/ShowAddingOrderStatusCommand.java,a/2/a2d34e01f4291a3d7677f945e26b73aebdb29c37
+X
+(src/main/webapp/jsp/add_order_status.jsp,1/3/135d85447f2b1cd8577c0a472586969ba856bd67
+z
+Jsrc/main/java/kz/epam/tcfp/foodordering/command/AddOrderStatusCommand.java,1/5/15b62273a428f9efc846fbb959d0ce0cdc37dbf3

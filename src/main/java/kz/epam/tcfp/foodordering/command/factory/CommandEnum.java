@@ -26,7 +26,9 @@ public enum CommandEnum {
     CHANGE_TO_RUSSIAN_LOCALE(new ChangeToRussianLocaleCommand()),
     REMOVE_FOOD_FROM_CART(new RemoveFoodFromCartCommand()),
     EDIT_FOOD(new EditFoodCommand()),
-    SHOW_EDITING_FOOD(new ShowEditingFoodCommand());
+    SHOW_EDITING_FOOD(new ShowEditingFoodCommand()),
+    SHOW_ADDING_ORDER_STATUS(new ShowAddingOrderStatusCommand()),
+    ADD_ORDER_STATUS(new AddOrderStatusCommand());
 
     private ActionCommand command;
 

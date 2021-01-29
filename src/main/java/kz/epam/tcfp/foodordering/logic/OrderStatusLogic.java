@@ -28,4 +28,31 @@ public class OrderStatusLogic {
         }
         return orderStatuses;
     }
+
+    public static boolean statusExists(String name) throws DaoException {
+        OrderStatus orderStatus;
+        transaction.init(orderStatusDao);
+        try {
+            orderStatus = orderStatusDao.findByName(name);
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return orderStatus.getName() != null && orderStatus.getId() != 0;
+    }
+
+    public static void add(String name) throws DaoException {
+        OrderStatus orderStatus = new OrderStatus(name);
+        transaction.initTransaction(orderStatusDao);
+        try {
+            orderStatusDao.create(orderStatus);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+    }
 }
