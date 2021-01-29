@@ -23,12 +23,11 @@ public class AddFoodCategoryCommand implements ActionCommand {
         String foodCategoryName = req.getParameter(PARAM_NAME_FOOD_CATEGORY_NAME);
         if (FoodCategoryLogic.categoryExists(foodCategoryName)) {
             req.setAttribute(ERROR_INVALID_FOOD_CATEGORY_NAME, MessageManager.getProperty(MESSAGE_FOOD_CATEGORY_NAME_ERROR));
-            page = ConfigurationManager.getProperty(PATH_PAGE_ADD_FOOD_CATEGORY);
         } else {
             FoodCategoryLogic.add(foodCategoryName);
             req.setAttribute(SUCCESS_ADD_FOOD_CATEGORY_NAME, MessageManager.getProperty(MESSAGE_ADD_FOOD_CATEGORY_SUCCESS));
-            page = ConfigurationManager.getProperty(PATH_PAGE_ADD_FOOD_CATEGORY);
         }
+        page = ConfigurationManager.getProperty(PATH_PAGE_ADD_FOOD_CATEGORY);
         return page;
     }
 }
