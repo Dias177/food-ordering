@@ -24,7 +24,12 @@
                     <p class="card-text">${foodCategories[food.foodCategoryId - 1].name}</p>
                     <p class="card-text">${food.description}</p>
                     <p class="card-text"><fmt:formatNumber value="${food.price}" type="currency" currencySymbol="KZT" /></p>
-                    <a href="${pageContext.request.contextPath}/controller?command=add_food_to_cart&food_id=${food.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.add.to.cart" /></a>
+                    <c:if test="${userRole eq 'CUSTOMER'}">
+                        <a href="${pageContext.request.contextPath}/controller?command=add_food_to_cart&food_id=${food.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.add.to.cart" /></a>
+                    </c:if>
+                    <c:if test="${userRole eq 'ADMIN'}">
+                        <a href="${pageContext.request.contextPath}/controller?command=show_editing_food&food_id=${food.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.edit" /></a>
+                    </c:if>
                 </div>
             </div>
         </div>
