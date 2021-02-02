@@ -60,6 +60,7 @@
                         <c:if test="${userRole eq 'CUSTOMER'}">
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_my_orders"><fmt:message key="label.my.orders" /></a>
                         </c:if>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_editing_profile"><fmt:message key="label.settings" /></a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="label.logout" /></a>
                     </div>
                 </li>

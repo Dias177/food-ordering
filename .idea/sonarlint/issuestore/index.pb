@@ -190,3 +190,13 @@ X
 (src/main/webapp/jsp/add_order_status.jsp,1/3/135d85447f2b1cd8577c0a472586969ba856bd67
 z
 Jsrc/main/java/kz/epam/tcfp/foodordering/command/AddOrderStatusCommand.java,1/5/15b62273a428f9efc846fbb959d0ce0cdc37dbf3
+w
+Gsrc/main/java/kz/epam/tcfp/foodordering/command/EditProfileCommand.java,0/7/070fc7c0ac2edca0ea053f344dcd5e576f07a97e
+~
+Nsrc/main/java/kz/epam/tcfp/foodordering/command/ShowEditingProfileCommand.java,e/3/e3d0c9e6a299a57f8b1b7abc3e4337d9e8451285
+
+Osrc/main/java/kz/epam/tcfp/foodordering/command/ShowEditingPasswordCommand.java,e/0/e04b3e8281555f0738a1acb7e1668b226a8a8174
+U
+%src/main/webapp/jsp/edit_password.jsp,f/3/f3b78dc92c866a8c033512f7f211eb5b0fa0627f
+T
+$src/main/webapp/jsp/edit_profile.jsp,f/e/fed78a23b8738628e297ccd02b5c826dcbe20cd3

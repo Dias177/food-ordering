@@ -26,6 +26,45 @@ public class UserDao extends AbstractDao<Long, User> {
     private static final String SQL_UPDATE_USER = "UPDATE user SET role_id = ?, email = ?, password = ?," +
             " first_name = ?, last_name = ?, phone_number = ?, birthday = ? WHERE id = ?";
     private static final String SQL_SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE email = ?";
+    private static final String SQL_UPDATE_USER_INFO = "UPDATE user SET first_name = ?, last_name = ?, " +
+            "phone_number = ?, birthday = ?, email = ? WHERE id = ?";
+    private static final String SQL_UPDATE_USER_PASSWORD = "UPDATE user SET password = ? WHERE id = ?";
+
+    public int updatePassword(User user) throws DaoException {
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_UPDATE_USER_PASSWORD);
+            statement.setString(1, user.getPassword());
+            statement.setLong(2, user.getId());
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in updating user password", e);
+        } finally {
+            close(statement);
+        }
+        return rows;
+    }
+
+    public int updateInfo(User user) throws DaoException {
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_UPDATE_USER_INFO);
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getPhoneNumber());
+            statement.setDate(4, user.getBirthday());
+            statement.setString(5, user.getEmail());
+            statement.setLong(6, user.getId());
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in updating user info", e);
+        } finally {
+            close(statement);
+        }
+        return rows;
+    }
 
     public User findUserByEmailAndPassword(String email, String password) throws DaoException {
         User user = new User();
