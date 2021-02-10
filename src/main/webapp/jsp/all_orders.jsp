@@ -10,8 +10,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${locale}" scope="session" />
 <fmt:setBundle basename="pagecontent" />
-<%--TODO: Change message to russian--%>
-<%--TODO: Apply locale for numbers, dates, etc.--%>
 <html>
     <head>
         <title><fmt:message key="label.orders" /></title>
@@ -20,11 +18,23 @@
     <body>
         <div class="container">
             <h3><fmt:message key="label.orders" /></h3>
-            <c:if test="${not empty successEditingOrderStatus}">
+            <c:if test="${isSuccessEditingOrderStatus}">
                 <div class="alert alert-success" role="alert">
-                    ${successEditingOrderStatus}
+                    <fmt:message key="message.edit.order.status.success" />
                 </div>
             </c:if>
+            <c:if test="${isErrorEditingOrderStatus}">
+                <div class="alert alert-danger" role="alert">
+                    <fmt:message key="message.edit.order.status.error" />
+                </div>
+            </c:if>
+            <c:if test="${not (isSuccessEditingOrderStatus or isErrorEditing)}">
+            <label for="sortSelect" class="text-muted"><fmt:message key="label.sort.by" />: </label>
+            <select class="custom-select custom-select-sm" id="sortSelect" name="sortSelect" onchange="sortAllOrders(this.value)">
+                <option disabled selected value><fmt:message key="label.select.option" /></option>
+                <option value="date"><fmt:message key="label.date" /></option>
+                <option value="price"><fmt:message key="label.price" /></option>
+            </select>
             <div class="row row-cols-1 row-cols-md-3">
                 <c:forEach var="order" items="${orders}" varStatus="statusOrder">
                     <form name="editOrderStatusForm" method="POST" action="${pageContext.request.contextPath}/controller?command=edit_order_status">
@@ -41,6 +51,7 @@
                                         </c:if>
                                     </c:forEach>
                                 </select>
+                                <h6 class="card-subtitle mb-2 text-muted">${users[statusOrder.count - 1].firstName} ${users[statusOrder.count - 1].lastName}</h6>
                                 <h6 class="card-subtitle mb-2 text-muted"><fmt:formatNumber value="${order.key.price}" type="currency" currencySymbol="KZT" /></h6>
                                 <h6 class="card-subtitle mb-2 text-muted"><fmt:formatDate value="${order.key.date}" type="both" /></h6>
                                 <c:forEach var="orderDetail" items="${order.value}" varStatus="statusOrderDetail">
@@ -53,7 +64,14 @@
                     </form>
                 </c:forEach>
             </div>
+            </c:if>
         </div>
         <c:import url="/jsp/partials/footer.jsp" charEncoding="UTF-8"/>
+        <script type="text/javascript">
+            function sortAllOrders(sortBy)
+            {
+                window.location.href = "http://localhost:8080${pageContext.request.contextPath}/controller?command=sort_all_orders&sort_by=" + sortBy;
+            }
+        </script>
     </body>
 </html>

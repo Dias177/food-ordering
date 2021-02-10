@@ -4,7 +4,6 @@ import kz.epam.tcfp.foodordering.dao.DaoException;
 import kz.epam.tcfp.foodordering.logic.ProfileLogic;
 import kz.epam.tcfp.foodordering.logic.RegisterLogic;
 import kz.epam.tcfp.foodordering.util.ConfigurationManager;
-import kz.epam.tcfp.foodordering.util.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
@@ -18,19 +17,15 @@ public class EditProfileCommand implements ActionCommand {
     private static final String PARAM_NAME_PHONE_NUMBER = "phoneNumber";
     private static final String PARAM_NAME_BIRTHDAY = "birthday";
     private static final String USER_ID = "userId";
-    private static final String ERROR_INVALID_EMAIL = "errorInvalidEmail";
-    private static final String MESSAGE_EMAIL_ERROR = "message.email.error";
-    private static final String ERROR_INVALID_FIRST_NAME = "errorInvalidFirstName";
-    private static final String MESSAGE_FIRST_NAME_ERROR = "message.firstname.error";
-    private static final String ERROR_INVALID_LAST_NAME = "errorInvalidLastName";
-    private static final String MESSAGE_LAST_NAME_ERROR = "message.lastname.error";
-    private static final String ERROR_INVALID_BIRTHDAY = "errorInvalidBirthday";
-    private static final String MESSAGE_BIRTHDAY_ERROR = "message.birthday.error";
-    private static final String ERROR_INVALID_PHONE_NUMBER = "errorInvalidPhoneNumber";
-    private static final String MESSAGE_PHONE_NUMBER_ERROR = "message.phone.number.error";
+    private static final String IS_ERROR_INVALID_EMAIL = "isErrorInvalidEmail";
+    private static final String IS_ERROR_INVALID_FIRST_NAME = "isErrorInvalidFirstName";
+    private static final String IS_ERROR_INVALID_LAST_NAME = "isErrorInvalidLastName";
+    private static final String IS_ERROR_INVALID_BIRTHDAY = "isErrorInvalidBirthday";
+    private static final String IS_ERROR_INVALID_PHONE_NUMBER = "isErrorInvalidPhoneNumber";
     private static final String PATH_PAGE_EDIT_PROFILE = "path.page.edit.profile";
-    private static final String SUCCESS_EDIT_PROFILE = "successEditProfile";
-    private static final String MESSAGE_EDIT_PROFILE_SUCCESS = "message.edit.profile.success";
+    private static final String IS_SUCCESS_EDIT_PROFILE = "isSuccessEditProfile";
+    private static final boolean SUCCESS = true;
+    private static final boolean ERROR = true;
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
@@ -45,27 +40,27 @@ public class EditProfileCommand implements ActionCommand {
         Date birthdayDate = birthday == null || birthday.isEmpty() ? null : Date.valueOf(birthday);
 
         if (!RegisterLogic.isValidEmail(email) || ProfileLogic.emailExists(userId, email)) {
-            req.setAttribute(ERROR_INVALID_EMAIL, MessageManager.getProperty(MESSAGE_EMAIL_ERROR));
+            req.setAttribute(IS_ERROR_INVALID_EMAIL, ERROR);
             isDataValid = false;
         }
         if (!RegisterLogic.isValidName(firstName)) {
-            req.setAttribute(ERROR_INVALID_FIRST_NAME, MessageManager.getProperty(MESSAGE_FIRST_NAME_ERROR));
+            req.setAttribute(IS_ERROR_INVALID_FIRST_NAME, ERROR);
             isDataValid = false;
         }
         if (!RegisterLogic.isValidName(lastName)) {
-            req.setAttribute(ERROR_INVALID_LAST_NAME, MessageManager.getProperty(MESSAGE_LAST_NAME_ERROR));
+            req.setAttribute(IS_ERROR_INVALID_LAST_NAME, ERROR);
             isDataValid = false;
         }
         if (!RegisterLogic.isValidBirthday(birthdayDate)) {
-            req.setAttribute(ERROR_INVALID_BIRTHDAY, MessageManager.getProperty(MESSAGE_BIRTHDAY_ERROR));
+            req.setAttribute(IS_ERROR_INVALID_BIRTHDAY, ERROR);
             isDataValid = false;
         }
         if (!RegisterLogic.isValidPhoneNumber(phoneNumber)) {
-            req.setAttribute(ERROR_INVALID_PHONE_NUMBER, MessageManager.getProperty(MESSAGE_PHONE_NUMBER_ERROR));
+            req.setAttribute(IS_ERROR_INVALID_PHONE_NUMBER, ERROR);
             isDataValid = false;
         }
         if (isDataValid && ProfileLogic.editInfo(userId, firstName, lastName, birthdayDate, phoneNumber, email)) {
-            req.setAttribute(SUCCESS_EDIT_PROFILE, MessageManager.getProperty(MESSAGE_EDIT_PROFILE_SUCCESS));
+            req.setAttribute(IS_SUCCESS_EDIT_PROFILE, SUCCESS);
         }
         return page;
     }

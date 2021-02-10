@@ -14,10 +14,52 @@
     <head>
         <title><fmt:message key="label.menu" /></title>
         <c:import url="/jsp/partials/header.jsp" charEncoding="UTF-8"/>
+        <script type="text/javascript">
+            function sortMenuItems(sortBy)
+            {
+                window.location.href = "http://localhost:8080${pageContext.request.contextPath}/controller?command=sort_menu_items&sort_by=" + sortBy + "&food_category_id=" + document.getElementById("categorySelect").value;
+            }
+
+            function showMenuItemsByCategory(foodCategoryId)
+            {
+                window.location.href = "http://localhost:8080${pageContext.request.contextPath}/controller?command=show_menu_items_by_category&food_category_id=" + foodCategoryId;
+            }
+            function showSuccessMessage()
+            {
+                document.getElementById('successAddFoodToCart').innerHTML='<div class="alert alert-success" role="alert"><fmt:message key="message.add.food.to.cart.success" /></div>';
+                setTimeout(function() {document.getElementById('successAddFoodToCart').innerHTML='';}, 3000);
+            }
+        </script>
     </head>
     <body>
         <div class="container">
             <h3><fmt:message key="label.menu" /></h3>
+            <label for="sortSelect" class="text-muted"><fmt:message key="label.sort.by" />: </label>
+            <select class="custom-select custom-select-sm" id="sortSelect" name="sortSelect" onchange="sortMenuItems(this.value)">
+                <option disabled selected value><fmt:message key="label.select.option" /></option>
+                <option value="name"><fmt:message key="label.name" /></option>
+                <option value="price"><fmt:message key="label.price" /></option>
+            </select>
+            <label for="categorySelect" class="text-muted"><fmt:message key="label.category" />: </label>
+            <select class="custom-select custom-select-sm" id="categorySelect" name="categorySelect" onchange="showMenuItemsByCategory(this.value)">
+                <c:if test="${currentCategory ne 'All'}">
+                    <option value="${currentCategory.id}" selected>${currentCategory.name}</option>
+                    <option value="0">All</option>
+                </c:if>
+                <c:if test="${currentCategory eq 'All'}">
+                    <option value="0" selected>${currentCategory}</option>
+                </c:if>
+                <c:forEach var="foodCategory" items="${foodCategories}">
+                    <c:if test="${currentCategory ne foodCategory}">
+                    <option value="${foodCategory.id}">${foodCategory.name}</option>
+                    </c:if>
+                </c:forEach>
+            </select>
+            <c:if test="${isSuccessAddFoodToCart}">
+                <div id="successAddFoodToCart">
+                    <script>showSuccessMessage();</script>
+                </div>
+            </c:if>
             <div class="row row-cols-1 row-cols-md-3">
                 <c:forEach var="foodItem" items="${foodItems}">
                     <div class="col mb-4">

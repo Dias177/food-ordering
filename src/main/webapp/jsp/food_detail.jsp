@@ -29,6 +29,7 @@
                     </c:if>
                     <c:if test="${userRole eq 'ADMIN'}">
                         <a href="${pageContext.request.contextPath}/controller?command=show_editing_food&food_id=${food.id}" class="btn btn-info btn-sm" role="button"><fmt:message key="label.edit" /></a>
+                        <a href="${pageContext.request.contextPath}/controller?command=delete_food&food_id=${food.id}" class="btn btn-danger btn-sm" role="button"><fmt:message key="label.remove" /></a>
                     </c:if>
                 </div>
             </div>

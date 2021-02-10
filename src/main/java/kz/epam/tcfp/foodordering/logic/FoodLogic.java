@@ -99,4 +99,32 @@ public class FoodLogic {
         }
         return rows != 0;
     }
+
+    public static List<Food> getFoodByCategory(long foodCategoryId) throws DaoException {
+        List<Food> foodList;
+        transaction.init(foodDao);
+        try {
+            foodList = foodDao.findFoodByCategory(foodCategoryId);
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return foodList;
+    }
+
+    public static boolean remove(long id) throws DaoException {
+        boolean isRemoved;
+        transaction.initTransaction(foodDao);
+        try {
+            isRemoved = foodDao.deleteEntityById(id);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return isRemoved;
+    }
 }

@@ -22,30 +22,30 @@
         <a class="list-group-item list-group-item-action" href="${pageContext.request.contextPath}/controller?command=show_editing_profile"><fmt:message key="label.edit.profile" /></a>
         <a class="list-group-item list-group-item-action active" href="${pageContext.request.contextPath}/controller?command=show_editing_password"><fmt:message key="label.edit.password" /></a>
     </div>
-<c:if test="${not empty successEditPassword}">
-    <div class="alert alert-success" role="alert">
-            ${successEditPassword}
+<c:if test="${isSuccessEditPassword}">
+    <div class="alert alert-success text-center" role="alert">
+            <fmt:message key="message.edit.password.success" />
     </div>
 </c:if>
-<c:if test="${empty successEditPassword}">
+<c:if test="${not isSuccessEditPassword}">
     <form class="text-center" name="editPasswordForm" method="POST" action="${pageContext.request.contextPath}/controller">
         <input type="hidden" name="command" value="edit_password"/>
         <div class="form-group input-mini">
-            <label for="password"><fmt:message key="label.password" />:</label>
+            <label for="password"><fmt:message key="label.new.password" />:</label>
             <input type="password" class="form-control" id="password" name="password" value="" required/>
         </div>
-        <c:if test="${not empty errorInvalidPassword}">
+        <c:if test="${isErrorInvalidPassword}">
             <div class="alert alert-danger" role="alert">
-                    ${errorInvalidPassword}
+                    <fmt:message key="message.password.error" />
             </div>
         </c:if>
         <div class="form-group input-mini">
             <label for="confirmedPassword"><fmt:message key="label.confirm.password" />:</label>
             <input type="password" class="form-control" id="confirmedPassword" name="confirmedPassword" value="" required>
         </div>
-        <c:if test="${not empty errorWrongConfirmedPassword}">
+        <c:if test="${isErrorWrongConfirmedPassword}">
             <div class="alert alert-danger" role="alert">
-                    ${errorWrongConfirmedPassword}
+                    <fmt:message key="message.confirmed.password.error" />
             </div>
         </c:if>
         <button type="submit" class="btn btn-primary"><fmt:message key="label.edit" /></button>

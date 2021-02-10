@@ -10,7 +10,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${locale}" scope="session" />
 <fmt:setBundle basename="pagecontent" />
-
 <html>
     <head>
         <title><fmt:message key="label.my.orders" /></title>
@@ -19,6 +18,11 @@
     <body>
         <div class="container">
             <h3><fmt:message key="label.my.orders" /></h3>
+            <c:if test="${empty orders}">
+                <div class="alert alert-info text-center" role="alert">
+                    <fmt:message key="message.no.orders" />
+                </div>
+            </c:if>
             <div class="row row-cols-1 row-cols-md-3">
                 <c:forEach var="order" items="${orders}" varStatus="statusOrder">
                     <div class="col mb-4">

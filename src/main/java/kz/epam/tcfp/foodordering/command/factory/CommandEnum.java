@@ -32,7 +32,11 @@ public enum CommandEnum {
     EDIT_PROFILE(new EditProfileCommand()),
     EDIT_PASSWORD(new EditPasswordCommand()),
     SHOW_EDITING_PROFILE(new ShowEditingProfileCommand()),
-    SHOW_EDITING_PASSWORD(new ShowEditingPasswordCommand());
+    SHOW_EDITING_PASSWORD(new ShowEditingPasswordCommand()),
+    SORT_ALL_ORDERS(new SortAllOrdersCommand()),
+    SORT_MENU_ITEMS(new SortMenuItemsCommand()),
+    SHOW_MENU_ITEMS_BY_CATEGORY(new ShowMenuItemsByCategoryCommand()),
+    DELETE_FOOD(new DeleteFoodCommand());
 
     private ActionCommand command;
 

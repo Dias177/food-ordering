@@ -56,6 +56,9 @@ public class Order extends Entity implements Comparable<Order> {
         int result = (int) (this.price - o.price);
         if (result == 0) {
             result = this.date.compareTo(o.date);
+            if (result == 0) {
+                result = (int) (this.getId() - o.getId());
+            }
         }
         return result;
     }

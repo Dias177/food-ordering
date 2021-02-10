@@ -31,9 +31,9 @@
                         <label for="password"><fmt:message key="label.password" />:</label>
                         <input type="password" class="form-control" id="password" name="password" value="" required />
                     </div>
-                    <c:if test="${not empty errorLoginPassMessage}">
+                    <c:if test="${isErrorLoginPassMessage}">
                         <div class="alert alert-danger" role="alert">
-                            ${errorLoginPassMessage}
+                            <fmt:message key="message.login.error" />
                         </div>
                     </c:if>
                     <button type="submit" class="btn btn-primary"><fmt:message key="label.login" /></button>

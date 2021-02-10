@@ -5,7 +5,6 @@ import kz.epam.tcfp.foodordering.entity.Food;
 import kz.epam.tcfp.foodordering.logic.OrderDetailLogic;
 import kz.epam.tcfp.foodordering.logic.OrderLogic;
 import kz.epam.tcfp.foodordering.util.ConfigurationManager;
-import kz.epam.tcfp.foodordering.util.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -16,18 +15,20 @@ import java.util.Set;
 
 public class OrderFoodCommand implements ActionCommand {
 
-    private static final String PATH_PAGE_MAIN = "path.page.main";
-    private static final String PATH_PAGE_CART = "path.path.cart";
+    private static final String PATH_PAGE_CART = "path.page.cart";
     private static final String CART = "cart";
     private static final String USER_ID = "userId";
     private static final long DEFAULT_ORDER_STATUS_ID = 1;
+    private static final int MIN_FOOD_QUANTITY = 1;
     private static final String PARAM_NAME_FOOD_QUANTITY = "foodQuantity";
-    private static final String ERROR_INVALID_ORDER_FOOD_QUANTITY = "errorInvalidOrderFoodQuantity";
-    private static final String MESSAGE_ORDER_FOOD_QUANTITY_ERROR = "message.order.food.quantity.error";
+    private static final String IS_ERROR_INVALID_ORDER_FOOD_QUANTITY = "isErrorInvalidOrderFoodQuantity";
+    private static final String IS_SUCCESS_ORDER_FOOD = "isSuccessOrderFood";
+    private static final boolean ERROR = false;
+    private static final boolean SUCCESS = true;
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
-        String page;
+        String page = ConfigurationManager.getProperty(PATH_PAGE_CART);
         Set<Food> cart = (Set<Food>) req.getSession().getAttribute(CART);
         boolean isValidForm = true;
         long userId = (long) req.getSession().getAttribute(USER_ID);
@@ -36,7 +37,7 @@ public class OrderFoodCommand implements ActionCommand {
         int i = 1;
         for (Food food : cart) {
             int foodQuantity = Integer.parseInt(req.getParameter(PARAM_NAME_FOOD_QUANTITY + i));
-            if (foodQuantity < 1) {
+            if (foodQuantity < MIN_FOOD_QUANTITY) {
                 isValidForm = false;
                 break;
             }
@@ -44,21 +45,14 @@ public class OrderFoodCommand implements ActionCommand {
             orderDetails.put(food, foodQuantity);
             i++;
         }
-        /*
-        insert order in db
-        get id of that order from db
-        insert corresponding order details in db
-        make cart empty
-         */
         if (isValidForm) {
             OrderLogic.add(userId, DEFAULT_ORDER_STATUS_ID, totalPrice);
             long orderId = OrderLogic.getLastOrderId();
             OrderDetailLogic.addAll(orderDetails, orderId);
             req.getSession().setAttribute(CART, new HashSet<Food>());
-            page = ConfigurationManager.getProperty(PATH_PAGE_MAIN);
+            req.setAttribute(IS_SUCCESS_ORDER_FOOD, SUCCESS);
         } else {
-            page = ConfigurationManager.getProperty(PATH_PAGE_CART);
-            req.setAttribute(ERROR_INVALID_ORDER_FOOD_QUANTITY, MessageManager.getProperty(MESSAGE_ORDER_FOOD_QUANTITY_ERROR));
+            req.setAttribute(IS_ERROR_INVALID_ORDER_FOOD_QUANTITY, ERROR);
         }
         return page;
     }

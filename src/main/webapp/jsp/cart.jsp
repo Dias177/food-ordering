@@ -18,10 +18,15 @@
     <body onload="calculateAndSetTotalPrice()">
         <div class="container">
             <h3><fmt:message key="label.cart" /></h3>
+            <c:if test="${isSuccessOrderFood}">
+                <div class="alert alert-success" role="alert">
+                    <fmt:message key="message.order.food.success" />
+                </div>
+            </c:if>
             <c:if test="${not empty cart}">
-                <c:if test="${not empty errorInvalidOrderFoodQuantity}">
+                <c:if test="${isErrorInvalidOrderFoodQuantity}">
                     <div class="alert alert-danger" role="alert">
-                        ${errorInvalidOrderFoodQuantity}
+                        <fmt:message key="message.order.food.quantity.error" />
                     </div>
                 </c:if>
             <form class="text-center" name="orderFoodForm" method="POST" action="${pageContext.request.contextPath}/controller">
@@ -52,9 +57,9 @@
                 <button type="submit" class="btn btn-primary"><fmt:message key="label.order.action" /></button>
             </form>
             </c:if>
-                <c:if test="${not empty cartEmpty}">
+                <c:if test="${isCartEmpty}">
                     <div class="alert alert-info text-center" role="alert">
-                        ${cartEmpty}
+                        <fmt:message key="message.cart.empty" />
                     </div>
                 </c:if>
         </div>

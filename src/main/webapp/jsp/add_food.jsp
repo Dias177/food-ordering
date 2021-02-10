@@ -20,18 +20,18 @@
         <h3><fmt:message key="label.add.food" /></h3>
         <form class="text-center" name="addFoodForm" method="POST" action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="add_food"/>
-            <c:if test="${not empty successAddFood}">
+            <c:if test="${isSuccessAddFood}">
                 <div class="alert alert-success" role="alert">
-                        ${successAddFood}
+                        <fmt:message key="message.add.food.success" />
                 </div>
             </c:if>
             <div class="form-group input-mini">
             <label for="foodName"><fmt:message key="label.food.name" />:</label>
             <input type="text" class="form-control" id="foodName" name="foodName" value="" autofocus required>
             </div>
-            <c:if test="${not empty errorInvalidFoodName}">
+            <c:if test="${isErrorInvalidFoodName}">
                 <div class="alert alert-danger" role="alert">
-                        ${errorInvalidFoodName}
+                        <fmt:message key="message.food.name.error" />
                 </div>
             </c:if>
             <div class="form-group input-mini">
@@ -50,9 +50,9 @@
             <label for="foodPrice"><fmt:message key="label.price" />, KZT:</label>
             <input type="number" class="form-control" id="foodPrice" name="foodPrice" min="0" step="0.01" value="" required>
             </div>
-            <c:if test="${not empty errorInvalidFoodPrice}">
+            <c:if test="${isErrorInvalidFoodPrice}">
                 <div class="alert alert-danger" role="alert">
-                        ${errorInvalidFoodPrice}
+                        <fmt:message key="message.food.price.error" />
                 </div>
             </c:if>
             <button type="submit" class="btn btn-primary"><fmt:message key="label.add" /></button>

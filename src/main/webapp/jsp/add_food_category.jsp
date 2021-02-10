@@ -20,18 +20,18 @@
         <h3><fmt:message key="label.add.food.category" /></h3>
         <form class="text-center" name="addFoodCategoryForm" method="POST" action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="add_food_category"/>
-            <c:if test="${not empty successAddFoodCategoryName}">
+            <c:if test="${isSuccessAddFoodCategoryName}">
             <div class="alert alert-success" role="alert">
-                ${successAddFoodCategoryName}
+                <fmt:message key="message.add.food.category.success" />
             </div>
             </c:if>
             <div class="form-group input-mini">
             <label for="foodCategoryName"><fmt:message key="label.name.for.food.category" />:</label>
             <input type="text" class="form-control" id="foodCategoryName" name="foodCategoryName" value="" autofocus required>
             </div>
-            <c:if test="${not empty errorInvalidFoodCategoryName}">
+            <c:if test="${isErrorInvalidFoodCategoryName}">
                 <div class="alert alert-danger" role="alert">
-                        ${errorInvalidFoodCategoryName}
+                        <fmt:message key="message.food.category.name.error" />
                 </div>
             </c:if>
             <button type="submit" class="btn btn-primary"><fmt:message key="label.add" /></button>

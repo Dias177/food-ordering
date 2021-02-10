@@ -55,4 +55,17 @@ public class FoodCategoryLogic {
         }
         return foodCategories;
     }
+
+    public static FoodCategory getCategoryById(long categoryId) throws DaoException {
+        FoodCategory foodCategory;
+        transaction.init(foodCategoryDao);
+        try {
+            foodCategory = foodCategoryDao.findEntityById(categoryId);
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return foodCategory;
+    }
 }

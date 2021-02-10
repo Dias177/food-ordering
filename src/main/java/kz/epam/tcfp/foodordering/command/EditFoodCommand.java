@@ -4,7 +4,6 @@ import kz.epam.tcfp.foodordering.dao.DaoException;
 import kz.epam.tcfp.foodordering.entity.Food;
 import kz.epam.tcfp.foodordering.logic.FoodLogic;
 import kz.epam.tcfp.foodordering.util.ConfigurationManager;
-import kz.epam.tcfp.foodordering.util.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -17,13 +16,12 @@ public class EditFoodCommand implements ActionCommand {
     private static final String PARAM_NAME_FOOD_CATEGORY_ID = "foodCategoryId";
     private static final String PARAM_NAME_FOOD_DESCRIPTION = "foodDescription";
     private static final String PARAM_NAME_FOOD_PRICE = "foodPrice";
-    private static final String SUCCESS_EDIT_FOOD = "successEditFood";
-    private static final String ERROR_INVALID_FOOD_PRICE = "errorInvalidFoodPrice";
-    private static final String ERROR_INVALID_FOOD_NAME = "errorInvalidFoodName";
-    private static final String MESSAGE_EDIT_FOOD_SUCCESS = "message.edit.food.success";
-    private static final String MESSAGE_FOOD_NAME_ERROR = "message.food.name.error";
-    private static final String MESSAGE_FOOD_PRICE_ERROR = "message.food.price.error";
-
+    private static final String IS_SUCCESS_EDIT_FOOD = "isSuccessEditFood";
+    private static final String IS_ERROR_INVALID_FOOD_PRICE = "isErrorInvalidFoodPrice";
+    private static final String IS_ERROR_INVALID_FOOD_NAME = "isErrorInvalidFoodName";
+    private static final double MIN_FOOD_PRICE = 0;
+    private static final boolean SUCCESS = true;
+    private static final boolean ERROR = true;
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
@@ -36,15 +34,15 @@ public class EditFoodCommand implements ActionCommand {
         boolean isValidData = true;
         Food food = FoodLogic.getFood(foodName);
         if (food.getId() != foodId && food.getName().equals(foodName)) {
-            req.setAttribute(ERROR_INVALID_FOOD_NAME, MessageManager.getProperty(MESSAGE_FOOD_NAME_ERROR));
+            req.setAttribute(IS_ERROR_INVALID_FOOD_NAME, ERROR);
             isValidData = false;
         }
-        if (foodPrice < 0) {
-            req.setAttribute(ERROR_INVALID_FOOD_PRICE, MessageManager.getProperty(MESSAGE_FOOD_PRICE_ERROR));
+        if (foodPrice < MIN_FOOD_PRICE) {
+            req.setAttribute(IS_ERROR_INVALID_FOOD_PRICE, ERROR);
             isValidData = false;
         }
         if (isValidData && FoodLogic.edit(foodId, foodName, foodCategoryId, foodDescription, foodPrice)) {
-            req.setAttribute(SUCCESS_EDIT_FOOD, MessageManager.getProperty(MESSAGE_EDIT_FOOD_SUCCESS));
+            req.setAttribute(IS_SUCCESS_EDIT_FOOD, SUCCESS);
         }
         return page;
     }

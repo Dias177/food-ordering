@@ -16,6 +16,7 @@ public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
     private static final String SQL_SELECT_FOOD_CATEGORY_BY_NAME = "SELECT * FROM food_category WHERE name = ?";
     private static final String SQL_CREATE_FOOD_CATEGORY = "INSERT INTO food_category (name) VALUES (?)";
     private static final String SQL_SELECT_ALL = "SELECT * FROM food_category ORDER BY id";
+    private static final String SQL_SELECT_FOOD_CATEGORY_BY_ID = "SELECT * FROM food_category WHERE id = ?";
 
     public FoodCategory findFoodCategoryByName(String categoryName) throws DaoException {
         FoodCategory foodCategory = new FoodCategory();
@@ -57,7 +58,22 @@ public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
 
     @Override
     public FoodCategory findEntityById(Long id) throws DaoException {
-        return null;
+        FoodCategory foodCategory = new FoodCategory();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_SELECT_FOOD_CATEGORY_BY_ID);
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                foodCategory.setName(resultSet.getString(COLUMN_LABEL_NAME));
+                foodCategory.setId(resultSet.getLong(COLUMN_LABEL_ID));
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error in finding food category by id", e);
+        } finally {
+            close(statement);
+        }
+        return foodCategory;
     }
 
     @Override

@@ -200,3 +200,15 @@ U
 %src/main/webapp/jsp/edit_password.jsp,f/3/f3b78dc92c866a8c033512f7f211eb5b0fa0627f
 T
 $src/main/webapp/jsp/edit_profile.jsp,f/e/fed78a23b8738628e297ccd02b5c826dcbe20cd3
+x
+Hsrc/main/java/kz/epam/tcfp/foodordering/command/EditPasswordCommand.java,0/3/03f4d5bccd46a47268336c236c69f1f972ce5f6a
+ƒ
+Ssrc/main/java/kz/epam/tcfp/foodordering/command/ShowMenuItemsByCategoryCommand.java,1/f/1f3fdb7130855a1b1b9a86674914284af58c952a
+y
+Isrc/main/java/kz/epam/tcfp/foodordering/command/SortMenuItemsCommand.java,1/5/15d8ee0038fdc8e907feb41748a3e10fec053134
+y
+Isrc/main/java/kz/epam/tcfp/foodordering/command/SortAllOrdersCommand.java,b/4/b474ba5d9d65a685d8ad3d695160d627852d1051
+X
+(src/main/webapp/jsp/food_delete_info.jsp,2/4/24b807d7b452a7c196839692d9b37de75756c6e2
+v
+Fsrc/main/java/kz/epam/tcfp/foodordering/command/DeleteFoodCommand.java,b/e/be52cb06ebb76e5d80bd92d72c06c5f4ef6a3f7a

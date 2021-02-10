@@ -23,6 +23,32 @@ public class FoodDao extends AbstractDao<Long, Food> {
     private static final String SQL_SELECT_FOOD_BY_ID = "SELECT * FROM food WHERE id = ?";
     private static final String SQL_UPDATE_FOOD = "UPDATE food SET food_category_id = ?, name = ?, description = ?, " +
             "price = ? WHERE id = ?";
+    private static final String SQL_SELECT_FOOD_BY_CATEGORY = "SELECT * FROM food WHERE food_category_id = ?";
+    private static final String SQL_DELETE_FOOD_BY_ID = "DELETE FROM food WHERE id = ?";
+
+    public List<Food> findFoodByCategory(long foodCategoryId) throws DaoException {
+        List<Food> foodList = new ArrayList<>();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_SELECT_FOOD_BY_CATEGORY);
+            statement.setLong(1, foodCategoryId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Food food = new Food();
+                food.setId(resultSet.getLong(COLUMN_LABEL_ID));
+                food.setFoodCategoryId(resultSet.getLong(COLUMN_LABEL_FOOD_CATEGORY_ID));
+                food.setName(resultSet.getString(COLUMN_LABEL_NAME));
+                food.setDescription(resultSet.getString(COLUMN_LABEL_DESCRIPTION));
+                food.setPrice(resultSet.getDouble(COLUMN_LABEL_PRICE));
+                foodList.add(food);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error in finding food by category", e);
+        } finally {
+            close(statement);
+        }
+        return foodList;
+    }
 
     public Food findFoodByName(String name) throws DaoException {
         Food food = new Food();
@@ -92,7 +118,18 @@ public class FoodDao extends AbstractDao<Long, Food> {
 
     @Override
     public boolean deleteEntityById(Long id) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_FOOD_BY_ID);
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting food by id", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override

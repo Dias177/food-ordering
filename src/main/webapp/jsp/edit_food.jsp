@@ -18,12 +18,12 @@
 <body>
 <div class="container">
     <h3><fmt:message key="label.food.editing" /></h3>
-    <c:if test="${not empty successEditFood}">
-        <div class="alert alert-success" role="alert">
-                ${successEditFood}
+    <c:if test="${isSuccessEditFood}">
+        <div class="alert alert-success text-center" role="alert">
+                <fmt:message key="message.edit.food.success" />
         </div>
     </c:if>
-    <c:if test="${empty successEditFood}">
+    <c:if test="${not isSuccessEditFood}">
     <form class="text-center" name="editFoodForm" method="POST" action="${pageContext.request.contextPath}/controller">
         <input type="hidden" name="command" value="edit_food" />
         <input type="hidden" name="foodId" value="${foodId}" />
@@ -31,9 +31,9 @@
             <label for="foodName"><fmt:message key="label.food.name" />:</label>
             <input type="text" class="form-control" id="foodName" name="foodName" value="${currentFoodName}" autofocus required>
         </div>
-        <c:if test="${not empty errorInvalidFoodName}">
+        <c:if test="${isErrorInvalidFoodName}">
             <div class="alert alert-danger" role="alert">
-                    ${errorInvalidFoodName}
+                    <fmt:message key="message.food.name.error" />
             </div>
         </c:if>
         <div class="form-group input-mini">
@@ -55,9 +55,9 @@
             <label for="foodPrice"><fmt:message key="label.price" />, KZT:</label>
             <input type="number" class="form-control" id="foodPrice" name="foodPrice" min="0" step="0.01" value="${currentFoodPrice}" required>
         </div>
-        <c:if test="${not empty errorInvalidFoodPrice}">
+        <c:if test="${isErrorInvalidFoodPrice}">
             <div class="alert alert-danger" role="alert">
-                    ${errorInvalidFoodPrice}
+                    <fmt:message key="message.food.price.error" />
             </div>
         </c:if>
         <button type="submit" class="btn btn-primary"><fmt:message key="label.edit" /></button>

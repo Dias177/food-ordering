@@ -20,18 +20,18 @@
 <h3><fmt:message key="label.add.order.status" /></h3>
     <form class="text-center" name="addOrderStatusForm" method="POST" action="${pageContext.request.contextPath}/controller">
         <input type="hidden" name="command" value="add_order_status"/>
-        <c:if test="${not empty successAddOrderStatusName}">
+        <c:if test="${isSuccessAddOrderStatusName}">
             <div class="alert alert-success" role="alert">
-                    ${successAddOrderStatusName}
+                    <fmt:message key="message.add.order.status.success" />
             </div>
         </c:if>
         <div class="form-group input-mini">
             <label for="orderStatusName"><fmt:message key="label.name.for.order.status" />:</label>
             <input type="text" class="form-control" id="orderStatusName" name="orderStatusName" value="" autofocus required>
         </div>
-        <c:if test="${not empty errorInvalidOrderStatusName}">
+        <c:if test="${isErrorInvalidOrderStatusName}">
             <div class="alert alert-danger" role="alert">
-                    ${errorInvalidOrderStatusName}
+                    <fmt:message key="message.order.status.name.error" />
             </div>
         </c:if>
         <button type="submit" class="btn btn-primary"><fmt:message key="label.add" /></button>
