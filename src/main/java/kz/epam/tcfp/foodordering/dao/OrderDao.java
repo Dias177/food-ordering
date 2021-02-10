@@ -17,7 +17,8 @@ public class OrderDao extends AbstractDao<Long, Order> {
     private static final String SQL_SELECT_LAST_ORDER = "SELECT * FROM `order` ORDER BY id DESC LIMIT 1";
     private static final String SQL_SELECT_ALL = "SELECT * FROM `order` ORDER BY id";
     private static final String SQL_SELECT_ORDER_BY_ID = "SELECT * FROM `order` WHERE id = ?";
-    private static final String SQL_UPDATE_ORDER_STATUS_ID = "UPDATE `order` SET order_status_id = ? WHERE id = ?";
+    private static final String SQL_UPDATE_ORDER_STATUS_ID = "UPDATE `order` SET order_status_id = ?, " +
+            "price = ? WHERE id = ?";
     private static final String COLUMN_LABEL_ID = "id";
     private static final String COLUMN_LABEL_USER_ID = "user_id";
     private static final String COLUMN_LABEL_ORDER_STATUS_ID = "order_status_id";
@@ -142,11 +143,12 @@ public class OrderDao extends AbstractDao<Long, Order> {
     @Override
     public int update(Order order) throws DaoException {
         PreparedStatement statement = null;
-        int affectedRows = 0;
+        int affectedRows ;
         try {
             statement = connection.prepareStatement(SQL_UPDATE_ORDER_STATUS_ID);
             statement.setLong(1, order.getOrderStatusId());
-            statement.setLong(2, order.getId());
+            statement.setDouble(2, order.getPrice());
+            statement.setLong(3, order.getId());
             affectedRows =  statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Error in updating ordering status of order", e);

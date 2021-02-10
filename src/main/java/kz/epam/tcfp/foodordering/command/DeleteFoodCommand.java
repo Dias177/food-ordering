@@ -2,6 +2,7 @@ package kz.epam.tcfp.foodordering.command;
 
 import kz.epam.tcfp.foodordering.dao.DaoException;
 import kz.epam.tcfp.foodordering.logic.FoodLogic;
+import kz.epam.tcfp.foodordering.logic.OrderLogic;
 import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ public class DeleteFoodCommand implements ActionCommand {
         long foodId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_ID));
         if (FoodLogic.remove(foodId)) {
             req.setAttribute(IS_SUCCESS_DELETE_FOOD, SUCCESS);
+            OrderLogic.updateAllOrdersPrice();
         }
         return page;
     }

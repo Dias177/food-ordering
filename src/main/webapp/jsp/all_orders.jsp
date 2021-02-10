@@ -28,7 +28,7 @@
                     <fmt:message key="message.edit.order.status.error" />
                 </div>
             </c:if>
-            <c:if test="${not (isSuccessEditingOrderStatus or isErrorEditing)}">
+            <c:if test="${not (isSuccessEditingOrderStatus or isErrorEditingOrderStatus)}">
             <label for="sortSelect" class="text-muted"><fmt:message key="label.sort.by" />: </label>
             <select class="custom-select custom-select-sm" id="sortSelect" name="sortSelect" onchange="sortAllOrders(this.value)">
                 <option disabled selected value><fmt:message key="label.select.option" /></option>
@@ -55,7 +55,11 @@
                                 <h6 class="card-subtitle mb-2 text-muted"><fmt:formatNumber value="${order.key.price}" type="currency" currencySymbol="KZT" /></h6>
                                 <h6 class="card-subtitle mb-2 text-muted"><fmt:formatDate value="${order.key.date}" type="both" /></h6>
                                 <c:forEach var="orderDetail" items="${order.value}" varStatus="statusOrderDetail">
-                                    <p class="card-text">${statusOrderDetail.count}. ${foods[orderDetail.foodId - 1].name}: ${orderDetail.quantity}x<fmt:formatNumber value="${foods[orderDetail.foodId - 1].price}" type="number" />=<fmt:formatNumber value="${orderDetail.price}" type="currency" currencySymbol="KZT"/></p>
+                                    <c:forEach var="food" items="${foods}">
+                                        <c:if test="${orderDetail.foodId eq food.id}">
+                                            <p class="card-text">${statusOrderDetail.count}. ${food.name}: ${orderDetail.quantity}x<fmt:formatNumber value="${food.price}" type="number" />=<fmt:formatNumber value="${orderDetail.price}" type="currency" currencySymbol="KZT"/></p>
+                                        </c:if>
+                                    </c:forEach>
                                 </c:forEach>
                                 <button type="submit" class="btn btn-primary"><fmt:message key="label.edit" /></button>
                             </div>

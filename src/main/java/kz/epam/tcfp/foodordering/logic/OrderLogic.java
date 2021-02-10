@@ -4,6 +4,7 @@ import kz.epam.tcfp.foodordering.dao.DaoException;
 import kz.epam.tcfp.foodordering.dao.EntityTransaction;
 import kz.epam.tcfp.foodordering.dao.OrderDao;
 import kz.epam.tcfp.foodordering.entity.Order;
+import kz.epam.tcfp.foodordering.entity.OrderDetail;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -105,5 +106,24 @@ public class OrderLogic {
             transaction.endTransaction();
         }
         return affectedRows > 0;
+    }
+
+    public static void updateAllOrdersPrice() throws DaoException {
+        List<Order> orders = getAll();
+        for (Order order : orders) {
+            List<OrderDetail> orderDetails = OrderDetailLogic.getAllByOrderId(order.getId());
+            double totalPrice = orderDetails.stream().mapToDouble(OrderDetail::getPrice).sum();
+            order.setPrice(totalPrice);
+            transaction.initTransaction(orderDao);
+            try {
+                orderDao.update(order);
+                transaction.commit();
+            } catch (DaoException e) {
+                transaction.rollback();
+                throw new DaoException(e);
+            } finally {
+                transaction.endTransaction();
+            }
+        }
     }
 }
