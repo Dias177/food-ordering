@@ -126,4 +126,19 @@ public class OrderLogic {
             }
         }
     }
+
+    public static boolean remove(long orderId) throws DaoException {
+        boolean isRemoved;
+        transaction.initTransaction(orderDao);
+        try {
+            isRemoved = orderDao.deleteEntityById(orderId);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return isRemoved;
+    }
 }

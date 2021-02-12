@@ -40,7 +40,8 @@ public enum CommandEnum {
     SHOW_DELETE_FOOD_CATEGORY(new ShowDeleteFoodCategoryCommand()),
     DELETE_FOOD_CATEGORY(new DeleteFoodCategoryCommand()),
     SHOW_DELETE_ORDER_STATUS(new ShowDeleteOrderStatusCommand()),
-    DELETE_ORDER_STATUS(new DeleteOrderStatusCommand());
+    DELETE_ORDER_STATUS(new DeleteOrderStatusCommand()),
+    DELETE_ORDER(new DeleteOrderCommand());
 
     private ActionCommand command;
 

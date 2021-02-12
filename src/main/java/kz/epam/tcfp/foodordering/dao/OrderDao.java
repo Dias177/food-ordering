@@ -11,6 +11,11 @@ import java.util.List;
 
 public class OrderDao extends AbstractDao<Long, Order> {
 
+    private static final String COLUMN_LABEL_ID = "id";
+    private static final String COLUMN_LABEL_USER_ID = "user_id";
+    private static final String COLUMN_LABEL_ORDER_STATUS_ID = "order_status_id";
+    private static final String COLUMN_LABEL_PRICE = "price";
+    private static final String COLUMN_LABEL_DATE = "date";
     private static final String SQL_CREATE_ORDER = "INSERT INTO `order` (user_id, order_status_id, price, date) " +
             "VALUES (?, ?, ?, ?)";
     private static final String SQL_SELECT_ALL_ORDERS_BY_USER_ID = "SELECT * FROM `order` WHERE user_id = ?";
@@ -19,11 +24,7 @@ public class OrderDao extends AbstractDao<Long, Order> {
     private static final String SQL_SELECT_ORDER_BY_ID = "SELECT * FROM `order` WHERE id = ?";
     private static final String SQL_UPDATE_ORDER_STATUS_ID = "UPDATE `order` SET order_status_id = ?, " +
             "price = ? WHERE id = ?";
-    private static final String COLUMN_LABEL_ID = "id";
-    private static final String COLUMN_LABEL_USER_ID = "user_id";
-    private static final String COLUMN_LABEL_ORDER_STATUS_ID = "order_status_id";
-    private static final String COLUMN_LABEL_PRICE = "price";
-    private static final String COLUMN_LABEL_DATE = "date";
+    private static final String SQL_DELETE_ORDER_BY_ID = "DELETE FROM `order` WHERE id = ?";
 
     public List<Order> findAllOrdersByUserId(long id) throws DaoException {
         List<Order> orders = new ArrayList<>();
@@ -114,7 +115,18 @@ public class OrderDao extends AbstractDao<Long, Order> {
 
     @Override
     public boolean deleteEntityById(Long id) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_ORDER_BY_ID);
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting order by id", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override
