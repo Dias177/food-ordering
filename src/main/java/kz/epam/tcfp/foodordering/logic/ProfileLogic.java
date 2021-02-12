@@ -7,6 +7,7 @@ import kz.epam.tcfp.foodordering.entity.User;
 import kz.epam.tcfp.foodordering.util.PasswordHashing;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ProfileLogic {
 
@@ -82,5 +83,33 @@ public class ProfileLogic {
             transaction.endTransaction();
         }
         return rows != 0;
+    }
+
+    public static List<User> getAllCustomers() throws DaoException {
+        List<User> customers;
+        transaction.init(userDao);
+        try {
+            customers = userDao.findAll();
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return customers;
+    }
+
+    public static boolean remove(long userId) throws DaoException {
+        boolean isRemoved;
+        transaction.initTransaction(userDao);
+        try {
+            isRemoved = userDao.deleteEntityById(userId);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return isRemoved;
     }
 }

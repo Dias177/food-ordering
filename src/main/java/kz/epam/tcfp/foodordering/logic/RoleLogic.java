@@ -5,6 +5,8 @@ import kz.epam.tcfp.foodordering.dao.EntityTransaction;
 import kz.epam.tcfp.foodordering.dao.RoleDao;
 import kz.epam.tcfp.foodordering.entity.Role;
 
+import java.util.List;
+
 public class RoleLogic {
 
     private static final EntityTransaction transaction = new EntityTransaction();
@@ -25,5 +27,18 @@ public class RoleLogic {
             transaction.end();
         }
         return role.getName();
+    }
+
+    public static List<Role> getAll() throws DaoException {
+        List<Role> roles;
+        transaction.init(roleDao);
+        try {
+            roles = roleDao.findAll();
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return roles;
     }
 }

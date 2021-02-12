@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserDao extends AbstractDao<Long, User> {
 
-    private static final long USER_ROLE_ID = 2;
+    private static final long CUSTOMER_ROLE_ID = 2;
     private static final String COLUMN_LABEL_ID = "id";
     private static final String COLUMN_LABEL_ROLE_ID = "role_id";
     private static final String COLUMN_LABEL_EMAIL = "email";
@@ -18,7 +18,7 @@ public class UserDao extends AbstractDao<Long, User> {
     private static final String COLUMN_LABEL_BIRTHDAY = "birthday";
     private static final String SQL_SELECT_USER_BY_EMAIL_AND_PASSWORD = "SELECT * FROM user WHERE email = ? AND " +
             "password = ?";
-    private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM user WHERE role_id = " + USER_ROLE_ID;
+    private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM user WHERE role_id = " + CUSTOMER_ROLE_ID;
     private static final String SQL_SELECT_USER_BY_ID = "SELECT * FROM user WHERE id = ?";
     private static final String SQL_DELETE_USER_BY_ID = "DELETE FROM user WHERE id = ?";
     private static final String SQL_CREATE_USER = "INSERT INTO user (role_id, email, " +
@@ -168,7 +168,18 @@ public class UserDao extends AbstractDao<Long, User> {
 
     @Override
     public boolean deleteEntityById(Long id) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_USER_BY_ID);
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting user by id", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override
@@ -185,7 +196,7 @@ public class UserDao extends AbstractDao<Long, User> {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(SQL_CREATE_USER);
-            statement.setLong(1, USER_ROLE_ID);
+            statement.setLong(1, CUSTOMER_ROLE_ID);
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
             statement.setString(4, user.getFirstName());

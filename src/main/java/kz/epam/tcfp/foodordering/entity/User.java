@@ -3,7 +3,7 @@ package kz.epam.tcfp.foodordering.entity;
 import java.sql.Date;
 import java.util.Objects;
 
-public class User extends Entity {
+public class User extends Entity implements Comparable<User> {
 
     private long roleId;
     private String email;
@@ -114,5 +114,20 @@ public class User extends Entity {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", birthday=" + birthday +
                 '}';
+    }
+
+    @Override
+    public int compareTo(User o) {
+        int res = this.firstName.compareTo(o.getFirstName());
+        if (res == 0) {
+            res = this.lastName.compareTo(o.getLastName());
+            if (res == 0) {
+                res = this.birthday.compareTo(o.getBirthday());
+                if (res == 0) {
+                    res = (int) (this.getId() - o.getId());
+                }
+            }
+        }
+        return res;
     }
 }
