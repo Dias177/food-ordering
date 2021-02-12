@@ -34,6 +34,14 @@
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_adding_order_status"><fmt:message key="label.add.order.status" /></a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                            <fmt:message key="label.remove" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_delete_food_category"><fmt:message key="label.delete.food.category" /></a>
+                        </div>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_orders"><fmt:message key="label.orders" /></a>
                 </li>

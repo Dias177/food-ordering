@@ -68,4 +68,19 @@ public class FoodCategoryLogic {
         }
         return foodCategory;
     }
+
+    public static boolean remove(long categoryId) throws DaoException {
+        boolean isRemoved;
+        transaction.initTransaction(foodCategoryDao);
+        try {
+            isRemoved = foodCategoryDao.deleteEntityById(categoryId);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return isRemoved;
+    }
 }

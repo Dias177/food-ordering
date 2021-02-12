@@ -17,6 +17,7 @@ public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
     private static final String SQL_CREATE_FOOD_CATEGORY = "INSERT INTO food_category (name) VALUES (?)";
     private static final String SQL_SELECT_ALL = "SELECT * FROM food_category ORDER BY id";
     private static final String SQL_SELECT_FOOD_CATEGORY_BY_ID = "SELECT * FROM food_category WHERE id = ?";
+    private static final String SQL_DELETE_FOOD_CATEGORY_BY_ID = "DELETE FROM food_category WHERE id = ?";
 
     public FoodCategory findFoodCategoryByName(String categoryName) throws DaoException {
         FoodCategory foodCategory = new FoodCategory();
@@ -78,7 +79,18 @@ public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
 
     @Override
     public boolean deleteEntityById(Long id) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_FOOD_CATEGORY_BY_ID);
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting food category by id", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override
