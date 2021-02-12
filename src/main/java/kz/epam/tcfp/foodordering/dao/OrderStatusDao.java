@@ -11,11 +11,12 @@ import java.util.List;
 
 public class OrderStatusDao extends AbstractDao<Long, OrderStatus> {
 
+    private static final String COLUMN_LABEL_ID = "id";
+    private static final String COLUMN_LABEL_NAME = "name";
     private static final String SQL_SELECT_ALL = "SELECT * FROM order_status ORDER BY id";
     private static final String SQL_SELECT_STATUS_BY_NAME = "SELECT * FROM order_status WHERE name = ?";
     private static final String SQL_CREATE_ORDER_STATUS = "INSERT INTO order_status (name) VALUES (?)";
-    private static final String COLUMN_LABEL_ID = "id";
-    private static final String COLUMN_LABEL_NAME = "name";
+    private static final String SQL_DELETE_ORDER_STATUS_BY_ID = "DELETE FROM order_status WHERE id = ?";
 
     public OrderStatus findByName(String name) throws DaoException {
         OrderStatus orderStatus = new OrderStatus();
@@ -63,7 +64,18 @@ public class OrderStatusDao extends AbstractDao<Long, OrderStatus> {
 
     @Override
     public boolean deleteEntityById(Long id) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_ORDER_STATUS_BY_ID);
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting order status by id", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override

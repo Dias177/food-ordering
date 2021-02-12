@@ -55,4 +55,19 @@ public class OrderStatusLogic {
             transaction.endTransaction();
         }
     }
+
+    public static boolean remove(long id) throws DaoException {
+        boolean isRemoved;
+        transaction.initTransaction(orderStatusDao);
+        try {
+            isRemoved = orderStatusDao.deleteEntityById(id);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return isRemoved;
+    }
 }
