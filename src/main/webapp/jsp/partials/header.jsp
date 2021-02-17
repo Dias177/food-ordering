@@ -42,6 +42,7 @@
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_delete_food_category"><fmt:message key="label.delete.food.category" /></a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_delete_order_status"><fmt:message key="label.delete.order.status" /></a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_delete_user"><fmt:message key="label.delete.user" /></a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_delete_role"><fmt:message key="label.delete.role" /></a>
                         </div>
                     </li>
                 <li class="nav-item">

@@ -41,4 +41,19 @@ public class RoleLogic {
         }
         return roles;
     }
+
+    public static boolean remove(long roleId) throws DaoException {
+        boolean isRemoved;
+        transaction.initTransaction(roleDao);
+        try {
+            isRemoved = roleDao.deleteEntityById(roleId);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return isRemoved;
+    }
 }

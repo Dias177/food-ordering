@@ -43,7 +43,9 @@ public enum CommandEnum {
     DELETE_ORDER_STATUS(new DeleteOrderStatusCommand()),
     DELETE_ORDER(new DeleteOrderCommand()),
     SHOW_DELETE_USER(new ShowDeleteUserCommand()),
-    DELETE_USER(new DeleteUserCommand());
+    DELETE_USER(new DeleteUserCommand()),
+    SHOW_DELETE_ROLE(new ShowDeleteRoleCommand()),
+    DELETE_ROLE(new DeleteRoleCommand());
 
     private ActionCommand command;
 
