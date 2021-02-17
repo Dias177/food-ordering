@@ -15,6 +15,7 @@ public class RoleDao extends AbstractDao<Long, Role> {
     private static final String COLUMN_LABEL_NAME = "name";
     private static final String SQL_SELECT_ROLE_BY_ID = "SELECT * FROM role WHERE id = ?";
     private static final String SQL_SELECT_ALL_ROLES = "SELECT * FROM role ORDER BY id";
+    private static final String SQL_DELETE_ROLE_BY_ID = "DELETE FROM role WHERE id = ?";
 
     @Override
     public List<Role> findAll() throws DaoException {
@@ -58,12 +59,35 @@ public class RoleDao extends AbstractDao<Long, Role> {
 
     @Override
     public boolean deleteEntityById(Long id) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_ROLE_BY_ID);
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting role by id", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override
     public boolean deleteEntity(Role role) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_ROLE_BY_ID);
+            long id = role.getId();
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting role", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override

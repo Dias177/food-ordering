@@ -95,7 +95,19 @@ public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
 
     @Override
     public boolean deleteEntity(FoodCategory foodCategory) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_FOOD_CATEGORY_BY_ID);
+            long id = foodCategory.getId();
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting food category", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override

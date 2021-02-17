@@ -80,7 +80,19 @@ public class OrderStatusDao extends AbstractDao<Long, OrderStatus> {
 
     @Override
     public boolean deleteEntity(OrderStatus orderStatus) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_ORDER_STATUS_BY_ID);
+            long id = orderStatus.getId();
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting order status", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override

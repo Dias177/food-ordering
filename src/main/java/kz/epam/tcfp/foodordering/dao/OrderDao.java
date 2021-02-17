@@ -131,7 +131,19 @@ public class OrderDao extends AbstractDao<Long, Order> {
 
     @Override
     public boolean deleteEntity(Order order) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_ORDER_BY_ID);
+            long id = order.getId();
+            statement.setLong(1, id);
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting order", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override
