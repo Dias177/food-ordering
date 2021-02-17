@@ -4,8 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -103,9 +105,10 @@ public class ConnectionPool {
     }
 
     private void deregisterDrivers() {
-        while (DriverManager.getDrivers().hasMoreElements()) {
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
             try {
-                DriverManager.deregisterDriver(DriverManager.getDrivers().nextElement());
+                DriverManager.deregisterDriver(drivers.nextElement());
             } catch (SQLException e) {
                 logger.error("Error in deregistering drivers from connection pool", e);
             }
