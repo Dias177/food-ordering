@@ -17,7 +17,6 @@
 </head>
 <body>
 <div class="container">
-<%--    TODO: Add sorting--%>
     <h3><fmt:message key="label.delete.user" /></h3>
     <c:choose>
         <c:when test="${isSuccessDeleteUser}">

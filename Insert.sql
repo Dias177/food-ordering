@@ -1,7 +1,7 @@
 INSERT INTO role (name) VALUES ('Admin');
 INSERT INTO role (name) VALUES ('Customer');
 
--- Password is Qwerty12!
+-- Password is "Qwerty12!"
 INSERT INTO user (role_id, email, password, first_name, last_name, phone_number)
 VALUES (1, 'admin@test.com', '96dee1bb26cf7cd9167a4882dc494b8c', 'Admin', 'Adminov', '+77001234567');
 INSERT INTO user (role_id, email, password, first_name, last_name, phone_number)
