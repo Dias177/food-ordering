@@ -44,14 +44,6 @@
     <filter-name>PageRedirectSecurityFilter</filter-name>
     <url-pattern>/jsp/*</url-pattern>
   </filter-mapping>
-<!--  <filter>-->
-<!--    <filter-name>ServletSecurityFilter</filter-name>-->
-<!--    <filter-class>kz.epam.tcfp.foodordering.filter.ServletSecurityFilter</filter-class>-->
-<!--  </filter>-->
-<!--  <filter-mapping>-->
-<!--    <filter-name>ServletSecurityFilter</filter-name>-->
-<!--    <url-pattern>/jsp/*</url-pattern>-->
-<!--  </filter-mapping>-->
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>

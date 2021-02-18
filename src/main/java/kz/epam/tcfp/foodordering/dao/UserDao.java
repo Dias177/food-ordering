@@ -23,8 +23,6 @@ public class UserDao extends AbstractDao<Long, User> {
     private static final String SQL_DELETE_USER_BY_ID = "DELETE FROM user WHERE id = ?";
     private static final String SQL_CREATE_USER = "INSERT INTO user (role_id, email, " +
             "password, first_name, last_name, phone_number, birthday) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE_USER = "UPDATE user SET role_id = ?, email = ?, password = ?," +
-            " first_name = ?, last_name = ?, phone_number = ?, birthday = ? WHERE id = ?";
     private static final String SQL_SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE email = ?";
     private static final String SQL_UPDATE_USER_INFO = "UPDATE user SET first_name = ?, last_name = ?, " +
             "phone_number = ?, birthday = ?, email = ? WHERE id = ?";
@@ -40,26 +38,6 @@ public class UserDao extends AbstractDao<Long, User> {
             rows = statement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Error in updating user password", e);
-        } finally {
-            close(statement);
-        }
-        return rows;
-    }
-
-    public int updateInfo(User user) throws DaoException {
-        int rows;
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(SQL_UPDATE_USER_INFO);
-            statement.setString(1, user.getFirstName());
-            statement.setString(2, user.getLastName());
-            statement.setString(3, user.getPhoneNumber());
-            statement.setDate(4, user.getBirthday());
-            statement.setString(5, user.getEmail());
-            statement.setLong(6, user.getId());
-            rows = statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DaoException("Error in updating user info", e);
         } finally {
             close(statement);
         }
@@ -184,7 +162,18 @@ public class UserDao extends AbstractDao<Long, User> {
 
     @Override
     public boolean deleteEntity(User user) throws DaoException {
-        return false;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_DELETE_USER_BY_ID);
+            statement.setLong(1, user.getId());
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in deleting user", e);
+        } finally {
+            close(statement);
+        }
+        return rows > 0;
     }
 
     @Override
@@ -214,6 +203,22 @@ public class UserDao extends AbstractDao<Long, User> {
 
     @Override
     public int update(User user) throws DaoException {
-        return 0;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_UPDATE_USER_INFO);
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getPhoneNumber());
+            statement.setDate(4, user.getBirthday());
+            statement.setString(5, user.getEmail());
+            statement.setLong(6, user.getId());
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in updating user info", e);
+        } finally {
+            close(statement);
+        }
+        return rows;
     }
 }

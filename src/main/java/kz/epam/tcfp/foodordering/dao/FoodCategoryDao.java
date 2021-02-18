@@ -129,6 +129,7 @@ public class FoodCategoryDao extends AbstractDao<Long, FoodCategory> {
         return true;
     }
 
+    //TODO: implement edit food category
     @Override
     public int update(FoodCategory foodCategory) throws DaoException {
         return 0;

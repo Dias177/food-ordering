@@ -43,7 +43,7 @@ public class ProfileLogic {
         int rows;
         transaction.initTransaction(userDao);
         try {
-            rows = userDao.updateInfo(user);
+            rows = userDao.update(user);
             transaction.commit();
         } catch (DaoException e) {
             transaction.rollback();

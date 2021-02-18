@@ -89,12 +89,12 @@ public class RoleDao extends AbstractDao<Long, Role> {
         }
         return rows > 0;
     }
-
+    //TODO: Implement add role
     @Override
     public boolean create(Role role) throws DaoException {
         return false;
     }
-
+    //TODO: Implement edit role
     @Override
     public int update(Role role) throws DaoException {
         return 0;
