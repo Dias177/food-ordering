@@ -18,6 +18,7 @@ public class OrderStatusDao extends AbstractDao<Long, OrderStatus> {
     private static final String SQL_CREATE_ORDER_STATUS = "INSERT INTO order_status (name) VALUES (?)";
     private static final String SQL_DELETE_ORDER_STATUS_BY_ID = "DELETE FROM order_status WHERE id = ?";
     private static final String SQL_SELECT_ORDER_STATUS_BY_ID = "SELECT * FROM order_status WHERE id = ?";
+    private static final String SQL_UPDATE_ORDER_STATUS = "UPDATE order_status SET name = ? WHERE id = ?";
 
     public OrderStatus findByName(String name) throws DaoException {
         OrderStatus orderStatus = new OrderStatus();
@@ -130,9 +131,20 @@ public class OrderStatusDao extends AbstractDao<Long, OrderStatus> {
         return true;
     }
 
-    //TODO: Implement edit order status
     @Override
     public int update(OrderStatus orderStatus) throws DaoException {
-        return 0;
+        int rows;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQL_UPDATE_ORDER_STATUS);
+            statement.setString(1, orderStatus.getName());
+            statement.setLong(2, orderStatus.getId());
+            rows = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Error in updating order status", e);
+        } finally {
+            close(statement);
+        }
+        return rows;
     }
 }

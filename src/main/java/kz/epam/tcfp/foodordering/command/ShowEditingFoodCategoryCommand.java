@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.List;
 
-public class ShowEditFoodCategoryCommand implements ActionCommand {
+public class ShowEditingFoodCategoryCommand implements ActionCommand {
 
     private static final String PATH_PAGE_EDIT_FOOD_CATEGORY = "path.page.edit.food.category";
     private static final String FOOD_CATEGORIES = "foodCategories";

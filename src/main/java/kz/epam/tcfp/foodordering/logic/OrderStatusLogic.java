@@ -29,6 +29,19 @@ public class OrderStatusLogic {
         return orderStatuses;
     }
 
+    public static OrderStatus getOrderStatusByName(String name) throws DaoException {
+        OrderStatus orderStatus;
+        transaction.init(orderStatusDao);
+        try {
+            orderStatus = orderStatusDao.findByName(name);
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return orderStatus;
+    }
+
     public static boolean statusExists(String name) throws DaoException {
         OrderStatus orderStatus;
         transaction.init(orderStatusDao);
@@ -54,6 +67,23 @@ public class OrderStatusLogic {
         } finally {
             transaction.endTransaction();
         }
+    }
+
+    public static boolean edit(long id, String name) throws DaoException {
+        int rows;
+        OrderStatus orderStatus = new OrderStatus(name);
+        orderStatus.setId(id);
+        transaction.initTransaction(orderStatusDao);
+        try {
+            rows = orderStatusDao.update(orderStatus);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return rows > 0;
     }
 
     public static boolean remove(long id) throws DaoException {

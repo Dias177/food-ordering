@@ -20,7 +20,7 @@ public enum CommandEnum {
     ORDER_FOOD(new OrderFoodCommand()),
     SHOW_MY_ORDERS(new ShowMyOrdersCommand()),
     SHOW_ALL_ORDERS(new ShowAllOrdersCommand()),
-    EDIT_ORDER_STATUS(new EditOrderStatusCommand()),
+    EDIT_ORDER(new EditOrderCommand()),
     SHOW_MY_PROFILE(new ShowMyProfileCommand()),
     CHANGE_TO_ENGLISH_LOCALE(new ChangeToEnglishLocaleCommand()),
     CHANGE_TO_RUSSIAN_LOCALE(new ChangeToRussianLocaleCommand()),
@@ -46,8 +46,10 @@ public enum CommandEnum {
     DELETE_USER(new DeleteUserCommand()),
     SHOW_DELETE_ROLE(new ShowDeleteRoleCommand()),
     DELETE_ROLE(new DeleteRoleCommand()),
-    SHOW_EDIT_FOOD_CATEGORY(new ShowEditFoodCategoryCommand()),
-    EDIT_FOOD_CATEGORY(new EditFoodCategoryCommand());
+    SHOW_EDITING_FOOD_CATEGORY(new ShowEditingFoodCategoryCommand()),
+    EDIT_FOOD_CATEGORY(new EditFoodCategoryCommand()),
+    SHOW_EDITING_ORDER_STATUS(new ShowEditingOrderStatusCommand()),
+    EDIT_ORDER_STATUS(new EditOrderStatusCommand());
 
     private ActionCommand command;
 

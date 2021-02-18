@@ -39,7 +39,8 @@
                             <fmt:message key="label.edit" />
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_edit_food_category"><fmt:message key="label.edit.food.category" /></a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_editing_food_category"><fmt:message key="label.edit.food.category" /></a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_editing_order_status"><fmt:message key="label.edit.order.status" /></a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
