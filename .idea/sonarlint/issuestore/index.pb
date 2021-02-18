@@ -118,8 +118,6 @@ t
 Dsrc/main/java/kz/epam/tcfp/foodordering/command/ShowCartCommand.java,f/9/f95f762a5249e90189e02abad46adf0bee1297f2
 t
 Dsrc/main/java/kz/epam/tcfp/foodordering/command/ShowMainCommand.java,9/e/9e0c32b44918aa036a2c94263cb3b1256f81202e
-y
-Isrc/main/java/kz/epam/tcfp/foodordering/filter/ServletSecurityFilter.java,5/2/520d2f76f85d771321b3c205d70d8ce2a3477512
 h
 8src/main/java/kz/epam/tcfp/foodordering/dao/RoleDao.java,1/9/1970a6c62ff6265f455dda43ea997afc73963b30
 l
@@ -232,3 +230,15 @@ Jsrc/main/java/kz/epam/tcfp/foodordering/command/ShowDeleteUserCommand.java,7/9
 +src/main/webapp/jsp/delete_order_status.jsp,1/f/1f5d481d1633ec5a72ad7585a13c77fa77a58b96
 S
 #src/main/webapp/jsp/delete_user.jsp,9/c/9c4d2883bd1d71fcb963af18f3eecf4b15d0fefb
+z
+Jsrc/main/java/kz/epam/tcfp/foodordering/command/ShowDeleteRoleCommand.java,b/e/be71aee06f0c68da78526b9ece3d42495a74fa41
+v
+Fsrc/main/java/kz/epam/tcfp/foodordering/command/DeleteRoleCommand.java,a/b/ab71edf45871de95a7e35dec56a288917b7db761
+S
+#src/main/webapp/jsp/delete_role.jsp,6/3/63bf83b6fe2b795341227b6fbe4171db244a461f
+Z
+*src/main/webapp/jsp/edit_food_category.jsp,7/4/749a763e85276c8521ec94a36abbabfd471b8f8a
+|
+Lsrc/main/java/kz/epam/tcfp/foodordering/command/EditFoodCategoryCommand.java,f/0/f0430598cef42dd85f0c4f8cc5c7f4b9cd5169ef
+€
+Psrc/main/java/kz/epam/tcfp/foodordering/command/ShowEditFoodCategoryCommand.java,b/6/b67a14f9d97c797665dd6e3386374b4fd55cb34e

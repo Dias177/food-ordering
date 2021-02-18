@@ -69,6 +69,36 @@ public class FoodCategoryLogic {
         return foodCategory;
     }
 
+    public static FoodCategory getCategoryByName(String categoryName) throws DaoException {
+        FoodCategory foodCategory;
+        transaction.init(foodCategoryDao);
+        try {
+            foodCategory = foodCategoryDao.findFoodCategoryByName(categoryName);
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return foodCategory;
+    }
+
+    public static boolean edit(long categoryId, String categoryName) throws DaoException {
+        int rows;
+        FoodCategory foodCategory = new FoodCategory(categoryName);
+        foodCategory.setId(categoryId);
+        transaction.initTransaction(foodCategoryDao);
+        try {
+            rows = foodCategoryDao.update(foodCategory);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return rows > 0;
+    }
+
     public static boolean remove(long categoryId) throws DaoException {
         boolean isRemoved;
         transaction.initTransaction(foodCategoryDao);
