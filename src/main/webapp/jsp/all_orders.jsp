@@ -48,7 +48,7 @@
                     </select>
                     <div class="row row-cols-1 row-cols-md-3">
                         <c:forEach var="order" items="${orders}" varStatus="statusOrder">
-                            <form name="editOrderStatusForm" method="POST" action="${pageContext.request.contextPath}/controller?command=edit_order_status">
+                            <form name="editOrderForm" method="POST" action="${pageContext.request.contextPath}/controller?command=edit_order">
                                 <input type="hidden" name="orderId" value="${order.key.id}"/>
                                 <div class="col mb-4">
                                     <div class="card h-100 text-center" style="width: 18rem;">
