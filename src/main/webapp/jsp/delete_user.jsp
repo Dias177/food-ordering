@@ -30,6 +30,12 @@
             </div>
         </c:when>
         <c:otherwise>
+            <label for="sortSelect" class="text-muted"><fmt:message key="label.sort.by" />: </label>
+            <select class="custom-select custom-select-sm" id="sortSelect" name="sortSelect" onchange="sortUsers(this.value)">
+                <option disabled selected value><fmt:message key="label.select.option" /></option>
+                <option value="name"><fmt:message key="label.name" /></option>
+                <option value="birthday"><fmt:message key="label.birthday" /></option>
+            </select>
             <div class="row row-cols-1 row-cols-md-3">
                 <c:forEach var="user" items="${users}">
                     <div class="col mb-4">
@@ -50,5 +56,11 @@
     </c:choose>
 </div>
 <c:import url="/jsp/partials/footer.jsp" charEncoding="UTF-8"/>
+<script type="text/javascript">
+    function sortUsers(sortBy)
+    {
+        window.location.href = "http://localhost:8080${pageContext.request.contextPath}/controller?command=sort_users&sort_by=" + sortBy;
+    }
+</script>
 </body>
 </html>

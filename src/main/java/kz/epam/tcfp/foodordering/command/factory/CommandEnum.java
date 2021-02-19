@@ -53,7 +53,8 @@ public enum CommandEnum {
     SHOW_EDITING_ROLE(new ShowEditingRoleCommand()),
     EDIT_ROLE(new EditRoleCommand()),
     SHOW_ADDING_ROLE(new ShowAddingRoleCommand()),
-    ADD_ROLE(new AddRoleCommand());
+    ADD_ROLE(new AddRoleCommand()),
+    SORT_USERS(new SortUsersCommand());
 
     private ActionCommand command;
 
