@@ -49,7 +49,9 @@ public enum CommandEnum {
     SHOW_EDITING_FOOD_CATEGORY(new ShowEditingFoodCategoryCommand()),
     EDIT_FOOD_CATEGORY(new EditFoodCategoryCommand()),
     SHOW_EDITING_ORDER_STATUS(new ShowEditingOrderStatusCommand()),
-    EDIT_ORDER_STATUS(new EditOrderStatusCommand());
+    EDIT_ORDER_STATUS(new EditOrderStatusCommand()),
+    SHOW_EDITING_ROLE(new ShowEditingRoleCommand()),
+    EDIT_ROLE(new EditRoleCommand());
 
     private ActionCommand command;
 

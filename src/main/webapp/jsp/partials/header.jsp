@@ -41,6 +41,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_editing_food_category"><fmt:message key="label.edit.food.category" /></a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_editing_order_status"><fmt:message key="label.edit.order.status" /></a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_editing_role"><fmt:message key="label.edit.role" /></a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

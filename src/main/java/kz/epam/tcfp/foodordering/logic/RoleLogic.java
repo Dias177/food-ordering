@@ -42,6 +42,36 @@ public class RoleLogic {
         return roles;
     }
 
+    public static Role getRoleByName(String roleName) throws DaoException {
+        Role role;
+        transaction.init(roleDao);
+        try {
+            role = roleDao.findRoleByName(roleName);
+        } catch (DaoException e) {
+            throw new DaoException(e);
+        } finally {
+            transaction.end();
+        }
+        return role;
+    }
+
+    public static boolean edit(long roleId, String roleName) throws DaoException {
+        int rows;
+        Role role = new Role(roleName);
+        role.setId(roleId);
+        transaction.initTransaction(roleDao);
+        try {
+            rows = roleDao.update(role);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return rows > 0;
+    }
+
     public static boolean remove(long roleId) throws DaoException {
         boolean isRemoved;
         transaction.initTransaction(roleDao);
