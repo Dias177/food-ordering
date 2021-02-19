@@ -62,7 +62,11 @@
                                                     </c:if>
                                                 </c:forEach>
                                             </select>
-                                            <h6 class="card-subtitle mb-2 text-muted">${users[statusOrder.count - 1].firstName} ${users[statusOrder.count - 1].lastName}</h6>
+                                            <c:forEach var="user" items="${users}">
+                                                <c:if test="${user.id eq order.key.userId}">
+                                                    <h6 class="card-subtitle mb-2 text-muted">${user.firstName} ${user.lastName}</h6>
+                                                </c:if>
+                                            </c:forEach>
                                             <h6 class="card-subtitle mb-2 text-muted"><fmt:formatNumber value="${order.key.price}" type="currency" currencySymbol="KZT" /></h6>
                                             <h6 class="card-subtitle mb-2 text-muted"><fmt:formatDate value="${order.key.date}" type="both" /></h6>
                                             <c:forEach var="orderDetail" items="${order.value}" varStatus="statusOrderDetail">

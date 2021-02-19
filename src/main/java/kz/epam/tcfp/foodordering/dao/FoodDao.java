@@ -19,7 +19,7 @@ public class FoodDao extends AbstractDao<Long, Food> {
     private static final String SQL_SELECT_FOOD_BY_NAME = "SELECT * FROM food WHERE name = ?";
     private static final String SQL_CREATE_FOOD = "INSERT INTO food (food_category_id, name, description, price) " +
             "VALUES (?, ?, ?, ?)";
-    private static final String SQL_SELECT_ALL_FOOD = "SELECT * FROM food";
+    private static final String SQL_SELECT_ALL_FOOD = "SELECT * FROM food ORDER BY id";
     private static final String SQL_SELECT_FOOD_BY_ID = "SELECT * FROM food WHERE id = ?";
     private static final String SQL_UPDATE_FOOD = "UPDATE food SET food_category_id = ?, name = ?, description = ?, " +
             "price = ? WHERE id = ?";
