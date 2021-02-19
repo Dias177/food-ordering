@@ -51,7 +51,9 @@ public enum CommandEnum {
     SHOW_EDITING_ORDER_STATUS(new ShowEditingOrderStatusCommand()),
     EDIT_ORDER_STATUS(new EditOrderStatusCommand()),
     SHOW_EDITING_ROLE(new ShowEditingRoleCommand()),
-    EDIT_ROLE(new EditRoleCommand());
+    EDIT_ROLE(new EditRoleCommand()),
+    SHOW_ADDING_ROLE(new ShowAddingRoleCommand()),
+    ADD_ROLE(new AddRoleCommand());
 
     private ActionCommand command;
 

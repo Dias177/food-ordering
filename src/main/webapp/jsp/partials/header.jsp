@@ -32,6 +32,7 @@
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_adding_food_category"><fmt:message key="label.add.food.category" /></a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_adding_food"><fmt:message key="label.add.food" /></a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_adding_order_status"><fmt:message key="label.add.order.status" /></a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=show_adding_role"><fmt:message key="label.add.role" /></a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

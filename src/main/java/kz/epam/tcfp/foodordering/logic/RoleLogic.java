@@ -55,6 +55,22 @@ public class RoleLogic {
         return role;
     }
 
+    public static boolean add(String roleName) throws DaoException{
+        boolean isAdded;
+        Role role = new Role(roleName);
+        transaction.initTransaction(roleDao);
+        try {
+            isAdded = roleDao.create(role);
+            transaction.commit();
+        } catch (DaoException e) {
+            transaction.rollback();
+            throw new DaoException(e);
+        } finally {
+            transaction.endTransaction();
+        }
+        return isAdded;
+    }
+
     public static boolean edit(long roleId, String roleName) throws DaoException {
         int rows;
         Role role = new Role(roleName);
