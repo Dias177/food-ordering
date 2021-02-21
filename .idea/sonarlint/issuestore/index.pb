@@ -248,3 +248,19 @@ Y
 )src/main/webapp/jsp/edit_order_status.jsp,b/b/bbac6e5c7e087e296f075baa3990f1379cd346c7
 u
 Esrc/main/java/kz/epam/tcfp/foodordering/command/EditOrderCommand.java,6/1/61a6bf53c5e17b522994e3a5a326236deb171647
+Q
+!src/main/webapp/jsp/edit_role.jsp,5/2/52cdbb4d90f9368acf4e096f535090e41a9829bb
+{
+Ksrc/main/java/kz/epam/tcfp/foodordering/command/ShowEditingRoleCommand.java,a/2/a2c65d0c50b16c7f3f5cac0c73efc803e229f6b1
+t
+Dsrc/main/java/kz/epam/tcfp/foodordering/command/EditRoleCommand.java,e/3/e354f55f8d0df1c4cecf7d99e166e506ba60f286
+z
+Jsrc/main/java/kz/epam/tcfp/foodordering/command/ShowAddingRoleCommand.java,4/5/45a802ade50753cc071cdc07b26428efb8cc1fac
+s
+Csrc/main/java/kz/epam/tcfp/foodordering/command/AddRoleCommand.java,c/1/c1271c74a13a0c5323a0019e3f7c4ff6dffc586e
+P
+ src/main/webapp/jsp/add_role.jsp,9/e/9e53a028ba0ecf5f795c050517be2ce17bf0639c
+u
+Esrc/main/java/kz/epam/tcfp/foodordering/command/SortUsersCommand.java,e/5/e517cb56c103220674da29210bc9c7c86aa687aa
+y
+Isrc/main/java/test/kz/epam/tcfp/foodordering/logic/RegisterLogicTest.java,7/e/7e004f591d60bec0d38498834644c1344d2ecaa3
