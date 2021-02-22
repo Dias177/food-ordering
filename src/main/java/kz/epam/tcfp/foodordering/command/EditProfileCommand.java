@@ -9,23 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.text.ParseException;
 
-public class EditProfileCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_EDIT_PROFILE;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ERROR;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
 
-    private static final String PARAM_NAME_EMAIL = "email";
-    private static final String PARAM_NAME_FIRST_NAME = "firstName";
-    private static final String PARAM_NAME_LAST_NAME = "lastName";
-    private static final String PARAM_NAME_PHONE_NUMBER = "phoneNumber";
-    private static final String PARAM_NAME_BIRTHDAY = "birthday";
-    private static final String USER_ID = "userId";
-    private static final String IS_ERROR_INVALID_EMAIL = "isErrorInvalidEmail";
-    private static final String IS_ERROR_INVALID_FIRST_NAME = "isErrorInvalidFirstName";
-    private static final String IS_ERROR_INVALID_LAST_NAME = "isErrorInvalidLastName";
-    private static final String IS_ERROR_INVALID_BIRTHDAY = "isErrorInvalidBirthday";
-    private static final String IS_ERROR_INVALID_PHONE_NUMBER = "isErrorInvalidPhoneNumber";
-    private static final String PATH_PAGE_EDIT_PROFILE = "path.page.edit.profile";
-    private static final String IS_SUCCESS_EDIT_PROFILE = "isSuccessEditProfile";
-    private static final boolean SUCCESS = true;
-    private static final boolean ERROR = true;
+public class EditProfileCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

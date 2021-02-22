@@ -7,20 +7,17 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
-public class EditOrderCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_ALL_ORDERS;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ERROR;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
 
-    private static final String PATH_PAGE_ALL_ORDERS = "path.page.all.orders";
-    private static final String PARAM_NAME_ORDER_ID = "orderId";
-    private static final String PARAM_NAME_ORDER_STATUS_ID = "orderStatusId";
-    private static final String IS_SUCCESS_EDITING_ORDER_STATUS = "isSuccessEditingOrderStatus";
-    private static final String IS_ERROR_EDITING_ORDER_STATUS = "isErrorEditingOrderStatus";
-    private static final boolean SUCCESS = true;
-    private static final boolean ERROR = true;
+public class EditOrderCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_ALL_ORDERS);
-        long orderId = Long.parseLong(req.getParameter(PARAM_NAME_ORDER_ID));
+        long orderId = Long.parseLong(req.getParameter(PARAM_NAME_ORDER_ID_CAMELCASE));
         long orderStatusId = Long.parseLong(req.getParameter(PARAM_NAME_ORDER_STATUS_ID + orderId));
         if (OrderLogic.updateStatus(orderId, orderStatusId)) {
              req.setAttribute(IS_SUCCESS_EDITING_ORDER_STATUS, SUCCESS);

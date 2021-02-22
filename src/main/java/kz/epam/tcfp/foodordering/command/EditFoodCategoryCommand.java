@@ -8,20 +8,17 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
-public class EditFoodCategoryCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_EDIT_FOOD_CATEGORY;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ERROR;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
 
-    private static final String PATH_PAGE_EDIT_FOOD_CATEGORY = "path.page.edit.food.category";
-    private static final String PARAM_NAME_FOOD_CATEGORY_ID = "foodCategoryId";
-    private static final String PARAM_NAME_FOOD_CATEGORY_NAME = "foodCategoryName";
-    private static final String IS_SUCCESS_EDIT_FOOD_CATEGORY = "isSuccessEditFoodCategory";
-    private static final String IS_ERROR_EDIT_FOOD_CATEGORY = "isErrorEditFoodCategory";
-    private static final boolean SUCCESS = true;
-    private static final boolean ERROR = true;
+public class EditFoodCategoryCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_EDIT_FOOD_CATEGORY);
-        long foodCategoryId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_CATEGORY_ID));
+        long foodCategoryId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_CATEGORY_ID_CAMELCASE));
         String foodCategoryName = req.getParameter(PARAM_NAME_FOOD_CATEGORY_NAME);
         FoodCategory foodCategory = FoodCategoryLogic.getCategoryByName(foodCategoryName);
         if (foodCategory.getName() != null && foodCategory.getId() != foodCategoryId &&

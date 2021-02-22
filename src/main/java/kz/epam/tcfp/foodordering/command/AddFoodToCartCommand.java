@@ -12,22 +12,17 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Set;
 
-public class AddFoodToCartCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_MENU;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ALL;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
 
-    private static final String PARAM_NAME_FOOD_ID = "food_id";
-    private static final String CART = "cart";
-    private static final String PATH_PAGE_MENU = "path.page.menu";
-    private static final String FOOD_ITEMS = "foodItems";
-    private static final String FOOD_CATEGORIES = "foodCategories";
-    private static final String CURRENT_CATEGORY = "currentCategory";
-    private static final String ALL = "All";
-    private static final String IS_SUCCESS_ADD_FOOD_TO_CART = "isSuccessAddFoodToCart";
-    private static final boolean SUCCESS = true;
+public class AddFoodToCartCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_MENU);
-        String id = req.getParameter(PARAM_NAME_FOOD_ID);
+        String id = req.getParameter(PARAM_NAME_FOOD_ID_UNDERSCORE);
         long idLong = Long.parseLong(id);
         Food food = FoodLogic.getFood(idLong);
         Set<Food> cart = (Set<Food>) req.getSession().getAttribute(CART);

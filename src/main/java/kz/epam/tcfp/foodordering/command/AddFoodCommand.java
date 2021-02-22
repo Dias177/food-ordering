@@ -9,19 +9,12 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public class AddFoodCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_ADD_FOOD;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ERROR;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
 
-    private static final String PARAM_NAME_FOOD_NAME = "foodName";
-    private static final String PARAM_NAME_FOOD_CATEGORY = "foodCategory";
-    private static final String PARAM_NAME_FOOD_DESCRIPTION = "foodDescription";
-    private static final String PARAM_NAME_FOOD_PRICE = "foodPrice";
-    private static final String PATH_PAGE_ADD_FOOD = "path.page.add.food";
-    private static final String IS_ERROR_INVALID_FOOD_NAME = "isErrorInvalidFoodName";
-    private static final String IS_ERROR_INVALID_FOOD_PRICE = "isErrorInvalidFoodPrice";
-    private static final String IS_SUCCESS_ADD_FOOD = "isSuccessAddFood";
-    private static final boolean ERROR = true;
-    private static final boolean SUCCESS = true;
-    private static final String FOOD_CATEGORIES = "foodCategories";
+public class AddFoodCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws DaoException {

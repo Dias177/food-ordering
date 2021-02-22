@@ -6,9 +6,9 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
-public class ShowAddingRoleCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_ADD_ROLE;
 
-    private static final String PATH_PAGE_ADD_ROLE = "path.page.add.role";
+public class ShowAddingRoleCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

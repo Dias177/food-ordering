@@ -12,13 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ShowAllOrdersCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_ALL_ORDERS;
 
-    private static final String PATH_PAGE_ALL_ORDERS = "path.page.all.orders";
-    private static final String FOODS = "foods";
-    private static final String ORDER_STATUSES = "orderStatuses";
-    private static final String ORDERS = "orders";
-    private static final String USERS = "users";
+public class ShowAllOrdersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

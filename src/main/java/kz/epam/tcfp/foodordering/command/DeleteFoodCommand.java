@@ -8,17 +8,16 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
-public class DeleteFoodCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_FOOD_DELETE_INFO;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
 
-    private static final String PARAM_NAME_FOOD_ID = "food_id";
-    private static final String IS_SUCCESS_DELETE_FOOD = "isSuccessDeleteFood";
-    private static final boolean SUCCESS = true;
-    private static final String PATH_PAGE_FOOD_DELETE_INFO = "path.page.food.delete.info";
+public class DeleteFoodCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_FOOD_DELETE_INFO);
-        long foodId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_ID));
+        long foodId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_ID_UNDERSCORE));
         if (FoodLogic.remove(foodId)) {
             req.setAttribute(IS_SUCCESS_DELETE_FOOD, SUCCESS);
             OrderLogic.updateAllOrdersPrice();

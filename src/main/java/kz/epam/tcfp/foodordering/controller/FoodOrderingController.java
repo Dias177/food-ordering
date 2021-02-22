@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_MAIN;
+
 public class FoodOrderingController extends HttpServlet {
 
     private final ActionFactory actionFactory = ActionFactory.getInstance();
@@ -34,7 +36,7 @@ public class FoodOrderingController extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
             dispatcher.forward(req, resp);
         } else {
-            page = ConfigurationManager.getProperty("path.page.main");
+            page = ConfigurationManager.getProperty(PATH_PAGE_MAIN);
             resp.sendRedirect(req.getContextPath() + page);
         }
     }

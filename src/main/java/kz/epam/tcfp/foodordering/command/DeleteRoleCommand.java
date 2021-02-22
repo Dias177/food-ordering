@@ -7,14 +7,12 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
-public class DeleteRoleCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_DELETE_ROLE;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ERROR;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
 
-    private static final String PATH_PAGE_DELETE_ROLE = "path.page.delete.role";
-    private static final String PARAM_NAME_ROLE = "role";
-    private static final String IS_SUCCESS_DELETE_ROLE = "isSuccessDeleteRole";
-    private static final String IS_ERROR_DELETE_ROLE = "isErrorDeleteRole";
-    private static final boolean SUCCESS = true;
-    private static final boolean ERROR = true;
+public class DeleteRoleCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

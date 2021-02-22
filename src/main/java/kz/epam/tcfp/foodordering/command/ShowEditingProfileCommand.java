@@ -8,15 +8,10 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
-public class ShowEditingProfileCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_EDIT_PROFILE;
 
-    private static final String PATH_PAGE_EDIT_PROFILE = "path.page.edit.profile";
-    private static final String CURRENT_FIRST_NAME = "currentFirstName";
-    private static final String CURRENT_LAST_NAME = "currentLastName";
-    private static final String CURRENT_BIRTHDAY = "currentBirthday";
-    private static final String CURRENT_PHONE_NUMBER = "currentPhoneNumber";
-    private static final String CURRENT_EMAIL = "currentEmail";
-    private static final String USER_ID = "userId";
+public class ShowEditingProfileCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

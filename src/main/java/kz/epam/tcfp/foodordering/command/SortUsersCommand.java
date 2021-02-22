@@ -13,14 +13,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortUsersCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_DELETE_USER;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SORT_BY_BIRTHDAY;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SORT_BY_NAME;
 
-    private static final String PATH_PAGE_DELETE_USER = "path.page.delete.user";
-    private static final String PARAM_NAME_SORT_BY = "sort_by";
-    private static final String SORT_BY_NAME = "name";
-    private static final String SORT_BY_BIRTHDAY = "birthday";
-    private static final String USERS = "users";
-    private static final String ROLES = "roles";
+public class SortUsersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

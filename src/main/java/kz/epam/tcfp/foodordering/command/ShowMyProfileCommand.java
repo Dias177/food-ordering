@@ -8,13 +8,10 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
-public class ShowMyProfileCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_MY_PROFILE;
 
-    private static final String USER = "user";
-    private static final String ROLE_NAME = "roleName";
-    private static final String USER_ID = "userId";
-    private static final String USER_ROLE = "userRole";
-    private static final String PATH_PAGE_MY_PROFILE = "path.page.my.profile";
+public class ShowMyProfileCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

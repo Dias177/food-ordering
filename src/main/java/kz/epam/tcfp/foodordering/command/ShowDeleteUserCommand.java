@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.List;
 
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.ROLES;
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.USERS;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_DELETE_USER;
+
 public class ShowDeleteUserCommand implements ActionCommand {
-
-    private static final String USERS = "users";
-    private static final String ROLES = "roles";
-    private static final String PATH_PAGE_DELETE_USER = "path.page.delete.user";
-
+    
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_DELETE_USER);

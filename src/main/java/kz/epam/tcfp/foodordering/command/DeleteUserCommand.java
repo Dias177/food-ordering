@@ -7,14 +7,12 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
-public class DeleteUserCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_DELETE_USER;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ERROR;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
 
-    private static final String PATH_PAGE_DELETE_USER = "path.page.delete.user";
-    private static final String PARAM_NAME_USER_ID = "user_id";
-    private static final String IS_SUCCESS_DELETE_USER = "isSuccessDeleteUser";
-    private static final String IS_ERROR_DELETE_USER = "isErrorDeleteUser";
-    private static final boolean SUCCESS = true;
-    private static final boolean ERROR = true;
+public class DeleteUserCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

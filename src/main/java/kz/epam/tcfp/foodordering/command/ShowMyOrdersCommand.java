@@ -17,13 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ShowMyOrdersCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_MY_ORDERS;
 
-    private static final String PATH_PAGE_MY_ORDERS = "path.page.my.orders";
-    private static final String USER_ID = "userId";
-    private static final String FOODS = "foods";
-    private static final String ORDER_STATUSES = "orderStatuses";
-    private static final String ORDERS = "orders";
+public class ShowMyOrdersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

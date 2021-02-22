@@ -11,17 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.List;
 
-public class ShowFoodDetailCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_FOOD_DETAIL;
 
-    private static final String PATH_PAGE_FOOD_DETAIL = "path.page.food.detail";
-    private static final String FOOD = "food";
-    private static final String PARAM_NAME_FOOD_ID = "food_id";
-    private static final String FOOD_CATEGORIES = "foodCategories";
+public class ShowFoodDetailCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_FOOD_DETAIL);
-        String id = req.getParameter(PARAM_NAME_FOOD_ID);
+        String id = req.getParameter(PARAM_NAME_FOOD_ID_UNDERSCORE);
         long idLong = Long.parseLong(id);
         Food food = FoodLogic.getFood(idLong);
         List<FoodCategory> foodCategoryList = FoodCategoryLogic.getAll();

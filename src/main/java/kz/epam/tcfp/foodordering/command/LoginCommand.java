@@ -8,17 +8,12 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 
-public class LoginCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_LOGIN;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_MAIN;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ERROR;
 
-    private static final String PARAM_NAME_LOGIN = "login";
-    private static final String PARAM_NAME_PASSWORD = "password";
-    private static final String USER_ID = "userId";
-    private static final String USER_ROLE = "userRole";
-    private static final String CART = "cart";
-    private static final String IS_ERROR_LOGIN_PASS_MESSAGE = "isErrorLoginPassMessage";
-    private static final String PATH_PAGE_MAIN = "path.page.main";
-    private static final String PATH_PAGE_LOGIN = "path.page.login";
-    private static final boolean ERROR = true;
+public class LoginCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws DaoException {

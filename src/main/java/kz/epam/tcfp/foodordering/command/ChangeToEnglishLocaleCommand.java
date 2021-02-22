@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.Locale;
 
-public class ChangeToEnglishLocaleCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.LOCALE;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_LOGIN;
 
-    private static final String LOCALE = "locale";
-    private static final String PATH_PAGE_LOGIN = "path.page.login";
+public class ChangeToEnglishLocaleCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

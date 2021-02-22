@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.List;
 
-public class ShowDeleteFoodCategoryCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.FOOD_CATEGORIES;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_DELETE_FOOD_CATEGORY;
 
-    private static final String PATH_PAGE_DELETE_FOOD_CATEGORY = "path.page.delete.food.category";
-    private static final String FOOD_CATEGORIES = "foodCategories";
+public class ShowDeleteFoodCategoryCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

@@ -13,23 +13,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortMenuItemsCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_MENU;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.*;
 
-    private static final String PATH_PAGE_MENU = "path.page.menu";
-    private static final String FOOD_ITEMS = "foodItems";
-    private static final String PARAM_NAME_SORT_BY = "sort_by";
-    private static final String PARAM_NAME_FOOD_CATEGORY_ID = "food_category_id";
-    private static final String SORT_BY_NAME = "name";
-    private static final String SORT_BY_PRICE = "price";
-    private static final String FOOD_CATEGORIES = "foodCategories";
-    private static final String CURRENT_CATEGORY = "currentCategory";
-    private static final String ALL = "All";
+public class SortMenuItemsCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_MENU);
         String sortBy = req.getParameter(PARAM_NAME_SORT_BY);
-        long foodCategoryId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_CATEGORY_ID));
+        long foodCategoryId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_CATEGORY_ID_UNDERSCORE));
         List<FoodCategory> foodCategories = FoodCategoryLogic.getAll();
         List<Food> foodItems;
         if (foodCategoryId == 0) {

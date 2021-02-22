@@ -6,9 +6,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static kz.epam.tcfp.foodordering.util.ValueConstants.CUSTOMER_ROLE_ID;
+
 public class UserDao extends AbstractDao<Long, User> {
 
-    private static final long CUSTOMER_ROLE_ID = 2;
     private static final String COLUMN_LABEL_ID = "id";
     private static final String COLUMN_LABEL_ROLE_ID = "role_id";
     private static final String COLUMN_LABEL_EMAIL = "email";

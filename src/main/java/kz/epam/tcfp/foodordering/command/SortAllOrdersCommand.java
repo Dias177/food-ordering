@@ -11,15 +11,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class SortAllOrdersCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_ALL_ORDERS;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.SORT_BY_DATE;
 
-    private static final String PATH_PAGE_ALL_ORDERS = "path.page.all.orders";
-    private static final String PARAM_NAME_SORT_BY = "sort_by";
-    private static final String FOODS = "foods";
-    private static final String ORDER_STATUSES = "orderStatuses";
-    private static final String ORDERS = "orders";
-    private static final String USERS = "users";
-    private static final String SORT_BY_DATE = "date";
+public class SortAllOrdersCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

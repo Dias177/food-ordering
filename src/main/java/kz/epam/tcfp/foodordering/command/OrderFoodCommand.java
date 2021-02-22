@@ -13,18 +13,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class OrderFoodCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_CART;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.*;
 
-    private static final String PATH_PAGE_CART = "path.page.cart";
-    private static final String CART = "cart";
-    private static final String USER_ID = "userId";
-    private static final long DEFAULT_ORDER_STATUS_ID = 1;
-    private static final int MIN_FOOD_QUANTITY = 1;
-    private static final String PARAM_NAME_FOOD_QUANTITY = "foodQuantity";
-    private static final String IS_ERROR_INVALID_ORDER_FOOD_QUANTITY = "isErrorInvalidOrderFoodQuantity";
-    private static final String IS_SUCCESS_ORDER_FOOD = "isSuccessOrderFood";
-    private static final boolean ERROR = false;
-    private static final boolean SUCCESS = true;
+public class OrderFoodCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

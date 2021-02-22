@@ -6,8 +6,9 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_EDIT_PASSWORD;
+
 public class ShowEditingPasswordCommand implements ActionCommand {
-    private static final String PATH_PAGE_EDIT_PASSWORD = "path.page.edit.password";
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

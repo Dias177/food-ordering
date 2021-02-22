@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.List;
 
-public class ShowDeleteRoleCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.ROLES;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_DELETE_ROLE;
 
-    private static final String PATH_PAGE_DELETE_ROLE = "path.page.delete.role";
-    private static final String ROLES = "roles";
+public class ShowDeleteRoleCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

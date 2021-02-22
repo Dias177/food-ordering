@@ -11,21 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.List;
 
-public class ShowEditingFoodCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_EDIT_FOOD;
 
-    private static final String PARAM_NAME_FOOD_ID = "food_id";
-    private static final String PATH_PAGE_EDIT_FOOD = "path.page.edit.food";
-    private static final String CURRENT_FOOD_NAME = "currentFoodName";
-    private static final String CURRENT_FOOD_CATEGORY_ID = "currentFoodCategoryId";
-    private static final String CURRENT_FOOD_DESCRIPTION = "currentFoodDescription";
-    private static final String CURRENT_FOOD_PRICE = "currentFoodPrice";
-    private static final String FOOD_CATEGORIES = "foodCategories";
-    private static final String FOOD_ID = "foodId";
+public class ShowEditingFoodCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_EDIT_FOOD);
-        long foodId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_ID));
+        long foodId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_ID_UNDERSCORE));
         Food food = FoodLogic.getFood(foodId);
         List<FoodCategory> foodCategories = FoodCategoryLogic.getAll();
         req.setAttribute(CURRENT_FOOD_NAME, food.getName());

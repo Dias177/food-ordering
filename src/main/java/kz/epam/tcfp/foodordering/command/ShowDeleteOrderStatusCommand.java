@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.List;
 
-public class ShowDeleteOrderStatusCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.ORDER_STATUSES;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_DELETE_ORDER_STATUS;
 
-    private static final String PATH_PAGE_DELETE_ORDER_STATUS = "path.page.delete.order.status";
-    private static final String ORDER_STATUSES = "orderStatuses";
+public class ShowDeleteOrderStatusCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {

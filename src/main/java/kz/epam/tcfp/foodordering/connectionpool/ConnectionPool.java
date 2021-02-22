@@ -11,10 +11,12 @@ import java.util.Enumeration;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
+import static kz.epam.tcfp.foodordering.util.ValueConstants.DEFAULT_POOL_SIZE;
+
 public class ConnectionPool {
 
     private static final Logger logger = LogManager.getLogger();
-    private static final int DEFAULT_POOL_SIZE = 32;
+
     private static ConnectionPool instance;
     private final String driverName;
     private final String url;

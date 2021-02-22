@@ -60,8 +60,6 @@ M
 src/main/webapp/jsp/login.jsp,a/f/af55eee015fec33e99bf54ec2d8713a26133aad7
 n
 >src/main/java/kz/epam/tcfp/foodordering/util/RegexManager.java,9/7/977e7f732089c462bbd0c2cbddaeef9c6fbdb1b4
-p
-@src/main/java/kz/epam/tcfp/foodordering/util/MessageManager.java,e/8/e83509afabbc3174ae96f4a968f0265a0b99e6b1
 v
 Fsrc/main/java/kz/epam/tcfp/foodordering/util/ConfigurationManager.java,a/7/a7530564188cf77f46c50f587af15fabff749a69
 S
@@ -264,3 +262,7 @@ u
 Esrc/main/java/kz/epam/tcfp/foodordering/command/SortUsersCommand.java,e/5/e517cb56c103220674da29210bc9c7c86aa687aa
 y
 Isrc/main/java/test/kz/epam/tcfp/foodordering/logic/RegisterLogicTest.java,7/e/7e004f591d60bec0d38498834644c1344d2ecaa3
+s
+Csrc/main/java/kz/epam/tcfp/foodordering/util/PathPageConstants.java,0/a/0a71b72806f200c96f9ff02a99aef4ffb08784fd
+{
+Ksrc/main/java/kz/epam/tcfp/foodordering/util/ParamAndAttrNameConstants.java,e/d/ed4812cef4a0a3903377c61efe8062f42679c514

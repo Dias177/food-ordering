@@ -4,9 +4,9 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class LogoutCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_INDEX;
 
-    private static final String PATH_PAGE_INDEX = "path.page.index";
+public class LogoutCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) {

@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.Set;
 
-public class RemoveFoodFromCartCommand implements ActionCommand {
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.CART;
+import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.PARAM_NAME_FOOD_ID_UNDERSCORE;
+import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_CART;
 
-    private static final String PARAM_NAME_FOOD_ID = "food_id";
-    private static final String PATH_PAGE_CART = "path.page.cart";
-    private static final String CART = "cart";
+public class RemoveFoodFromCartCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_CART);
-        long foodId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_ID));
+        long foodId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_ID_UNDERSCORE));
         Food foodToRemove = FoodLogic.getFood(foodId);
         Set<Food> cart = (Set<Food>) req.getSession().getAttribute(CART);
         cart.remove(foodToRemove);
