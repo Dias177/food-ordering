@@ -44,6 +44,12 @@ public class RegisterLogicTest {
     }
 
     @Test
+    public void testIsValidNameIfCyrillicCharacters() {
+        String validNameWithCyrillicCharacters = "Иван";
+        assertTrue(RegisterLogic.isValidName(validNameWithCyrillicCharacters));
+    }
+
+    @Test
     public void testIsValidNameIfDoubleName() {
         String validDoubleName = "Helen-Maria";
         assertTrue(RegisterLogic.isValidName(validDoubleName));
