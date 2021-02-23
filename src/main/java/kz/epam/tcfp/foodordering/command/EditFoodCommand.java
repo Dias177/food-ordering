@@ -25,7 +25,7 @@ public class EditFoodCommand implements ActionCommand {
         double foodPrice = Double.parseDouble(req.getParameter(PARAM_NAME_FOOD_PRICE));
         boolean isValidData = true;
         Food food = FoodLogic.getFood(foodName);
-        if (food.getId() != foodId && food.getName().equals(foodName)) {
+        if (food.getId() != foodId && food.getName() != null) {
             req.setAttribute(IS_ERROR_INVALID_FOOD_NAME, ERROR);
             isValidData = false;
         }
