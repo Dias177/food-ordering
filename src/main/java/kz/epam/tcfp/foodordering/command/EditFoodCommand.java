@@ -23,17 +23,17 @@ public class EditFoodCommand implements ActionCommand {
         long foodCategoryId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_CATEGORY_ID_CAMELCASE));
         String foodDescription = req.getParameter(PARAM_NAME_FOOD_DESCRIPTION);
         double foodPrice = Double.parseDouble(req.getParameter(PARAM_NAME_FOOD_PRICE));
-        boolean isValidData = true;
+        boolean isDataValid = true;
         Food food = FoodLogic.getFood(foodName);
         if (food.getId() != foodId && food.getName() != null) {
             req.setAttribute(IS_ERROR_INVALID_FOOD_NAME, ERROR);
-            isValidData = false;
+            isDataValid = false;
         }
         if (foodPrice < MIN_FOOD_PRICE) {
             req.setAttribute(IS_ERROR_INVALID_FOOD_PRICE, ERROR);
-            isValidData = false;
+            isDataValid = false;
         }
-        if (isValidData && FoodLogic.edit(foodId, foodName, foodCategoryId, foodDescription, foodPrice)) {
+        if (isDataValid && FoodLogic.edit(foodId, foodName, foodCategoryId, foodDescription, foodPrice)) {
             req.setAttribute(IS_SUCCESS_EDIT_FOOD, SUCCESS);
         }
         return page;

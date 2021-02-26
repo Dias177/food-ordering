@@ -37,7 +37,7 @@ public class RegisterLogic {
         }
     }
 
-    public static boolean isValidEmail(String email) {
+    public static boolean isEmailValid(String email) {
         if (isNullOrEmpty(email)) {
             return false;
         }
@@ -60,7 +60,7 @@ public class RegisterLogic {
         return user.getEmail() != null;
     }
 
-    public static boolean isValidName(String name) {
+    public static boolean isNameValid(String name) {
         if (isNullOrEmpty(name)) {
             return false;
         }
@@ -70,7 +70,7 @@ public class RegisterLogic {
         return nameMatcher.matches();
     }
 
-    public static boolean isValidPassword(String password) {
+    public static boolean isPasswordValid(String password) {
         if (isNullOrEmpty(password)) {
             return false;
         }
@@ -80,14 +80,14 @@ public class RegisterLogic {
         return passwordMatcher.matches();
     }
 
-    public static boolean isCorrectConfirmedPassword(String password, String confirmedPassword) {
+    public static boolean isConfirmedPasswordCorrect(String password, String confirmedPassword) {
         if (isNullOrEmpty(password) || isNullOrEmpty(confirmedPassword)) {
             return false;
         }
         return password.equals(confirmedPassword);
     }
 
-    public static boolean isValidPhoneNumber(String phoneNumber) {
+    public static boolean isPhoneNumberValid(String phoneNumber) {
         if (isNullOrEmpty(phoneNumber)) {
             return false;
         }
@@ -97,7 +97,7 @@ public class RegisterLogic {
         return phoneNumberMatcher.matches();
     }
 
-    public static boolean isValidBirthday(Date birthday) {
+    public static boolean isBirthdayValid(Date birthday) {
         if (birthday == null) {
             return true;
         }

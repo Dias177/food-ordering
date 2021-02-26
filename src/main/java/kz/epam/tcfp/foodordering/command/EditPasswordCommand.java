@@ -22,11 +22,11 @@ public class EditPasswordCommand implements ActionCommand {
         long userId = (long) req.getSession().getAttribute(USER_ID);
         String password = req.getParameter(PARAM_NAME_PASSWORD);
         String confirmedPassword = req.getParameter(PARAM_NAME_CONFIRMED_PASSWORD);
-        if (!RegisterLogic.isValidPassword(password)) {
+        if (!RegisterLogic.isPasswordValid(password)) {
             req.setAttribute(IS_ERROR_INVALID_PASSWORD, ERROR);
             isDataValid = false;
         }
-        if (!RegisterLogic.isCorrectConfirmedPassword(confirmedPassword, password)) {
+        if (!RegisterLogic.isConfirmedPasswordCorrect(confirmedPassword, password)) {
             req.setAttribute(IS_ERROR_WRONG_CONFIRMED_PASSWORD, ERROR);
             isDataValid = false;
         }

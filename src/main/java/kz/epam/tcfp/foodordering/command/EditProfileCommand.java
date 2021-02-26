@@ -28,23 +28,23 @@ public class EditProfileCommand implements ActionCommand {
         String birthday = req.getParameter(PARAM_NAME_BIRTHDAY);
         Date birthdayDate = birthday == null || birthday.isEmpty() ? null : Date.valueOf(birthday);
 
-        if (!RegisterLogic.isValidEmail(email) || ProfileLogic.emailExists(userId, email)) {
+        if (!RegisterLogic.isEmailValid(email) || ProfileLogic.emailExists(userId, email)) {
             req.setAttribute(IS_ERROR_INVALID_EMAIL, ERROR);
             isDataValid = false;
         }
-        if (!RegisterLogic.isValidName(firstName)) {
+        if (!RegisterLogic.isNameValid(firstName)) {
             req.setAttribute(IS_ERROR_INVALID_FIRST_NAME, ERROR);
             isDataValid = false;
         }
-        if (!RegisterLogic.isValidName(lastName)) {
+        if (!RegisterLogic.isNameValid(lastName)) {
             req.setAttribute(IS_ERROR_INVALID_LAST_NAME, ERROR);
             isDataValid = false;
         }
-        if (!RegisterLogic.isValidBirthday(birthdayDate)) {
+        if (!RegisterLogic.isBirthdayValid(birthdayDate)) {
             req.setAttribute(IS_ERROR_INVALID_BIRTHDAY, ERROR);
             isDataValid = false;
         }
-        if (!RegisterLogic.isValidPhoneNumber(phoneNumber)) {
+        if (!RegisterLogic.isPhoneNumberValid(phoneNumber)) {
             req.setAttribute(IS_ERROR_INVALID_PHONE_NUMBER, ERROR);
             isDataValid = false;
         }

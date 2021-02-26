@@ -11,8 +11,7 @@ import java.util.List;
 
 import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
 import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_ADD_FOOD;
-import static kz.epam.tcfp.foodordering.util.ValueConstants.ERROR;
-import static kz.epam.tcfp.foodordering.util.ValueConstants.SUCCESS;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.*;
 
 public class AddFoodCommand implements ActionCommand {
 
@@ -23,18 +22,18 @@ public class AddFoodCommand implements ActionCommand {
         String foodCategory = req.getParameter(PARAM_NAME_FOOD_CATEGORY);
         String foodDescription = req.getParameter(PARAM_NAME_FOOD_DESCRIPTION);
         String foodPrice = req.getParameter(PARAM_NAME_FOOD_PRICE);
-        boolean isValidData = true;
+        boolean isDataValid = true;
         long foodCategoryId = Long.parseLong(foodCategory);
         double foodPriceDouble = Double.parseDouble(foodPrice);
         if (FoodLogic.nameExists(foodName)) {
             req.setAttribute(IS_ERROR_INVALID_FOOD_NAME, ERROR);
-            isValidData = false;
+            isDataValid = false;
         }
-        if (Double.parseDouble(foodPrice) < 0) {
+        if (foodPriceDouble < MIN_FOOD_PRICE) {
             req.setAttribute(IS_ERROR_INVALID_FOOD_PRICE, ERROR);
-            isValidData = false;
+            isDataValid = false;
         }
-        if (isValidData) {
+        if (isDataValid) {
             FoodLogic.add(foodCategoryId, foodName, foodDescription, foodPriceDouble);
             req.setAttribute(IS_SUCCESS_ADD_FOOD, SUCCESS);
         }

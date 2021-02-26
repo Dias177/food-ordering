@@ -5,12 +5,9 @@ import kz.epam.tcfp.foodordering.dao.EntityTransaction;
 import kz.epam.tcfp.foodordering.dao.UserDao;
 import kz.epam.tcfp.foodordering.entity.User;
 import kz.epam.tcfp.foodordering.util.PasswordHashing;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class LoginLogic {
 
-    private static final Logger logger = LogManager.getLogger();
     private static final EntityTransaction transaction = new EntityTransaction();
     private static final UserDao userDao = new UserDao();
 
@@ -18,17 +15,17 @@ public class LoginLogic {
         throw new IllegalStateException("Logic utility class");
     }
 
-    public static boolean checkLogin(String login, String password) {
+    public static boolean checkLogin(String login, String password) throws DaoException {
         if (login == null || login.isEmpty() || password == null || password.isEmpty()) {
             return false;
         }
         String hashedPassword = PasswordHashing.hash(password);
-        User user = new User();
+        User user;
         transaction.init(userDao);
         try {
             user = userDao.findUserByEmailAndPassword(login, hashedPassword);
         } catch (DaoException e) {
-            logger.error(e);
+            throw new DaoException(e);
         } finally {
             transaction.end();
         }
@@ -37,25 +34,25 @@ public class LoginLogic {
 
     public static String getUserRoleName(String login, String password) throws DaoException {
         String hashedPassword = PasswordHashing.hash(password);
-        User user = new User();
+        User user;
         transaction.init(userDao);
         try {
             user = userDao.findUserByEmailAndPassword(login, hashedPassword);
         } catch (DaoException e) {
-            logger.error(e);
+            throw new DaoException(e);
         } finally {
             transaction.end();
         }
         return RoleLogic.getName(user.getRoleId());
     }
 
-    public static long getUserId(String login) {
-        User user = new User();
+    public static long getUserId(String login) throws DaoException {
+        User user;
         transaction.init(userDao);
         try {
             user = userDao.findUserByEmail(login);
         } catch (DaoException e) {
-            logger.error(e);
+            throw new DaoException(e);
         } finally {
             transaction.end();
         }

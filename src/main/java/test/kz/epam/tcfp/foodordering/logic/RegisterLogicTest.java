@@ -12,169 +12,169 @@ public class RegisterLogicTest {
     @Test
     public void testIsValidEmail() {
         String validEmail = "test@example.com";
-        assertTrue(RegisterLogic.isValidEmail(validEmail));
+        assertTrue(RegisterLogic.isEmailValid(validEmail));
     }
 
     @Test
     public void testIsValidEmailIfEmailWithDot() {
         String validEmailWithDot = "adam.jones@test.kz";
-        assertTrue(RegisterLogic.isValidEmail(validEmailWithDot));
+        assertTrue(RegisterLogic.isEmailValid(validEmailWithDot));
     }
 
     @Test
     public void testIsNotValidEmail() {
         String notValidEmail = "not.valid@example@com";
-        assertFalse(RegisterLogic.isValidEmail(notValidEmail));
+        assertFalse(RegisterLogic.isEmailValid(notValidEmail));
     }
 
     @Test
     public void testIsNotValidEmailIfNull() {
-        assertFalse(RegisterLogic.isValidEmail(null));
+        assertFalse(RegisterLogic.isEmailValid(null));
     }
 
     @Test
     public void testIsNotValidEmailIfEmpty() {
-        assertFalse(RegisterLogic.isValidEmail(""));
+        assertFalse(RegisterLogic.isEmailValid(""));
     }
 
     @Test
     public void testIsValidName() {
         String validName = "Adam";
-        assertTrue(RegisterLogic.isValidName(validName));
+        assertTrue(RegisterLogic.isNameValid(validName));
     }
 
     @Test
     public void testIsValidNameIfCyrillicCharacters() {
         String validNameWithCyrillicCharacters = "Иван";
-        assertTrue(RegisterLogic.isValidName(validNameWithCyrillicCharacters));
+        assertTrue(RegisterLogic.isNameValid(validNameWithCyrillicCharacters));
     }
 
     @Test
     public void testIsValidNameIfDoubleName() {
         String validDoubleName = "Helen-Maria";
-        assertTrue(RegisterLogic.isValidName(validDoubleName));
+        assertTrue(RegisterLogic.isNameValid(validDoubleName));
     }
 
     @Test
     public void testIsValidNameIfApostrophe() {
         String validNameWithApostrophe = "O'Neill";
-        assertTrue(RegisterLogic.isValidName(validNameWithApostrophe));
+        assertTrue(RegisterLogic.isNameValid(validNameWithApostrophe));
     }
 
     @Test
     public void testIsNotValidNameIfNumbers() {
         String notValidNameWithNumbers = "John123";
-        assertFalse(RegisterLogic.isValidName(notValidNameWithNumbers));
+        assertFalse(RegisterLogic.isNameValid(notValidNameWithNumbers));
     }
 
     @Test
     public void testIsNotValidNameIfSpecialChars() {
         String notValidNameWithSpecialChars = "Smi@!#th";
-        assertFalse(RegisterLogic.isValidName(notValidNameWithSpecialChars));
+        assertFalse(RegisterLogic.isNameValid(notValidNameWithSpecialChars));
     }
 
     @Test
     public void testIsNotValidNameIfNull() {
-        assertFalse(RegisterLogic.isValidName(null));
+        assertFalse(RegisterLogic.isNameValid(null));
     }
 
     @Test
     public void testIsNotValidNameIfEmpty() {
-        assertFalse(RegisterLogic.isValidName(""));
+        assertFalse(RegisterLogic.isNameValid(""));
     }
 
     @Test
     public void testIsValidPassword() {
         String validPassword = "aDmin123@";
-        assertTrue(RegisterLogic.isValidPassword(validPassword));
+        assertTrue(RegisterLogic.isPasswordValid(validPassword));
     }
 
     @Test
     public void testIsNotValidPasswordIfLessThanEightChars() {
         String notValidPasswordWithLessThanEightChars = "Pass@1";
-        assertFalse(RegisterLogic.isValidPassword(notValidPasswordWithLessThanEightChars));
+        assertFalse(RegisterLogic.isPasswordValid(notValidPasswordWithLessThanEightChars));
     }
 
     @Test
     public void testIsNotValidPasswordIfNoSpecialChars() {
         String notValidPasswordWithoutSpecialChars = "TestPassword123";
-        assertFalse(RegisterLogic.isValidPassword(notValidPasswordWithoutSpecialChars));
+        assertFalse(RegisterLogic.isPasswordValid(notValidPasswordWithoutSpecialChars));
     }
 
     @Test
     public void testIsNotValidPasswordIfNull() {
-        assertFalse(RegisterLogic.isValidPassword(null));
+        assertFalse(RegisterLogic.isPasswordValid(null));
     }
 
     @Test
     public void testIsNotValidPasswordIfEmpty() {
-        assertFalse(RegisterLogic.isValidPassword(""));
+        assertFalse(RegisterLogic.isPasswordValid(""));
     }
 
     @Test
     public void testIsConfirmedPassword() {
         String password = "Admin123!";
         String confirmedPassword = "Admin123!";
-        assertTrue(RegisterLogic.isCorrectConfirmedPassword(password, confirmedPassword));
+        assertTrue(RegisterLogic.isConfirmedPasswordCorrect(password, confirmedPassword));
     }
 
     @Test
     public void testIsNotConfirmedPassword() {
         String password = "TestPassword123!";
         String confirmedPassword = "TestPassword123@";
-        assertFalse(RegisterLogic.isCorrectConfirmedPassword(password, confirmedPassword));
+        assertFalse(RegisterLogic.isConfirmedPasswordCorrect(password, confirmedPassword));
     }
 
     @Test
     public void testIsNotConfirmedPasswordIfNull() {
         String password = "Qwerty12!";
         String confirmedPassword = null;
-        assertFalse(RegisterLogic.isCorrectConfirmedPassword(password, confirmedPassword));
+        assertFalse(RegisterLogic.isConfirmedPasswordCorrect(password, confirmedPassword));
     }
 
     @Test
     public void testIsNotConfirmedPasswordIfEmpty() {
         String password = "";
         String confirmedPassword = "proJect12@";
-        assertFalse(RegisterLogic.isCorrectConfirmedPassword(password, confirmedPassword));
+        assertFalse(RegisterLogic.isConfirmedPasswordCorrect(password, confirmedPassword));
     }
 
     @Test
     public void testIsValidPhoneNumber() {
         String validPhoneNumber = "+77018973274";
-        assertTrue(RegisterLogic.isValidPhoneNumber(validPhoneNumber));
+        assertTrue(RegisterLogic.isPhoneNumberValid(validPhoneNumber));
     }
 
     @Test
     public void testIsNotValidPhoneNumber() {
         String notValidPhoneNumber = "1234567890";
-        assertFalse(RegisterLogic.isValidPhoneNumber(notValidPhoneNumber));
+        assertFalse(RegisterLogic.isPhoneNumberValid(notValidPhoneNumber));
     }
 
     @Test
     public void testIsNotValidPhoneNumberIfNull() {
-        assertFalse(RegisterLogic.isValidPhoneNumber(null));
+        assertFalse(RegisterLogic.isPhoneNumberValid(null));
     }
 
     @Test
     public void testIsNotValidPhoneNumberIfEmpty() {
-        assertFalse(RegisterLogic.isValidPhoneNumber(""));
+        assertFalse(RegisterLogic.isPhoneNumberValid(""));
     }
 
     @Test
     public void testIsValidBirthday() {
         Date validBirthday = Date.valueOf("2000-05-31");
-        assertTrue(RegisterLogic.isValidBirthday(validBirthday));
+        assertTrue(RegisterLogic.isBirthdayValid(validBirthday));
     }
 
     @Test
     public void testIsNotValidBirthday() {
         Date notValidBirthday = Date.valueOf("2030-01-01");
-        assertFalse(RegisterLogic.isValidBirthday(notValidBirthday));
+        assertFalse(RegisterLogic.isBirthdayValid(notValidBirthday));
     }
 
     @Test
     public void testIsValidBirthdayIfNull() {
-        assertTrue(RegisterLogic.isValidBirthday(null));
+        assertTrue(RegisterLogic.isBirthdayValid(null));
     }
 }
