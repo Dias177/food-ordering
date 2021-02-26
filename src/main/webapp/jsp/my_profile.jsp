@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setLocale value="${locale}" scope="session" />
 <fmt:setBundle basename="pagecontent" />
 <html>
@@ -19,13 +20,7 @@
 <div class="container">
     <h3><fmt:message key="label.my.profile" /></h3>
     <div class="card text-center mx-auto" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">${user.firstName} ${user.lastName}</h5>
-            <p class="card-text">${user.birthday}</p>
-            <p class="card-text">${user.phoneNumber}</p>
-            <p class="card-text">${user.email}</p>
-            <p class="card-text">${roleName}</p>
-        </div>
+        <ctg:user-card-body user="${user}" />
     </div>
 </div>
 </body>

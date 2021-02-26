@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="customtags" %>
 <fmt:setLocale value="${locale}" scope="session" />
 <fmt:setBundle basename="pagecontent" />
 <html>
@@ -40,14 +41,9 @@
                 <c:forEach var="user" items="${users}">
                     <div class="col mb-4">
                         <div class="card h-100 text-center" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">${user.firstName} ${user.lastName}</h5>
-                                <p class="card-text">${user.birthday}</p>
-                                <p class="card-text">${user.phoneNumber}</p>
-                                <p class="card-text">${user.email}</p>
-                                <p class="card-text">${roles[user.roleId - 1].name}</p>
-                                <a href="${pageContext.request.contextPath}/controller?command=delete_user&user_id=${user.id}" class="btn btn-danger" role="button"><fmt:message key="label.remove" /></a>
-                            </div>
+                            <ctg:user-card-body user="${user}" type="delete">
+                                <fmt:message key="label.remove" />
+                            </ctg:user-card-body>
                         </div>
                     </div>
                 </c:forEach>
