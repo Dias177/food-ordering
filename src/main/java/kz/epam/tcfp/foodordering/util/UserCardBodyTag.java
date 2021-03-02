@@ -1,7 +1,6 @@
 package kz.epam.tcfp.foodordering.util;
 
 import kz.epam.tcfp.foodordering.dao.DaoException;
-import kz.epam.tcfp.foodordering.entity.Role;
 import kz.epam.tcfp.foodordering.entity.User;
 import kz.epam.tcfp.foodordering.logic.RoleLogic;
 
@@ -9,13 +8,19 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
-import java.util.List;
 
 public class UserCardBodyTag extends TagSupport {
 
-    private static final String P_CLASS_CARD_TEXT = "<p class='card-text'>";
-    private static final String P_CLOSING = "</p>";
     private static final String DELETE = "delete";
+    private static final String DIV_CLASS_CARD_BODY = "<div class='card-body'>";
+    private static final String H5_CLASS_CARD_TITLE = "<h5 class='card-title'>";
+    private static final String P_CLASS_CARD_TEXT = "<p class='card-text'>";
+    private static final String A_TAG_WITH_PARAMS = "<a href=%s/controller?command=delete_user&user_id=%d " +
+            "class='btn btn-danger' role='button'>";
+    private static final String DIV_CLOSING = "</div>";
+    private static final String H5_CLOSING = "</h5>";
+    private static final String P_CLOSING = "</p>";
+    private static final String A_CLOSING = "</a>";
 
     private User user;
     private String type;
@@ -31,24 +36,16 @@ public class UserCardBodyTag extends TagSupport {
     @Override
     public int doStartTag() throws JspException {
         try {
-            List<Role> roles = RoleLogic.getAll();
-            String roleName = "";
-            for (Role role : roles) {
-                if (role.getId() == user.getRoleId()) {
-                    roleName = role.getName();
-                    break;
-                }
-            }
+            String roleName = RoleLogic.getName(user.getRoleId());
             JspWriter out = pageContext.getOut();
-            out.write("<div class='card-body'>");
-            out.write("<h5 class='card-title'>" + user.getFirstName() + " " + user.getLastName() + "</h5>");
+            out.write(DIV_CLASS_CARD_BODY);
+            out.write( H5_CLASS_CARD_TITLE + user.getFirstName() + " " + user.getLastName() + H5_CLOSING);
             out.write(P_CLASS_CARD_TEXT + user.getBirthday() + P_CLOSING);
             out.write(P_CLASS_CARD_TEXT + user.getPhoneNumber() + P_CLOSING);
             out.write(P_CLASS_CARD_TEXT + user.getEmail() + P_CLOSING);
             out.write(P_CLASS_CARD_TEXT + roleName + P_CLOSING);
             if (DELETE.equalsIgnoreCase(type)) {
-                out.write("<a href='" + pageContext.getServletContext().getContextPath() +
-                        "/controller?command=delete_user&user_id=" + user.getId() + "' class='btn btn-danger' role='button'>");
+                out.write(String.format(A_TAG_WITH_PARAMS, pageContext.getServletContext().getContextPath(), user.getId()));
             }
         } catch (IOException | DaoException e) {
             throw new JspException(e.getMessage());
@@ -60,7 +57,7 @@ public class UserCardBodyTag extends TagSupport {
     public int doAfterBody() throws JspException {
         try {
             if (type != null) {
-                pageContext.getOut().write("</a>");
+                pageContext.getOut().write(A_CLOSING);
             }
         } catch (IOException e) {
             throw new JspException(e.getMessage());
@@ -71,7 +68,7 @@ public class UserCardBodyTag extends TagSupport {
     @Override
     public int doEndTag() throws JspException {
         try {
-            pageContext.getOut().write("</div>");
+            pageContext.getOut().write(DIV_CLOSING);
         } catch (IOException e) {
             throw new JspException(e.getMessage());
         }
