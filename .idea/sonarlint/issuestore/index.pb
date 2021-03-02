@@ -268,3 +268,7 @@ Csrc/main/java/kz/epam/tcfp/foodordering/util/PathPageConstants.java,0/a/0a71b7
 Ksrc/main/java/kz/epam/tcfp/foodordering/util/ParamAndAttrNameConstants.java,e/d/ed4812cef4a0a3903377c61efe8062f42679c514
 p
 @src/main/java/kz/epam/tcfp/foodordering/util/ValueConstants.java,a/4/a44bed8f5b1ec91c9016c86d75b3e81aedcf13f1
+V
+&src/main/webapp/WEB-INF/tld/custom.tld,8/8/881166607fa66ac4ed4265a0145359c8cb9eb209
+q
+Asrc/main/java/kz/epam/tcfp/foodordering/util/UserCardBodyTag.java,d/d/dd8967e7947a58135a3e1a9183c8205f220208ec

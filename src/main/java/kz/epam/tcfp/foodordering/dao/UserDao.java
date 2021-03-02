@@ -19,12 +19,12 @@ public class UserDao extends AbstractDao<Long, User> {
     private static final String COLUMN_LABEL_BIRTHDAY = "birthday";
     private static final String SQL_SELECT_USER_BY_EMAIL_AND_PASSWORD = "SELECT * FROM user WHERE email = ? AND " +
             "password = ?";
-    private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM user WHERE role_id = " + CUSTOMER_ROLE_ID;
-    private static final String SQL_SELECT_USER_BY_ID = "SELECT * FROM user WHERE id = ?";
+    private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM user_info WHERE role_id = " + CUSTOMER_ROLE_ID;
+    private static final String SQL_SELECT_USER_BY_ID = "SELECT * FROM user_info WHERE id = ?";
     private static final String SQL_DELETE_USER_BY_ID = "DELETE FROM user WHERE id = ?";
     private static final String SQL_CREATE_USER = "INSERT INTO user (role_id, email, " +
             "password, first_name, last_name, phone_number, birthday) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE email = ?";
+    private static final String SQL_SELECT_USER_BY_EMAIL = "SELECT * FROM user_info WHERE email = ?";
     private static final String SQL_UPDATE_USER_INFO = "UPDATE user SET first_name = ?, last_name = ?, " +
             "phone_number = ?, birthday = ?, email = ? WHERE id = ?";
     private static final String SQL_UPDATE_USER_PASSWORD = "UPDATE user SET password = ? WHERE id = ?";

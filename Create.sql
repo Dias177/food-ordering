@@ -11,6 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema food_ordering
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `food_ordering`;
 CREATE SCHEMA IF NOT EXISTS `food_ordering` DEFAULT CHARACTER SET utf8 ;
 USE `food_ordering` ;
 
@@ -137,6 +138,12 @@ CREATE TABLE IF NOT EXISTS `food_ordering`.`order_detail` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+DROP VIEW IF EXISTS user_info;
+CREATE VIEW user_info
+AS
+SELECT id, role_id, first_name, last_name, phone_number, birthday, email
+FROM user
+ORDER BY id;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
