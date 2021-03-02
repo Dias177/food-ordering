@@ -29,7 +29,8 @@ public class SortUsersCommand implements ActionCommand {
         if (SORT_BY_NAME.equalsIgnoreCase(sortBy)) {
             Collections.sort(users);
         } else if (SORT_BY_BIRTHDAY.equalsIgnoreCase(sortBy)) {
-            users.sort(Comparator.comparing(User::getBirthday));
+            users.sort(Comparator.comparing(User::getBirthday,
+                    Comparator.nullsFirst(Comparator.naturalOrder())));
         }
         req.setAttribute(ROLES, roles);
         req.setAttribute(USERS, users);

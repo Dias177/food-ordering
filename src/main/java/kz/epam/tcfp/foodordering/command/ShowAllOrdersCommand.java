@@ -7,10 +7,7 @@ import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
 import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_ALL_ORDERS;
@@ -24,7 +21,7 @@ public class ShowAllOrdersCommand implements ActionCommand {
         List<Food> foodList = FoodLogic.getAllItems();
         List<Order> orderList = OrderLogic.getAll();
         Map<Order, List<OrderDetail>> orders = new HashMap<>();
-        List<User> users = new ArrayList<>();
+        Set<User> users = new HashSet<>();
         for (Order order : orderList) {
             List<OrderDetail> orderDetailsList = OrderDetailLogic.getAllByOrderId(order.getId());
             users.add(ProfileLogic.getUserById(order.getUserId()));
