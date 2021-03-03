@@ -22,7 +22,7 @@ public class LoginCommand implements ActionCommand {
         String password = req.getParameter(PARAM_NAME_PASSWORD);
         if (LoginLogic.checkLogin(login, password)) {
             req.getSession().setAttribute(USER_ID, LoginLogic.getUserId(login));
-            req.getSession().setAttribute(USER_ROLE, LoginLogic.getUserRoleName(login, password).toUpperCase());
+            req.getSession().setAttribute(USER_ROLE, LoginLogic.getUserRoleName(login).toUpperCase());
             req.getSession().setAttribute(CART, new HashSet<Food>());
             page = ConfigurationManager.getProperty(PATH_PAGE_MAIN);
         } else {

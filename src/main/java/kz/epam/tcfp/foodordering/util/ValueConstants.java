@@ -7,6 +7,7 @@ public class ValueConstants {
 
     public static final int DEFAULT_POOL_SIZE = 32;
     public static final long CUSTOMER_ROLE_ID = 2;
+    public static final String CUSTOMER_ROLE_NAME = "Customer";
 
     public static final boolean SUCCESS = true;
     public static final boolean ERROR = true;

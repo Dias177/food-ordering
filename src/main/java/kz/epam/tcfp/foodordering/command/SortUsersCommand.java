@@ -1,10 +1,8 @@
 package kz.epam.tcfp.foodordering.command;
 
 import kz.epam.tcfp.foodordering.dao.DaoException;
-import kz.epam.tcfp.foodordering.entity.Role;
 import kz.epam.tcfp.foodordering.entity.User;
 import kz.epam.tcfp.foodordering.logic.ProfileLogic;
-import kz.epam.tcfp.foodordering.logic.RoleLogic;
 import kz.epam.tcfp.foodordering.util.ConfigurationManager;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +22,6 @@ public class SortUsersCommand implements ActionCommand {
     public String execute(HttpServletRequest req) throws ParseException, DaoException {
         String page = ConfigurationManager.getProperty(PATH_PAGE_DELETE_USER);
         String sortBy = req.getParameter(PARAM_NAME_SORT_BY);
-        List<Role> roles = RoleLogic.getAll();
         List<User> users = ProfileLogic.getAllCustomers();
         if (SORT_BY_NAME.equalsIgnoreCase(sortBy)) {
             Collections.sort(users);
@@ -32,7 +29,6 @@ public class SortUsersCommand implements ActionCommand {
             users.sort(Comparator.comparing(User::getBirthday,
                     Comparator.nullsFirst(Comparator.naturalOrder())));
         }
-        req.setAttribute(ROLES, roles);
         req.setAttribute(USERS, users);
         return page;
     }

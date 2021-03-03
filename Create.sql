@@ -141,9 +141,10 @@ ENGINE = InnoDB;
 DROP VIEW IF EXISTS user_info;
 CREATE VIEW user_info
 AS
-SELECT id, role_id, first_name, last_name, phone_number, birthday, email
-FROM user
-ORDER BY id;
+SELECT u.id, r.name AS role_name, u.first_name, u.last_name, u.phone_number, u.birthday, u.email
+FROM user u
+JOIN role r ON u.role_id = r.id
+ORDER BY u.id;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

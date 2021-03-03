@@ -29,21 +29,20 @@ public class LoginLogic {
         } finally {
             transaction.end();
         }
-        return user.getEmail() != null || user.getRoleId() != 0;
+        return user.getEmail() != null || user.getRoleName() != null;
     }
 
-    public static String getUserRoleName(String login, String password) throws DaoException {
-        String hashedPassword = PasswordHashing.hash(password);
+    public static String getUserRoleName(String login) throws DaoException {
         User user;
         transaction.init(userDao);
         try {
-            user = userDao.findUserByEmailAndPassword(login, hashedPassword);
+            user = userDao.findUserByEmail(login);
         } catch (DaoException e) {
             throw new DaoException(e);
         } finally {
             transaction.end();
         }
-        return RoleLogic.getName(user.getRoleId());
+        return user.getRoleName();
     }
 
     public static long getUserId(String login) throws DaoException {

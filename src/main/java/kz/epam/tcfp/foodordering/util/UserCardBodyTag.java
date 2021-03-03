@@ -1,8 +1,6 @@
 package kz.epam.tcfp.foodordering.util;
 
-import kz.epam.tcfp.foodordering.dao.DaoException;
 import kz.epam.tcfp.foodordering.entity.User;
-import kz.epam.tcfp.foodordering.logic.RoleLogic;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
@@ -36,18 +34,17 @@ public class UserCardBodyTag extends TagSupport {
     @Override
     public int doStartTag() throws JspException {
         try {
-            String roleName = RoleLogic.getName(user.getRoleId());
             JspWriter out = pageContext.getOut();
             out.write(DIV_CLASS_CARD_BODY);
             out.write( H5_CLASS_CARD_TITLE + user.getFirstName() + " " + user.getLastName() + H5_CLOSING);
             out.write(P_CLASS_CARD_TEXT + user.getBirthday() + P_CLOSING);
             out.write(P_CLASS_CARD_TEXT + user.getPhoneNumber() + P_CLOSING);
             out.write(P_CLASS_CARD_TEXT + user.getEmail() + P_CLOSING);
-            out.write(P_CLASS_CARD_TEXT + roleName + P_CLOSING);
+            out.write(P_CLASS_CARD_TEXT + user.getRoleName() + P_CLOSING);
             if (DELETE.equalsIgnoreCase(type)) {
                 out.write(String.format(A_TAG_WITH_PARAMS, pageContext.getServletContext().getContextPath(), user.getId()));
             }
-        } catch (IOException | DaoException e) {
+        } catch (IOException e) {
             throw new JspException(e.getMessage());
         }
         return EVAL_BODY_INCLUDE;

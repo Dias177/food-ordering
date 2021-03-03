@@ -7,19 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static kz.epam.tcfp.foodordering.util.ValueConstants.CUSTOMER_ROLE_ID;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.CUSTOMER_ROLE_NAME;
 
 public class UserDao extends AbstractDao<Long, User> {
 
     private static final String COLUMN_LABEL_ID = "id";
-    private static final String COLUMN_LABEL_ROLE_ID = "role_id";
+    private static final String COLUMN_LABEL_ROLE_NAME = "role_name";
     private static final String COLUMN_LABEL_EMAIL = "email";
     private static final String COLUMN_LABEL_FIRST_NAME = "first_name";
     private static final String COLUMN_LABEL_LAST_NAME = "last_name";
     private static final String COLUMN_LABEL_PHONE_NUMBER = "phone_number";
     private static final String COLUMN_LABEL_BIRTHDAY = "birthday";
-    private static final String SQL_SELECT_USER_BY_EMAIL_AND_PASSWORD = "SELECT * FROM user WHERE email = ? AND " +
-            "password = ?";
-    private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM user_info WHERE role_id = " + CUSTOMER_ROLE_ID;
+    private static final String SQL_SELECT_USER_BY_EMAIL_AND_PASSWORD = "SELECT u.id, r.name AS role_name, " +
+            "u.first_name, u.last_name, u.phone_number, u.birthday, u.email FROM user u JOIN role r " +
+            "ON u.role_id = r.id WHERE email = ? AND password = ?";
+    private static final String SQL_SELECT_ALL_USERS = String.format("SELECT * FROM user_info WHERE role_name = '%s'",
+            CUSTOMER_ROLE_NAME);
     private static final String SQL_SELECT_USER_BY_ID = "SELECT * FROM user_info WHERE id = ?";
     private static final String SQL_DELETE_USER_BY_ID = "DELETE FROM user WHERE id = ?";
     private static final String SQL_CREATE_USER = "INSERT INTO user (role_id, email, " +
@@ -55,7 +58,7 @@ public class UserDao extends AbstractDao<Long, User> {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user.setId(resultSet.getLong(COLUMN_LABEL_ID));
-                user.setRoleId(resultSet.getLong(COLUMN_LABEL_ROLE_ID));
+                user.setRoleName(resultSet.getString(COLUMN_LABEL_ROLE_NAME));
                 user.setEmail(resultSet.getString(COLUMN_LABEL_EMAIL));
                 user.setFirstName(resultSet.getString(COLUMN_LABEL_FIRST_NAME));
                 user.setLastName(resultSet.getString(COLUMN_LABEL_LAST_NAME));
@@ -79,7 +82,7 @@ public class UserDao extends AbstractDao<Long, User> {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user.setId(resultSet.getLong(COLUMN_LABEL_ID));
-                user.setRoleId(resultSet.getLong(COLUMN_LABEL_ROLE_ID));
+                user.setRoleName(resultSet.getString(COLUMN_LABEL_ROLE_NAME));
                 user.setEmail(resultSet.getString(COLUMN_LABEL_EMAIL));
                 user.setFirstName(resultSet.getString(COLUMN_LABEL_FIRST_NAME));
                 user.setLastName(resultSet.getString(COLUMN_LABEL_LAST_NAME));
@@ -104,7 +107,7 @@ public class UserDao extends AbstractDao<Long, User> {
             while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getLong(COLUMN_LABEL_ID));
-                user.setRoleId(resultSet.getLong(COLUMN_LABEL_ROLE_ID));
+                user.setRoleName(resultSet.getString(COLUMN_LABEL_ROLE_NAME));
                 user.setEmail(resultSet.getString(COLUMN_LABEL_EMAIL));
                 user.setFirstName(resultSet.getString(COLUMN_LABEL_FIRST_NAME));
                 user.setLastName(resultSet.getString(COLUMN_LABEL_LAST_NAME));
@@ -130,7 +133,7 @@ public class UserDao extends AbstractDao<Long, User> {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user.setId(resultSet.getLong(COLUMN_LABEL_ID));
-                user.setRoleId(resultSet.getLong(COLUMN_LABEL_ROLE_ID));
+                user.setRoleName(resultSet.getString(COLUMN_LABEL_ROLE_NAME));
                 user.setEmail(resultSet.getString(COLUMN_LABEL_EMAIL));
                 user.setFirstName(resultSet.getString(COLUMN_LABEL_FIRST_NAME));
                 user.setLastName(resultSet.getString(COLUMN_LABEL_LAST_NAME));
