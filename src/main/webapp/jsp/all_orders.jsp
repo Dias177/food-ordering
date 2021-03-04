@@ -55,11 +55,15 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><fmt:message key="label.order" /> #${order.key.id}</h5>
                                             <select class="custom-select custom-select-sm" name="orderStatusId${order.key.id}">
-                                                <option value="${orderStatuses[order.key.orderStatusId - 1].id}" selected>${orderStatuses[order.key.orderStatusId - 1].name}</option>
-                                                <c:forEach var="orderStatus" items="${orderStatuses}" varStatus="statusOrderStatus">
-                                                    <c:if test="${statusOrderStatus.count ne order.key.orderStatusId}">
-                                                        <option value="${orderStatus.id}">${orderStatus.name}</option>
-                                                    </c:if>
+                                                <c:forEach var="orderStatus" items="${orderStatuses}">
+                                                    <c:choose>
+                                                        <c:when test="${orderStatus.id eq order.key.orderStatusId}">
+                                                            <option value="${orderStatus.id}" selected>${orderStatus.name}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${orderStatus.id}">${orderStatus.name}</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </c:forEach>
                                             </select>
                                             <c:forEach var="user" items="${users}">

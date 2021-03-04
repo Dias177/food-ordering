@@ -18,9 +18,7 @@ public class ShowMyProfileCommand implements ActionCommand {
         String page = ConfigurationManager.getProperty(PATH_PAGE_MY_PROFILE);
         long userId = (long) req.getSession().getAttribute(USER_ID);
         User user = ProfileLogic.getUserById(userId);
-        String roleName = (String) req.getSession().getAttribute(USER_ROLE);
         req.setAttribute(USER, user);
-        req.setAttribute(ROLE_NAME, roleName);
         return page;
     }
 }

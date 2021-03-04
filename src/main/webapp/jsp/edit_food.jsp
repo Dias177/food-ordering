@@ -39,11 +39,15 @@
         <div class="form-group input-mini">
             <label for="foodCategory"><fmt:message key="label.category" />:</label>
             <select class="custom-select custom-select-sm" id="foodCategory" name="foodCategoryId" required>
-                <option value="${foodCategories[currentFoodCategoryId - 1].id}" selected>${foodCategories[currentFoodCategoryId - 1].name}</option>
-                <c:forEach var="fc" items="${foodCategories}" varStatus="statusOrderStatus">
-                    <c:if test="${statusOrderStatus.count ne currentFoodCategoryId}">
-                        <option value="${fc.id}">${fc.name}</option>
-                    </c:if>
+                <c:forEach var="foodCategory" items="${foodCategories}">
+                    <c:choose>
+                        <c:when test="${foodCategory.id eq currentFoodCategoryId}">
+                            <option value="${currentFoodCategoryId}" selected>${foodCategory.name}</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="${foodCategory.id}">${foodCategory.name}</option>
+                        </c:otherwise>
+                    </c:choose>
                 </c:forEach>
             </select>
         </div>

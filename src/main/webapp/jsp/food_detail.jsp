@@ -21,7 +21,11 @@
             <div class="card text-center mx-auto" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">${food.name}</h5>
-                    <p class="card-text">${foodCategories[food.foodCategoryId - 1].name}</p>
+                    <c:forEach var="foodCategory" items="${foodCategories}">
+                        <c:if test="${foodCategory.id = food.foodCategoryId}">
+                            <p class="card-text">${foodCategory.name}</p>
+                        </c:if>
+                    </c:forEach>
                     <p class="card-text">${food.description}</p>
                     <p class="card-text"><fmt:formatNumber value="${food.price}" type="currency" currencySymbol="KZT" /></p>
                     <c:if test="${userRole eq 'CUSTOMER'}">
