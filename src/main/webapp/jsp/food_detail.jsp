@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <h5 class="card-title">${food.name}</h5>
                     <c:forEach var="foodCategory" items="${foodCategories}">
-                        <c:if test="${foodCategory.id = food.foodCategoryId}">
+                        <c:if test="${foodCategory.id eq food.foodCategoryId}">
                             <p class="card-text">${foodCategory.name}</p>
                         </c:if>
                     </c:forEach>
