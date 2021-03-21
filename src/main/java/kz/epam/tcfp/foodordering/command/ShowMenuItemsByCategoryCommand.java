@@ -14,6 +14,7 @@ import java.util.List;
 import static kz.epam.tcfp.foodordering.util.ParamAndAttrNameConstants.*;
 import static kz.epam.tcfp.foodordering.util.PathPageConstants.PATH_PAGE_MENU;
 import static kz.epam.tcfp.foodordering.util.ValueConstants.ALL;
+import static kz.epam.tcfp.foodordering.util.ValueConstants.ALL_CATEGORY_ID;
 
 public class ShowMenuItemsByCategoryCommand implements ActionCommand {
 
@@ -23,7 +24,7 @@ public class ShowMenuItemsByCategoryCommand implements ActionCommand {
         long foodCategoryId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_CATEGORY_ID_UNDERSCORE));
         List<Food> foodList;
         List<FoodCategory> foodCategories = FoodCategoryLogic.getAll();
-        if (foodCategoryId == 0) {
+        if (foodCategoryId == ALL_CATEGORY_ID) {
             req.setAttribute(CURRENT_CATEGORY, ALL);
             foodList = FoodLogic.getAllItems();
         } else {

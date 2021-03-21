@@ -9,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 public class PasswordHashing {
 
     private static final String ALGORITHM_MD5 = "MD5";
+    private static final int HEXADECIMAL_RADIX = 16;
     private static final Logger logger = LogManager.getLogger();
 
     private PasswordHashing() {
@@ -29,7 +30,7 @@ public class PasswordHashing {
         //Conversion from decimal format to hexadecimal one
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
-            sb.append(Integer.toString((b & 0xFF) + 0x100, 16).substring(1));
+            sb.append(Integer.toString((b & 0xFF) + 0x100, HEXADECIMAL_RADIX).substring(1));
         }
         hashedPassword = sb.toString();
         return hashedPassword;

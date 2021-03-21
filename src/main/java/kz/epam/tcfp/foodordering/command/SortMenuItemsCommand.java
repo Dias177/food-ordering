@@ -26,7 +26,7 @@ public class SortMenuItemsCommand implements ActionCommand {
         long foodCategoryId = Long.parseLong(req.getParameter(PARAM_NAME_FOOD_CATEGORY_ID_UNDERSCORE));
         List<FoodCategory> foodCategories = FoodCategoryLogic.getAll();
         List<Food> foodItems;
-        if (foodCategoryId == 0) {
+        if (foodCategoryId == ALL_CATEGORY_ID) {
             foodItems = FoodLogic.getAllItems();
             req.setAttribute(CURRENT_CATEGORY, ALL);
         } else {

@@ -4,6 +4,7 @@ public class ValueConstants {
     public static final double MIN_FOOD_PRICE = 0;
     public static final long DEFAULT_ORDER_STATUS_ID = 1;
     public static final int MIN_FOOD_QUANTITY = 1;
+    public static final int ALL_CATEGORY_ID = 0;
 
     public static final int DEFAULT_POOL_SIZE = 32;
     public static final long CUSTOMER_ROLE_ID = 2;

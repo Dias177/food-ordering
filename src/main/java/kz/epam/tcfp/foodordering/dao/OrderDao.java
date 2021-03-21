@@ -167,7 +167,7 @@ public class OrderDao extends AbstractDao<Long, Order> {
     @Override
     public int update(Order order) throws DaoException {
         PreparedStatement statement = null;
-        int affectedRows ;
+        int affectedRows;
         try {
             statement = connection.prepareStatement(SQL_UPDATE_ORDER_STATUS_ID);
             statement.setLong(1, order.getOrderStatusId());
